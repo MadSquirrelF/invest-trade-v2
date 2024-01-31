@@ -1,0 +1,100 @@
+.Button {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.clear {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.default {
+    line-height: 1.21;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: white;
+    background-color: var(--active-color-default);
+    filter: drop-shadow(-1px 1px 4px rgb(0 0 0 / 25%));
+
+    &:hover {
+        background-color: var(--active-color-hover);
+    }
+
+    &:disabled,
+    &[disabled] {
+        background-color: var(--active-color-disabled);
+        pointer-events: none;
+    }
+}
+
+.cart {
+    display: flex;
+    background-color: var(--bg-secondary);
+    align-items: center;
+    line-height: 1.22;
+    padding: 6.5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+
+    span {
+        padding-right: 7px;
+        border-right: 2px solid var(--border-vertical-cart);
+        margin-right: 7px;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+        color: var(--text-secondary);
+    }
+}
+
+.svg_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: transparent;
+    padding: 7px;
+    color: var(--text-secondary);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        background: var(--bg-secondary);
+    }
+}
+
+.svg_circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 37px;
+    height: 37px;
+    border-radius: 10px;
+    padding: 7px;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}

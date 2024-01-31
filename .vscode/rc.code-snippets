@@ -1,0 +1,33 @@
+{
+	// Place your webpack-react-blog workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"react component": {
+		"prefix": "rc",
+		"body": [
+			"/* eslint-disable i18next/no-literal-string */"
+			"import { memo } from 'react';",
+			"import { useTranslation } from 'react-i18next';",
+      "import { classNames } from 'shared/lib/classNames/classNames';",
+      "import styles from './${1:$TM_FILENAME_BASE}.module.scss';",
+			" ",
+			"interface ${1:$TM_FILENAME_BASE}Props {",
+			  "  className?: string;",
+			"};",
+			" ",
+      "export const ${1:$TM_FILENAME_BASE} = memo(({ className }: ${1:$TM_FILENAME_BASE}Props) => {",
+			"    const { t } = useTranslation();",
+			"    return (",
+			"      <div className={classNames(styles.${1:$TM_FILENAME_BASE}, {}, [className])}>",
+							"${1:$TM_FILENAME_BASE}",
+						"</div>",
+			"     );",
+			"  });",
+		],
+		"description": "For react component start describe"
+	}
+}
+
