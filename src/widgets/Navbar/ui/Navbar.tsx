@@ -33,13 +33,13 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                     <a href="#">+7 (982) 325-63-78</a>
                     <a href="#">mail@invest-trade.biz</a>
                 </div>
-                <Button type="button" theme={ThemeButton.SVG_CIRCLE} className={styles.likeBtn}>
+                <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>
                     <LikeIcon />
                     <div className={styles.likeCount}>
                         <span>2</span>
                     </div>
                 </Button>
-                <Button type="button" theme={ThemeButton.SVG_CIRCLE}>
+                <Button type="button" theme={ThemeButton.SVG_BG}>
                     <BellIcon />
                 </Button>
                 <Button type="button" theme={ThemeButton.CART}>

@@ -5,7 +5,9 @@
 @import "themes/black";
 
 body {
-    font: var(--font-m);
+    font-family: var(--font-family-main);
+    font-size: 16px;
+    font-weight: 500;
     color: var(--text-primary);
 }
 
@@ -16,4 +18,22 @@ body {
 
 .content-page {
     display: flex;
+}
+
+.title {
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.titleBlue {
+    color: var(--active-color-default);
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.subtitle {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
 }

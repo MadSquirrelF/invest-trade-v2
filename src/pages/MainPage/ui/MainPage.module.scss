@@ -1,0 +1,62 @@
+.wrapper {
+    position: relative;
+    margin-top: 20px;
+    height: 80vh;
+}
+
+.blockSmall,
+.blockBig,
+.block {
+    position: relative;
+    padding: 20px;
+    z-index: 1;
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.blockSmall {
+    height: 300px;
+}
+
+.OutsideIcon {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+}
+
+.blockBig {
+    height: 80vh;
+    width: 80%;
+}
+
+.windowIcon {
+    width: 30%;
+    height: 100%;
+    flex: none;
+}
+
+.bigBoardBg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.circleSvgLoader {
+    flex: none;
+    margin-top: 10px;
+}
+
+.orderBtn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.calc {
+    h1 {
+        color: var(--active-color-default);
+    }
+}

@@ -17,7 +17,7 @@ export const getSidebarItems = createSelector(
             {
                 path: RoutePath.about,
                 Icon: AboutIcon,
-                text: 'О сайте',
+                text: 'О компании',
             },
         ];
 

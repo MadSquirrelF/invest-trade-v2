@@ -9,6 +9,7 @@ export enum ThemeButton {
   CLEAR = 'clear',
   DEFAULT = 'default',
   CART = 'cart',
+  SVG_BG = 'svg_bg',
   SVG_CIRCLE = 'svg_circle',
   SVG_BTN = 'svg_btn',
 }

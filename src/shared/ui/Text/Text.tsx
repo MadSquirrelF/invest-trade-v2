@@ -19,30 +19,45 @@ export enum TextSize {
     S = 'size_s',
     M = 'size_m',
     L = 'size_l',
+    XL = 'size_xl',
+}
+
+export enum TextBold {
+    LIGHT = 'light',
+    MEDIUM = 'medium',
+    BOLD = 'bold'
 }
 
 interface TextProps {
   className?: string;
   title?: string;
   text?: string;
+  bold?: TextBold;
   theme?: TextTheme;
   align?: TextAlign;
   size?: TextSize;
 }
 
-type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4'
+type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
 
 const mapSizeToHeader: Record<TextSize, HeaderTagType> = {
-    [TextSize.XS]: 'h4',
-    [TextSize.S]: 'h3',
-    [TextSize.M]: 'h2',
-    [TextSize.L]: 'h1',
+    [TextSize.XS]: 'h5',
+    [TextSize.S]: 'h4',
+    [TextSize.M]: 'h3',
+    [TextSize.L]: 'h2',
+    [TextSize.XL]: 'h1',
 };
 
 export const Text = memo((props: TextProps) => {
     const { t } = useTranslation();
     const {
-        className, align = TextAlign.LEFT, title, text, theme = TextTheme.PRIMARY, size = TextSize.M,
+        className,
+        bold = TextBold.MEDIUM,
+        align = TextAlign.LEFT,
+        title,
+        text,
+        theme = TextTheme.PRIMARY,
+        size = TextSize.M,
     } = props;
 
     const HeaderTag = mapSizeToHeader[size];
@@ -51,6 +66,7 @@ export const Text = memo((props: TextProps) => {
         [styles[theme]]: true,
         [styles[align]]: true,
         [styles[size]]: true,
+        [styles[bold]]: true,
     };
     return (
         <VStack gap="16" align="start" className={classNames(styles.TextWrapper, mods, [className])}>
