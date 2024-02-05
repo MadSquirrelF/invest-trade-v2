@@ -3,6 +3,7 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { UserSchema } from 'entities/User';
+import { LoginSchema } from 'features/Auth/model/types/loginSchema';
 
 import { ScrollSaveSchema } from 'features/ScrollSave';
 
@@ -13,6 +14,8 @@ export interface StateSchema {
   scrollSave: ScrollSaveSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
+  // Async reducers
+  loginForm?: LoginSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

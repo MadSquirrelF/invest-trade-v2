@@ -10,6 +10,25 @@
     font-weight: 500;
 }
 
+.outline {
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid var(--border-primary);
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
+}
+
 .clear {
     padding: 0;
     margin: 0;
@@ -116,6 +135,24 @@
 
     &:hover {
         background-color: var(--secondary-btn-hover);
+    }
+}
+
+.svg_clean {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    padding: 7px;
+    color: var(--text-secondary);
+    background: transparent;
+
+    svg {
+        width: 100%;
+        height: 100%;
     }
 }
 

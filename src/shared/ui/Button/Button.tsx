@@ -8,10 +8,12 @@ import styles from './Button.module.scss';
 export enum ThemeButton {
   CLEAR = 'clear',
   DEFAULT = 'default',
+  OUTLINE = 'outline',
   CART = 'cart',
   SVG_BG = 'svg_bg',
   SVG_CIRCLE = 'svg_circle',
   SVG_BTN = 'svg_btn',
+  SVG_CLEAN = 'svg_clean'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

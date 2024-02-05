@@ -1,0 +1,63 @@
+.FieldBox {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+    text-align: left;
+}
+
+.InputWrapper {
+    position: relative;
+    box-shadow: none;
+    outline: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--text-primary);
+
+    &:focus-within {
+        transition: outline 0.1s ease-in-out;
+        outline: 2px solid var(--active-color-default);
+    }
+}
+
+.readonly {
+    outline: none;
+
+    &:focus-within {
+        outline: none;
+    }
+}
+
+.password {
+    padding: 16px 45px 16px 16px;
+}
+
+.eyeBtn {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.input {
+    width: 100%;
+    color: var(--text-primary);
+
+    &::placeholder {
+        color: var(--text-secondary);
+    }
+
+    &[type="password"] {
+        &::placeholder {
+            color: var(--text-secondary);
+        }
+    }
+}
