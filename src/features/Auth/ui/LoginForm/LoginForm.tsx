@@ -11,6 +11,8 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import Google from 'shared/assets/icons/google.svg';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -63,9 +65,21 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     title={t('Вход на сайт')}
                     bold={TextBold.BOLD}
                     size={TextSize.L}
+                    gap="16"
                     className={styles.title}
                     text={t('Для того, чтобы перейти к личным данным нужно войти')}
                 />
+                <Button theme={ThemeButton.OUTLINE} className={styles.google}>
+                    <Google />
+                    <span>Sign in with Google</span>
+                </Button>
+                <hr className={styles.orSignIn} />
+
+                {
+                    error && (
+                        <Error error={error} className={styles.msgError} />
+                    )
+                }
                 <Input
                     autofocus
                     label={t('Почта')}
@@ -85,6 +99,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     required
                     value={password}
                 />
+
                 <Button
                     disabled={isLoading || isEmailInvalid || isPasswordInvalid}
                     className={styles.loginBtn}
@@ -95,12 +110,17 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                         isLoading ? <Loader theme={ThemeLoader.BTN_LOADER} /> : <span>{t('Войти')}</span>
                     }
                 </Button>
+                <span className={styles.account}>
+                    {t('Еще не аккаунта?')}
+                    <AppLink
+                        theme={AppLinkTheme.DEFAULT}
+                        className="link"
+                        to="/"
+                    >
+                        {t('Зарегестрироваться')}
+                    </AppLink>
+                </span>
 
-                {
-                    error && (
-                        <Error error={error} className={styles.msgError} />
-                    )
-                }
             </div>
         </DynamicModuleLoader>
     );

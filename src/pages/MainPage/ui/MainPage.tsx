@@ -17,7 +17,7 @@ const MainPage = () => {
     const { t } = useTranslation('main');
     return (
         <Page>
-            <Text title={t('Главная страница')} size={TextSize.L} bold={TextBold.BOLD} />
+            <Text gap="16" title={t('Главная страница')} size={TextSize.L} bold={TextBold.BOLD} />
             <HStack gap="32" align="start" max justify="start" className={styles.wrapper}>
                 <VStack gap="32" max align="start">
                     <HStack gap="16" align="start" max className={styles.block}>
@@ -30,6 +30,7 @@ const MainPage = () => {
                             </h1>
 
                             <Text
+                                gap="16"
                                 // eslint-disable-next-line max-len
                                 text={t('Мы являемся официальным поставщиком оборудования и материалов для производства пластиковых и алюминиевых конструкций')}
                                 size={TextSize.XL}
@@ -45,6 +46,7 @@ const MainPage = () => {
                             <VStack gap="16" max align="start">
 
                                 <Text
+                                    gap="16"
                                     title={t('Онлайн калькулятор')}
                                     text={t('Узнайте точную стоимость установки окон с учетом ваших потребностей и бюджета!')}
                                     size={TextSize.XL}
@@ -64,6 +66,7 @@ const MainPage = () => {
                             <VStack gap="16" max align="start">
 
                                 <Text
+                                    gap="16"
                                     title={t('Последние новости')}
                                     text={t('1 февраля 2024')}
                                     size={TextSize.XL}
@@ -92,6 +95,7 @@ const MainPage = () => {
                         <CircleLoad className={styles.circleSvgLoader} />
                         <Text
                         // eslint-disable-next-line max-len
+                            gap="16"
                             text={t('Оформляйте заказ с вашего компьютера, планшета или телефона, наши менеджеры свяжутся с вами для уточнения деталей')}
                             size={TextSize.XL}
                             bold={TextBold.BOLD}

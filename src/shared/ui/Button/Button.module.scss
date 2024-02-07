@@ -11,12 +11,19 @@
 }
 
 .outline {
-    border-radius: 50%;
+    border-radius: 30px;
     background: transparent;
     display: flex;
     align-items: center;
+    color: var(--text-black);
     justify-content: center;
     outline: 1px solid var(--border-primary);
+    padding: 15px 20px;
+    font-weight: 700;
+
+    &:hover {
+        outline: 1px solid var(--border-primary-hover);
+    }
 
     &:active {
         transform: translateY(1px);
@@ -25,8 +32,8 @@
     svg {
         width: 24px;
         height: 24px;
+        margin-right: 10px;
     }
-
 }
 
 .clear {

@@ -36,19 +36,29 @@
 
 .eyeBtn {
     position: absolute;
-    right: 5%;
+    right: 2%;
     top: 50%;
     transform: translateY(-50%);
+    transition: color 0.2s ease-in-out;
+    color: var(--text-secondary);
+
+    &:hover {
+        color: var(--text-primary);
+    }
 }
 
 .label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+    font-weight: 700;
     color: var(--text-primary);
 }
 
 .input {
     width: 100%;
+    font-weight: 600;
     color: var(--text-primary);
 
     &::placeholder {

@@ -37,3 +37,14 @@ body {
     font-weight: 700;
     line-height: 1;
 }
+
+.link {
+    color: var(--active-color-default);
+    margin-left: 3px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        border-bottom: 1px solid var(--active-color-default);
+    }
+}

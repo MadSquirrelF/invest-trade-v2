@@ -3,6 +3,7 @@ import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
 import styles from './Text.module.scss';
 import { VStack } from '../Stack';
+import { FlexGap } from '../Stack/Flex/Flex';
 
 export enum TextTheme {
     PRIMARY = 'primary',
@@ -36,6 +37,7 @@ interface TextProps {
   theme?: TextTheme;
   align?: TextAlign;
   size?: TextSize;
+  gap: FlexGap;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
@@ -56,6 +58,7 @@ export const Text = memo((props: TextProps) => {
         align = TextAlign.LEFT,
         title,
         text,
+        gap = '16',
         theme = TextTheme.PRIMARY,
         size = TextSize.M,
     } = props;
@@ -69,7 +72,7 @@ export const Text = memo((props: TextProps) => {
         [styles[bold]]: true,
     };
     return (
-        <VStack gap="16" align="start" className={classNames(styles.TextWrapper, mods, [className])}>
+        <VStack gap={gap} align="start" className={classNames(styles.TextWrapper, mods, [className])}>
             { title && (<HeaderTag className={styles.title}>{title}</HeaderTag>)}
             { text && (<p className={styles.text}>{text}</p>)}
         </VStack>

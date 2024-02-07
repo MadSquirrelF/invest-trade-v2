@@ -4,8 +4,10 @@ import React, {
 } from 'react';
 import EyeClosed from 'shared/assets/icons/icon-closed-eye.svg';
 import EyeOpened from 'shared/assets/icons/icon-opened-eye.svg';
+import { useTranslation } from 'react-i18next';
 import styles from './Input.module.scss';
 import { Button, ThemeButton } from '../Button/Button';
+import { AppLink, AppLinkTheme } from '../AppLink/AppLink';
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
 
@@ -24,6 +26,8 @@ export const Input = memo((props: InputProps) => {
     const {
         className, value, onChange, autofocus, readonly, placeholder, isPassword, label, type = 'text', ...otherProps
     } = props;
+
+    const { t } = useTranslation();
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
@@ -50,6 +54,17 @@ export const Input = memo((props: InputProps) => {
         <div className={classNames(styles.FieldBox, {}, [className])}>
             <label htmlFor={label} className={styles.label}>
                 {label}
+                {
+                    isPassword && (
+                        <AppLink
+                            to="/"
+                            theme={AppLinkTheme.DEFAULT}
+                            className="link"
+                        >
+                            {t('Забыли пароль?')}
+                        </AppLink>
+                    )
+                }
             </label>
             <div className={classNames(styles.InputWrapper, mods, [])}>
                 <input

@@ -4,6 +4,7 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CopyPlugin from 'copy-webpack-plugin';
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
@@ -30,6 +31,7 @@ export function buildPlugins({
                 { from: paths.locales, to: paths.buildLocales },
             ],
         }),
+        new FaviconsWebpackPlugin('public/favicon.svg'),
 
     ];
 

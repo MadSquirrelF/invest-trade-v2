@@ -5,6 +5,7 @@
     --text-primary: #edeeef;
     --text-secondary: #d4d7e1;
     --border-primary: #323232;
+    --border-primary-hover: #c5c3ce;
     --bg-primary: #1b1d23;
     --bg-secondary: #000001;
     --bg-button: #343844;
@@ -14,4 +15,10 @@
     --active-color-hover: rgb(0 0 236);
     --active-color-disabled: rgb(2 2 179);
     --box-shadow-default: -1px 1px 4px 0 rgb(0 0 0 / 25%);
+    --error-color: #ea334d;
+    --error-color-hover: #e8455d;
+    --error-color-disabled: #b8364a;
+    --error-bg:
+        linear-gradient(0deg, rgb(234 51 77 / 10%), rgb(234 51 77 / 10%)),
+        #fff;
 }

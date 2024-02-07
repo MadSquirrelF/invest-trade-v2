@@ -1,0 +1,92 @@
+/* stylelint-disable no-descending-specificity */
+.Dropdown {
+    position: relative;
+}
+
+.trigger {
+    background: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.menu {
+    z-index: 8;
+    background-color: var(--bg-primary);
+    position: absolute;
+    outline: 1px solid var(--border-primary);
+    box-shadow: var(--box-shadow-default);
+    border-radius: 10px;
+    padding: 15px 15px 5px;
+    margin-top: 15px;
+    min-width: 300px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.active {
+    svg {
+        opacity: 1;
+    }
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.item {
+    svg {
+        flex: none;
+        width: 25px;
+        height: 25px;
+        color: var(--text-black);
+    }
+
+    &:hover {
+        svg {
+            transform: scale(1.1);
+            color: var(--active-color-default);
+        }
+    }
+
+    &:last-child {
+        border-top: 1px solid var(--border-primary);
+    }
+
+    font-weight: 600;
+    padding: 10px 0;
+    color: var(--text-black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.optionsBottomLeft {
+    top: 100%;
+    right: 0;
+    margin-top: 20px;
+}
+
+.optionsBottomRight {
+    top: 100%;
+    left: 0;
+    margin-top: 20px;
+}
+
+.optionsTopRight {
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 20px;
+}
+
+.optionsTopLeft {
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 20px;
+}
