@@ -2,61 +2,97 @@
     position: relative;
     margin-top: 20px;
     height: 80vh;
+
+    @media screen and (max-width: 1500px) {
+        flex-wrap: wrap;
+        min-height: 100%;
+        margin: 20px 0;
+        height: 150vh;
+        justify-content: start;
+    }
+
+    @media screen and (max-width: 1050px) {
+        height: 165vh;
+    }
 }
 
-.blockSmall,
-.blockBig,
+.title {
+    h1 {
+        color: var(--active-color-default);
+    }
+}
+
+.container {
+    width: calc(50% - 16px);
+
+    @media screen and (max-width: 1500px) {
+        width: 100%;
+    }
+}
+
 .block {
     position: relative;
     padding: 20px;
+    width: 100%;
     z-index: 1;
     background-color: var(--bg-primary);
-    border-radius: 10px;
+    border-radius: 24px;
     box-shadow: var(--box-shadow-default);
 }
 
-.blockSmall {
-    height: 300px;
-}
-
-.OutsideIcon {
+.iconAbsolute {
     position: absolute;
     bottom: -20px;
-    right: -20px;
+    right: -15px;
 }
 
-.blockBig {
-    height: 80vh;
-    width: 80%;
+.small {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+        svg {
+            transition: transform 0.3s ease-in;
+            transform: scale(1.1);
+        }
+    }
 }
 
-.windowIcon {
-    width: 30%;
+.bigBoard {
+    width: calc(50% - 16px);
     height: 100%;
-    flex: none;
+    max-height: 700px;
+
+    @media screen and (max-width: 1500px) {
+        width: 100%;
+    }
 }
 
-.bigBoardBg {
+.big {
+    height: 100%;
+    overflow: hidden;
+}
+
+.window {
+    flex: none;
+    height: 220px;
+    width: 236px;
+}
+
+.bigBoardIcon {
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
     z-index: -1;
-}
-
-.circleSvgLoader {
-    flex: none;
-    margin-top: 10px;
+    top: 120px;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .orderBtn {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-
-.calc {
-    h1 {
-        color: var(--active-color-default);
-    }
+    bottom: 30px;
+    right: 30px;
 }

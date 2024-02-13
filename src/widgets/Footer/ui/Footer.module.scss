@@ -1,0 +1,52 @@
+.Footer {
+    width: 100%;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.logo {
+    height: 200px;
+    width: 300px;
+}
+
+.missionText {
+    max-width: 300px;
+}
+
+.box {
+    padding: 50px 50px 50px 20px;
+    border-right: 1px solid var(--border-primary);
+    border-top: 1px solid var(--border-primary);
+}
+
+.form {
+    width: 100%;
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.links {
+    position: relative;
+    padding: 250px 20px 10px;
+    z-index: 1;
+    border-top: 1px solid var(--border-primary);
+}
+
+.contact {
+    padding: 50px 20px 50px 50px;
+}
+
+.sendMessage {
+    height: 460px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.link {
+    padding-right: 16px;
+    border-right: 1px solid var(--border-primary);
+}

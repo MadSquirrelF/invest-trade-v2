@@ -2,11 +2,11 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { useSelector } from 'react-redux';
 import { VStack } from 'shared/ui/Stack';
 import { useLocation } from 'react-router-dom';
+import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
+import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import styles from './Sidebar.module.scss';
 import { getSidebarItems } from '../model/selectors/getSidebarItems';
 import { SidebarItem } from './SidebarItem/SidebarItem';
@@ -37,14 +37,15 @@ export const Sidebar = memo(({ className, collapsed }: SidebarProps) => {
             )}
         >
 
-            <VStack role="navigation" align={collapsed ? 'center' : 'start'} max gap="10">
+            <VStack role="navigation" align="center" max gap="10">
                 {itemsList}
             </VStack>
 
-            <div className={styles.switchers}>
+            <div className={styles.utils}>
                 <LangSwitcher className={styles.lang} />
-                <ThemeSwitcher short={collapsed} />
+                <ThemeSwitcher />
             </div>
+
         </aside>
     );
 });

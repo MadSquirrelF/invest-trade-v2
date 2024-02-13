@@ -1,97 +1,154 @@
 .ThemeSwitcher {
-    background-color: var(--bg-secondary);
-    border-radius: 10px;
+    position: relative;
+}
+
+.label {
+    width: 60px;
+    height: 31px;
+    background: #96dcee;
+    border-radius: 100px;
+    border: 2px solid #72cce3;
     display: flex;
-    padding: 0 3px;
-    align-items: center;
     position: relative;
-    overflow: hidden;
-    border: 1px solid var(--border-primary);
-}
+    transition: all 350ms ease-in;
+    cursor: pointer;
 
-.icon {
-    height: 15px;
-    display: inline-block;
-    margin-right: 3px;
-    flex: none;
-    width: 15px;
-}
-
-.title {
-    margin-bottom: 5px;
-}
-
-.item {
-    position: relative;
-    z-index: 2;
-    width: calc(100% / 3);
-    color: var(--text-secondary);
-    padding: 0 5px;
-
-    span {
-        padding: 10px 0;
-        border-radius: 6px;
-        display: flex;
-        font-size: 14px;
-        justify-content: center;
-        align-items: center;
-        font-weight: 500;
-    }
-}
-
-.slider {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    width: calc((100% - 6px) / 3);
-    top: 3px;
-    transform: translateX(-110%);
-    bottom: 3px;
-    border-radius: 6px;
-    transition: 0.15s ease, transform 0.25s ease-out;
-    background-color: var(--bg-button);
-    box-shadow: var(--slider-shadow);
-}
-
-.short {
-    flex-direction: column;
-
-    .text {
-        display: none;
-    }
-
-    .icon {
-        height: 20px;
-        margin-right: 0;
-        width: 20px;
-    }
-
-    .item {
-        &:nth-child(1) {
-            padding: 8px 10px 5px;
-        }
-
-        &:nth-child(2) {
-            padding: 5px 10px;
-        }
-
-        &:nth-child(3) {
-            padding: 5px 10px 8px;
-        }
-    }
-
-    .slider {
-        display: block;
+    &::before {
+        animation-name: reverse;
+        animation-duration: 350ms;
+        animation-fill-mode: forwards;
+        transition: all 350ms ease-in;
+        content: "";
+        width: 19px;
+        height: 19px;
+        border: 2px solid #f5eb71;
+        top: 2px;
+        left: 0;
         position: absolute;
-        z-index: 1;
-        height: calc((100% - 6px) / 3);
+        border-radius: 82px;
+        background: #fffaa8;
+    }
+
+    &::after {
+        transition: all 250ms ease-in;
+        transition-delay: 0ms;
+        position: absolute;
+        content: "";
+        box-shadow: #e8e8ea -16px 0 0 0, #e8e8ea -24px 5px 0 -1px;
+        left: 56px;
+        top: 6px;
+        width: 4px;
+        height: 4px;
+        background: transparent;
+        border-radius: 50%;
+        opacity: 0;
+    }
+}
+
+.background {
+    width: 4px;
+    height: 2px;
+    border-radius: 5px;
+    position: relative;
+    background: #fff;
+    left: 40px;
+    top: 14px;
+    transition: all 150ms ease-in;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        width: 10px;
+        height: 2px;
+        border-radius: 5px;
+        background: #fff;
+        left: -4px;
+        transition: all 150ms ease-in;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        width: 11px;
+        height: 2px;
+        border-radius: 5px;
+        background: #fff;
+        left: -2px;
+        transition: all 150ms ease-in;
+    }
+}
+
+.checkbox {
+    display: none;
+
+    &:checked + .label {
+        background-color: #6b7abb;
+        border-color: #5d6baa;
+    }
+
+    &:checked + .label .background {
+        left: 16px;
+        width: 2px;
+        height: 2px;
+    }
+
+    &:checked + .label .background::before {
+        width: 2px;
+        height: 2px;
+        top: -10px;
+    }
+
+    &:checked + .label .background::after {
+        width: 2px;
+        height: 2px;
+        left: -10px;
+        top: 5px;
+    }
+
+    &:checked + .label::before {
+        background: #fff;
+        border-color: #e8e8ea;
+        animation-name: switch;
+        animation-duration: 350ms;
+        animation-fill-mode: forwards;
+    }
+
+    &:checked + .label::after {
+        transition-delay: 350ms;
+        opacity: 1;
+    }
+}
+
+@keyframes switch {
+    0% {
         left: 3px;
-        width: 88%;
-        transform: translateY(-110%);
-        right: 3px;
-        border-radius: 6px;
-        transition: 0.15s ease, transform 0.25s ease-out;
-        background-color: var(--bg-button);
-        box-shadow: var(--slider-shadow);
+    }
+
+    60% {
+        left: 15px;
+        width: 25px;
+    }
+
+    100% {
+        left: 30px;
+        width: 19px;
+    }
+}
+
+@keyframes reverse {
+    0% {
+        left: 30px;
+        width: 19px;
+    }
+
+    60% {
+        left: 15px;
+        width: 25px;
+    }
+
+    100% {
+        left: 3px;
     }
 }

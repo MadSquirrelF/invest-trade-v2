@@ -21,6 +21,7 @@ export enum TextSize {
     M = 'size_m',
     L = 'size_l',
     XL = 'size_xl',
+    XXL = 'size_xxl',
 }
 
 export enum TextBold {
@@ -40,14 +41,15 @@ interface TextProps {
   gap: FlexGap;
 }
 
-type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 const mapSizeToHeader: Record<TextSize, HeaderTagType> = {
-    [TextSize.XS]: 'h5',
-    [TextSize.S]: 'h4',
-    [TextSize.M]: 'h3',
-    [TextSize.L]: 'h2',
-    [TextSize.XL]: 'h1',
+    [TextSize.XS]: 'h6',
+    [TextSize.S]: 'h5',
+    [TextSize.M]: 'h4',
+    [TextSize.L]: 'h3',
+    [TextSize.XL]: 'h2',
+    [TextSize.XXL]: 'h1',
 };
 
 export const Text = memo((props: TextProps) => {

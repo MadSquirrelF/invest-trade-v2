@@ -11,6 +11,7 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 import { getScrollSaveByPath, ScrollSaveActions } from 'features/ScrollSave';
 import { useInfinityScroll } from 'shared/lib/hooks/useInfinityScroll/useInfinityScroll';
+import { Footer } from 'widgets/Footer';
 import styles from './Page.module.scss';
 
 interface PageProps {
@@ -53,10 +54,10 @@ export const Page = memo((props: PageProps) => {
             onScroll={onScroll}
         >
             {children}
+            <Footer />
             {
                 onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null
             }
-
         </main>
     );
 });

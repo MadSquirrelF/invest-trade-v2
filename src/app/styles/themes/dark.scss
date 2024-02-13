@@ -1,24 +1,37 @@
 .app_dark_theme {
-    // new styles
+    // text
+    --text-black-inverted-theme: #fff;
     --text-black: #000;
     --text-white: #fff;
     --text-primary: #eee;
     --text-secondary: #d3d5db;
+
+    // border
     --border-primary: #454545;
-    --border-primary-hover: #c5c3ce;
+    --border-primary-hover: #1c1c20;
+    --border-vertical-cart: #a0a0a0;
+
+    // bg
     --bg-primary: #323339;
     --bg-secondary: #222128;
     --bg-button: #494a50;
-    --slider-shadow: inset 0 1px 1px #767676;
-    --active-color-default: #00f;
+    --secondary-btn-hover: #1c1c20;
+
+    // active colors
+    --active-color-default: #0075ff;
+    --active-color-hover: #0067dd;
+    --active-color-disabled: #2b8cfc;
+
+    // errors
     --text-red: #f00;
-    --active-color-hover: rgb(0 0 236);
-    --active-color-disabled: rgb(2 2 179);
-    --box-shadow-default: -1px 1px 4px 0 rgb(0 0 0 / 25%);
     --error-color: #ea334d;
     --error-color-hover: #e8455d;
     --error-color-disabled: #b8364a;
     --error-bg:
         linear-gradient(0deg, rgb(234 51 77 / 10%), rgb(234 51 77 / 10%)),
         #fff;
+
+    // shadows
+    --slider-shadow: inset 0 1px 1px #767676;
+    --box-shadow-default: -1px 1px 4px 0 rgb(0 0 0 / 25%);
 }

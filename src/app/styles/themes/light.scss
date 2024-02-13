@@ -1,26 +1,37 @@
 :root {
-    // new styles
+    // text
+    --text-black-inverted-theme: #000;
     --text-black: #000;
     --text-white: #fff;
     --text-primary: #464646;
     --text-secondary: #737374;
+
+    // border
     --border-primary: #d2d0dc;
     --border-primary-hover: #c5c3ce;
-    --bg-primary: #fff;
     --border-vertical-cart: #a0a0a0;
+
+    // bg
+    --bg-primary: #fff;
     --bg-secondary: #ecf0f8;
-    --slider-shadow: inset 0 1px 1px #ddd, 0 2px 3px #ccc;
-    --active-color-default: #00f;
     --bg-button: #fff;
-    --text-red: #f00;
-    --active-color-hover: rgb(0 0 236);
-    --active-color-disabled: rgb(2 2 179);
     --secondary-btn-hover: #dce8ff;
-    --box-shadow-default: -1px 1px 4px 0 rgb(0 0 0 / 25%);
+
+    // active colors
+    --active-color-default: #00f;
+    --active-color-hover: rgb(0 0 236);
+    --active-color-disabled: rgb(56 56 250);
+
+    // errors
+    --text-red: #f00;
     --error-color: #ea334d;
     --error-color-hover: #e8455d;
     --error-color-disabled: #b8364a;
     --error-bg:
         linear-gradient(0deg, rgb(234 51 77 / 10%), rgb(234 51 77 / 10%)),
         #fff;
+
+    // shadows
+    --slider-shadow: inset 0 1px 1px #ddd, 0 2px 3px #ccc;
+    --box-shadow-default: -1px 1px 4px 0 rgb(0 0 0 / 25%);
 }

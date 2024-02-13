@@ -8,7 +8,7 @@ import { getUserInited, userActions } from 'entities/User';
 import { AppRouter } from './providers/router';
 
 function App() {
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
 
     const dispatch = useDispatch();
 

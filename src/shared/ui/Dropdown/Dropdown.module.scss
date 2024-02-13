@@ -43,7 +43,7 @@
         flex: none;
         width: 25px;
         height: 25px;
-        color: var(--text-black);
+        color: var(--text-black-inverted-theme);
     }
 
     &:hover {
@@ -59,7 +59,7 @@
 
     font-weight: 600;
     padding: 10px 0;
-    color: var(--text-black);
+    color: var(--text-black-inverted-theme);
     cursor: pointer;
     display: flex;
     align-items: center;

@@ -30,7 +30,7 @@
 
 .medium {
     .title {
-        font-weight: 500;
+        font-weight: 700;
     }
 
     .text {
@@ -40,7 +40,7 @@
 
 .bold {
     .title {
-        font-weight: 700;
+        font-weight: 900;
     }
 
     .text {
@@ -50,16 +50,6 @@
 
 .size_xs {
     .title {
-        font-size: 10px;
-    }
-
-    .text {
-        font-size: 9px;
-    }
-}
-
-.size_s {
-    .title {
         font-size: 14px;
     }
 
@@ -68,9 +58,19 @@
     }
 }
 
-.size_m {
+.size_s {
     .title {
         font-size: 16px;
+    }
+
+    .text {
+        font-size: 12px;
+    }
+}
+
+.size_m {
+    .title {
+        font-size: 20px;
     }
 
     .text {
@@ -80,17 +80,27 @@
 
 .size_l {
     .title {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .text {
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
 .size_xl {
     .title {
-        font-size: 32px;
+        font-size: 30px;
+    }
+
+    .text {
+        font-size: 22px;
+    }
+}
+
+.size_xxl {
+    .title {
+        font-size: 45px;
     }
 
     .text {
