@@ -9,9 +9,11 @@ import Logo from 'shared/assets/icons/logo.svg';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
 import MessageSend from 'shared/assets/images/message-send.svg';
+import Vk from 'shared/assets/icons/vk.svg';
+import Telegram from 'shared/assets/icons/telegram.svg';
+import Instagram from 'shared/assets/icons/inst.svg';
 import MessageSendDark from 'shared/assets/images/message-send-dark.svg';
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
-import { SizeL } from 'shared/ui/Text/Text.stories';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { Checkbox } from 'shared/ui/Checkbox/Checkbox';
 import styles from './Footer.module.scss';
@@ -40,7 +42,7 @@ export const Footer = memo(({ className }: FooterProps) => {
 
     return (
         <VStack max justify="end" className={classNames(styles.Footer, {}, [className])}>
-            <HStack max>
+            <HStack max align="start">
                 <VStack max>
 
                     <HStack max gap="32" className={styles.box} justify="between">
@@ -53,7 +55,7 @@ export const Footer = memo(({ className }: FooterProps) => {
                         />
                     </HStack>
 
-                    <HStack gap="16" max justify="start" className={styles.box}>
+                    <HStack gap="16" max justify="start" align="start" className={styles.box}>
                         <VStack max justify="start" gap="16" align="start">
                             <Text
                                 bold={TextBold.MEDIUM}
@@ -68,12 +70,7 @@ export const Footer = memo(({ className }: FooterProps) => {
                             <AppLink to="/">
                                 Блог
                             </AppLink>
-                            <AppLink to="/">
-                                Новости
-                            </AppLink>
-                            <AppLink to="/">
-                                Отзывы
-                            </AppLink>
+
                         </VStack>
                         <VStack max gap="16" align="start">
                             <Text
@@ -94,6 +91,12 @@ export const Footer = memo(({ className }: FooterProps) => {
                             <AppLink to="/">
                                 Котакты
                             </AppLink>
+                            <AppLink to="/">
+                                Новости
+                            </AppLink>
+                            <AppLink to="/">
+                                Отзывы
+                            </AppLink>
                         </VStack>
                         <VStack max gap="16" align="start">
                             <Text
@@ -102,18 +105,18 @@ export const Footer = memo(({ className }: FooterProps) => {
                                 title={t('Социальные сети')}
                                 gap="8"
                             />
-                            <AppLink to="/">
-                                Вконтакте
-                            </AppLink>
-                            <AppLink to="/">
-                                Инстаграмм
-                            </AppLink>
-                            <AppLink to="/">
-                                Телеграмм
-                            </AppLink>
-                            <AppLink to="/">
-                                Почта
-                            </AppLink>
+                            <HStack max gap="8">
+                                <AppLink to="/">
+                                    <Vk className={styles.social} />
+                                </AppLink>
+                                <AppLink to="/">
+                                    <Telegram className={styles.social} />
+                                </AppLink>
+                                <AppLink to="/">
+                                    <Instagram className={styles.social} />
+                                </AppLink>
+                            </HStack>
+
                         </VStack>
                     </HStack>
 

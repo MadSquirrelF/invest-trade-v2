@@ -107,3 +107,127 @@
         font-size: 24px;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .size_xs {
+        .title {
+            font-size: 12px;
+        }
+
+        .text {
+            font-size: 10px;
+        }
+    }
+
+    .size_s {
+        .title {
+            font-size: 14px;
+        }
+
+        .text {
+            font-size: 12px;
+        }
+    }
+
+    .size_m {
+        .title {
+            font-size: 16px;
+        }
+
+        .text {
+            font-size: 13px;
+        }
+    }
+
+    .size_l {
+        .title {
+            font-size: 20px;
+        }
+
+        .text {
+            font-size: 14px;
+        }
+    }
+
+    .size_xl {
+        .title {
+            font-size: 24px;
+        }
+
+        .text {
+            font-size: 15px;
+        }
+    }
+
+    .size_xxl {
+        .title {
+            font-size: 28px;
+        }
+
+        .text {
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .size_xs {
+        .title {
+            font-size: 12px;
+        }
+
+        .text {
+            font-size: 10px;
+        }
+    }
+
+    .size_s {
+        .title {
+            font-size: 14px;
+        }
+
+        .text {
+            font-size: 12px;
+        }
+    }
+
+    .size_m {
+        .title {
+            font-size: 16px;
+        }
+
+        .text {
+            font-size: 13px;
+        }
+    }
+
+    .size_l {
+        .title {
+            font-size: 20px;
+        }
+
+        .text {
+            font-size: 12px;
+        }
+    }
+
+    .size_xl {
+        .title {
+            font-size: 22px;
+        }
+
+        .text {
+            font-size: 13px;
+        }
+    }
+
+    .size_xxl {
+        .title {
+            font-size: 24px;
+        }
+
+        .text {
+            font-size: 14px;
+        }
+    }
+}

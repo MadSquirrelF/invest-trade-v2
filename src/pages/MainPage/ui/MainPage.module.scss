@@ -7,12 +7,16 @@
         flex-wrap: wrap;
         min-height: 100%;
         margin: 20px 0;
-        height: 150vh;
+        height: 100%;
         justify-content: start;
     }
 
     @media screen and (max-width: 1050px) {
-        height: 165vh;
+        height: 100%;
+    }
+
+    @media screen and (max-width: 800px) {
+        height: 100%;
     }
 }
 
@@ -36,14 +40,30 @@
     width: 100%;
     z-index: 1;
     background-color: var(--bg-primary);
-    border-radius: 24px;
+    border-radius: 20px;
     box-shadow: var(--box-shadow-default);
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+    }
 }
 
 .iconAbsolute {
     position: absolute;
     bottom: -20px;
     right: -15px;
+
+    @media screen and (max-width: 800px) {
+        transform: scale(0.8);
+        bottom: -25px;
+        right: -25px;
+    }
+
+    @media screen and (max-width: 400px) {
+        transform: scale(0.6);
+        bottom: -35px;
+        right: -35px;
+    }
 }
 
 .small {
@@ -56,6 +76,14 @@
         svg {
             transition: transform 0.3s ease-in;
             transform: scale(1.1);
+
+            @media screen and (max-width: 800px) {
+                transform: scale(0.85);
+            }
+
+            @media screen and (max-width: 400px) {
+                transform: scale(0.65);
+            }
         }
     }
 }
@@ -66,7 +94,16 @@
     max-height: 700px;
 
     @media screen and (max-width: 1500px) {
+        padding-bottom: 50px;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 1000px) {
         width: 100%;
+    }
+
+    @media screen and (max-width: 800px) {
+        height: 400px;
     }
 }
 
@@ -79,6 +116,16 @@
     flex: none;
     height: 220px;
     width: 236px;
+
+    @media screen and (max-width: 800px) {
+        width: 100%;
+        height: 300px;
+    }
+
+    @media screen and (max-width: 400px) {
+        width: 100%;
+        height: 200px;
+    }
 }
 
 .bigBoardIcon {
@@ -89,6 +136,10 @@
     left: 0;
     height: 100%;
     width: 100%;
+
+    @media screen and (max-width: 800px) {
+        top: 120px;
+    }
 }
 
 .orderBtn {

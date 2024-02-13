@@ -7,22 +7,29 @@
     justify-content: space-between;
     background-color: var(--bg-primary);
     border-bottom: 1px solid var(--border-primary);
+
+    @media screen and (max-width: 500px) {
+        padding: 10px 5px;
+    }
 }
 
 .logo {
     width: 175px;
-    height: 30px;
+    height: 35px;
     margin-left: 30px;
+    padding-top: 5px;
+
+    @media screen and (max-width: 500px) {
+        width: auto;
+        height: 25px;
+        margin-left: 10px;
+    }
 }
 
-.wrapperRight,
-.wrapperLeft {
-    display: flex;
-    align-items: center;
-}
-
-.wrapperRight {
-    gap: 20px;
+.btnWrapper {
+    @media screen and (max-width: 800px) {
+        display: none;
+    }
 }
 
 .likeBtn {
@@ -50,13 +57,13 @@
 }
 
 .contacts {
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-
     a {
         font-weight: 500;
         font-size: 11px;
+
+        @media screen and (max-width: 400px) {
+            font-size: 10px;
+        }
     }
 }
 
@@ -69,5 +76,9 @@
 
     &:active {
         transform: translateY(1px);
+    }
+
+    @media screen and (max-width: 400px) {
+        display: none;
     }
 }

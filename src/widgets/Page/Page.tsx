@@ -54,7 +54,7 @@ export const Page = memo((props: PageProps) => {
             onScroll={onScroll}
         >
             {children}
-            <Footer />
+            {/* <Footer /> */}
             {
                 onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null
             }

@@ -3,6 +3,11 @@
 @import "themes/dark";
 @import "themes/light";
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-family: var(--font-family-main);
     font-size: 16px;

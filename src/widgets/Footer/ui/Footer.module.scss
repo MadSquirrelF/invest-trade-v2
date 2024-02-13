@@ -17,6 +17,22 @@
     padding: 50px 50px 50px 20px;
     border-right: 1px solid var(--border-primary);
     border-top: 1px solid var(--border-primary);
+    height: 100%;
+}
+
+.social {
+    height: 40px;
+    width: 40px;
+    color: var(--text-secondary);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        color: var(--active-color-default);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
 }
 
 .form {
@@ -35,6 +51,8 @@
 }
 
 .contact {
+    height: 100%;
+    border-top: 1px solid var(--border-primary);
     padding: 50px 20px 50px 50px;
 }
 

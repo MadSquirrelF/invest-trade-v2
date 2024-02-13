@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
-
-import { Page } from 'widgets/Page/Page';
 import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
 
-const AboutPage = () => {
-    const { t } = useTranslation('about');
+import { Page } from 'widgets/Page/Page';
+
+const CartPage = () => {
+    const { t } = useTranslation('сart');
     return (
         <Page>
             <Text
                 gap="16"
-                title={t('О компании')}
+                title={t('Корзина')}
                 size={TextSize.L}
                 bold={TextBold.MEDIUM}
             />
@@ -17,4 +17,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default CartPage;

@@ -14,6 +14,8 @@ import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import { useSelector } from 'react-redux';
+import { getWidth } from 'features/SizeSave';
 import styles from './MainPage.module.scss';
 
 const MainPage = () => {
@@ -21,7 +23,8 @@ const MainPage = () => {
 
     const { theme } = useTheme();
 
-    console.log(theme);
+    const width = useSelector(getWidth);
+
     return (
         <Page>
             <Text gap="16" title={t('Главная страница')} size={TextSize.L} bold={TextBold.MEDIUM} />
@@ -42,7 +45,7 @@ const MainPage = () => {
                         <Window className={styles.window} />
 
                     </HStack>
-                    <HStack gap="32" align="start" max justify="between">
+                    <HStack gap="32" align="start" max wrap={width < 650} justify="between">
                         <AppLink to="/" className={classNames(styles.block, {}, [styles.small])}>
                             <Text
                                 gap="16"
@@ -80,13 +83,11 @@ const MainPage = () => {
 
                 <HStack align="start" className={styles.bigBoard}>
                     <VStack align="start" gap="16" max className={classNames(styles.block, {}, [styles.big])}>
-                        <h2 className="subtitle">
-                            Всё для оконного бизнеса теперь в сети!
-                        </h2>
 
                         <Text
                             // eslint-disable-next-line max-len
                             gap="16"
+                            title={t(' Всё для оконного бизнеса теперь в сети!')}
                             text={t('Оформляйте заказ с вашего компьютера, планшета или телефона, наши менеджеры свяжутся с вами для уточнения деталей')}
                             size={TextSize.XL}
                             bold={TextBold.BOLD}

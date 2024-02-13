@@ -14,13 +14,15 @@ import { LoginModal } from 'features/Auth/ui/LoginModal/LoginModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, isUserAdmin, userActions } from 'entities/User';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { HStack } from 'shared/ui/Stack';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import LogoutIcon from 'shared/assets/icons/logout-icon.svg';
 import Settings from 'shared/assets/icons/settings.svg';
 import Help from 'shared/assets/icons/help.svg';
 import HistoryOrder from 'shared/assets/icons/order-history.svg';
 import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { getWidth } from 'features/SizeSave';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -32,6 +34,9 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
     const { t } = useTranslation();
 
     const authData = useSelector(getUserAuthData);
+
+    const width = useSelector(getWidth);
+
     const dispatch = useDispatch();
     const isAdmin = useSelector(isUserAdmin);
 
@@ -53,30 +58,35 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
         return (
             <header className={classNames(styles.Navbar, {}, [className])}>
 
-                <div className={styles.wrapperLeft}>
+                <HStack gap="0" align="center">
                     <Button theme={ThemeButton.SVG_BTN} onClick={onToggle}>
                         <MenuIcon />
                     </Button>
-                    <Logo className={styles.logo} />
-                </div>
-                <div className={styles.wrapperRight}>
-                    <div className={styles.contacts}>
+                    <AppLink to="/">
+                        <Logo className={styles.logo} />
+                    </AppLink>
+
+                </HStack>
+                <HStack gap="16">
+                    <VStack gap="4" justify="end" align="end" className={styles.contacts}>
                         <a href="#">+7 (982) 325-63-78</a>
                         <a href="#">mail@invest-trade.biz</a>
-                    </div>
-                    <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>
-                        <LikeIcon />
-                        <div className={styles.likeCount}>
-                            <span>2</span>
-                        </div>
-                    </Button>
-                    <Button type="button" theme={ThemeButton.SVG_BG}>
-                        <BellIcon />
-                    </Button>
-                    <Button type="button" theme={ThemeButton.CART}>
-                        <span>{t('Корзина')}</span>
-                        <CartIcon />
-                    </Button>
+                    </VStack>
+                    <HStack gap="16" className={styles.btnWrapper}>
+                        <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>
+                            <LikeIcon />
+                            <div className={styles.likeCount}>
+                                <span>2</span>
+                            </div>
+                        </Button>
+                        <Button type="button" theme={ThemeButton.SVG_BG}>
+                            <BellIcon />
+                        </Button>
+                        <Button type="button" theme={ThemeButton.CART}>
+                            <span>{t('Корзина')}</span>
+                            <CartIcon />
+                        </Button>
+                    </HStack>
                     <Dropdown
                         direction="bottom left"
                         className={styles.dropdown}
@@ -122,7 +132,13 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                                 onClick: onLogout,
                             },
                         ]}
-                        trigger={<Avatar size={41} className={styles.avatarBtn} src={authData.avatar} />}
+                        trigger={(
+                            <Avatar
+                                size={width < 500 ? 35 : 41}
+                                className={styles.avatarBtn}
+                                src={authData.avatar}
+                            />
+                        )}
                     >
                         <HStack max justify="start" gap="16" className={styles.header}>
                             <Avatar size={35} className={styles.avatar} src={authData.avatar} />
@@ -135,7 +151,7 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                             />
                         </HStack>
                     </Dropdown>
-                </div>
+                </HStack>
 
             </header>
         );

@@ -6,12 +6,14 @@ import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/Auth/model/types/loginSchema';
 
 import { ScrollSaveSchema } from 'features/ScrollSave';
+import { SizeSaveSchema } from 'features/SizeSave';
 
 import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
   user: UserSchema;
   scrollSave: ScrollSaveSchema;
+  sizeSave: SizeSaveSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
   // Async reducers
