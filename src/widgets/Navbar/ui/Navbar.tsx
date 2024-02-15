@@ -159,35 +159,41 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
 
     return (
         <header className={classNames(styles.Navbar, {}, [className])}>
-            <div className={styles.wrapperLeft}>
+
+            <HStack gap="0" align="center">
                 <Button theme={ThemeButton.SVG_BTN} onClick={onToggle}>
                     <MenuIcon />
                 </Button>
-                <Logo className={styles.logo} />
-            </div>
-            <div className={styles.wrapperRight}>
-                <div className={styles.contacts}>
+                <AppLink to="/">
+                    <Logo className={styles.logo} />
+                </AppLink>
+
+            </HStack>
+            <HStack gap="16">
+                <VStack gap="4" justify="end" align="end" className={styles.contacts}>
                     <a href="#">+7 (982) 325-63-78</a>
                     <a href="#">mail@invest-trade.biz</a>
-                </div>
-                <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>
-                    <LikeIcon />
-                    <div className={styles.likeCount}>
-                        <span>2</span>
-                    </div>
-                </Button>
-                <Button type="button" theme={ThemeButton.SVG_BG}>
-                    <BellIcon />
-                </Button>
-                <Button type="button" theme={ThemeButton.CART}>
-                    <span>{t('Корзина')}</span>
-                    <CartIcon />
-                </Button>
+                </VStack>
+                <HStack gap="16" className={styles.btnWrapper}>
+                    <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>
+                        <LikeIcon />
+                        <div className={styles.likeCount}>
+                            <span>2</span>
+                        </div>
+                    </Button>
+                    <Button type="button" theme={ThemeButton.SVG_BG}>
+                        <BellIcon />
+                    </Button>
+                    <Button type="button" theme={ThemeButton.CART}>
+                        <span>{t('Корзина')}</span>
+                        <CartIcon />
+                    </Button>
+                </HStack>
                 <Button type="button" theme={ThemeButton.DEFAULT} onClick={onShowModal}>
                     {t('Войти')}
                 </Button>
                 <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-            </div>
+            </HStack>
 
         </header>
     );
