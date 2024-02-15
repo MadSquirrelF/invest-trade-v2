@@ -42,10 +42,10 @@ export const Footer = memo(({ className }: FooterProps) => {
 
     return (
         <VStack max justify="end" className={classNames(styles.Footer, {}, [className])}>
-            <HStack max align="start">
+            <HStack max align="start" className={styles.wrapper}>
                 <VStack max>
 
-                    <HStack max gap="32" className={styles.box} justify="between">
+                    <HStack max gap="32" className={classNames(styles.box, {}, [styles.logoWrapper])} justify="between">
                         <Logo className={styles.logo} />
                         <Text
                             text="“Обеспечить оконных производителей надежными и долговечными комплектующими, способствуя созданию комфортных и безопасных условий для жизни людей.”"
@@ -55,13 +55,13 @@ export const Footer = memo(({ className }: FooterProps) => {
                         />
                     </HStack>
 
-                    <HStack gap="16" max justify="start" align="start" className={styles.box}>
+                    <HStack gap="16" max justify="start" align="start" className={classNames(styles.box, {}, [styles.linksWrapper])}>
                         <VStack max justify="start" gap="16" align="start">
                             <Text
                                 bold={TextBold.MEDIUM}
-                                size={TextSize.S}
+                                size={TextSize.M}
                                 title={t('Ресурсы')}
-                                gap="8"
+                                gap="16"
                             />
 
                             <AppLink to="/">
@@ -75,9 +75,9 @@ export const Footer = memo(({ className }: FooterProps) => {
                         <VStack max gap="16" align="start">
                             <Text
                                 bold={TextBold.MEDIUM}
-                                size={TextSize.S}
+                                size={TextSize.M}
                                 title={t('Компания')}
-                                gap="8"
+                                gap="16"
                             />
                             <AppLink to="/">
                                 О компании
@@ -101,9 +101,9 @@ export const Footer = memo(({ className }: FooterProps) => {
                         <VStack max gap="16" align="start">
                             <Text
                                 bold={TextBold.MEDIUM}
-                                size={TextSize.S}
+                                size={TextSize.M}
                                 title={t('Социальные сети')}
-                                gap="8"
+                                gap="16"
                             />
                             <HStack max gap="8">
                                 <AppLink to="/">
@@ -154,16 +154,7 @@ export const Footer = memo(({ className }: FooterProps) => {
                         : <MessageSendDark className={styles.sendMessage} />
                 }
 
-                <Text
-                    bold={TextBold.MEDIUM}
-                    size={TextSize.M}
-                    text={t('© 2024. Все права защищены')}
-                    gap="0"
-                    className={styles.link}
-                />
-                <AppLink to="/" className={styles.link}>
-                    Поддержка
-                </AppLink>
+                <p className={styles.link}>© 2024. Все права защищены</p>
                 <AppLink to="/" className={styles.link}>
                     Политика конфиденциальности
                 </AppLink>
@@ -172,6 +163,9 @@ export const Footer = memo(({ className }: FooterProps) => {
                 </AppLink>
                 <AppLink to="/" className={styles.link}>
                     Политика Cookie
+                </AppLink>
+                <AppLink to="/" className={styles.link}>
+                    Поддержка
                 </AppLink>
 
             </HStack>

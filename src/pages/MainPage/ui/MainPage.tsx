@@ -6,9 +6,10 @@ import { Page } from 'widgets/Page/Page';
 import { HStack, VStack } from 'shared/ui/Stack';
 import Window from 'shared/assets/images/window-main.svg';
 import ArrowRight from 'shared/assets/icons/arrow-right.svg';
-import BackgroundLightBoard from 'shared/assets/images/background-light-board.svg';
-import BackgroundDarkBoard from 'shared/assets/images/background-dark-board.svg';
 import Newspaper from 'shared/assets/images/newspaper.svg';
+import Man from 'shared/assets/images/man.svg';
+import Roof from 'shared/assets/images/roof.svg';
+import Frame from 'shared/assets/images/frame.svg';
 import Calculator from 'shared/assets/images/calc.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -16,6 +17,7 @@ import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import { useSelector } from 'react-redux';
 import { getWidth } from 'features/SizeSave';
+import { Footer } from 'widgets/Footer';
 import styles from './MainPage.module.scss';
 
 const MainPage = () => {
@@ -45,7 +47,7 @@ const MainPage = () => {
                         <Window className={styles.window} />
 
                     </HStack>
-                    <HStack gap="32" align="start" max wrap={width < 650} justify="between">
+                    <HStack gap="32" align="start" max className={styles.containerSmall} justify="between">
                         <AppLink to="/" className={classNames(styles.block, {}, [styles.small])}>
                             <Text
                                 gap="16"
@@ -81,30 +83,31 @@ const MainPage = () => {
 
                 </HStack>
 
-                <HStack align="start" className={styles.bigBoard}>
-                    <VStack align="start" gap="16" max className={classNames(styles.block, {}, [styles.big])}>
+                <VStack align="start" gap="16" max className={classNames(styles.block, {}, [styles.big])}>
 
-                        <Text
-                            // eslint-disable-next-line max-len
-                            gap="16"
-                            title={t(' Всё для оконного бизнеса теперь в сети!')}
-                            text={t('Оформляйте заказ с вашего компьютера, планшета или телефона, наши менеджеры свяжутся с вами для уточнения деталей')}
-                            size={TextSize.XL}
-                            bold={TextBold.BOLD}
-                        />
+                    <Text
+                        // eslint-disable-next-line max-len
+                        gap="16"
+                        title={t(' Всё для оконного бизнеса теперь в сети!')}
+                        text={t('Оформляйте заказ с вашего компьютера, планшета или телефона, наши менеджеры свяжутся с вами для уточнения деталей')}
+                        size={TextSize.XL}
+                        bold={TextBold.BOLD}
+                    />
 
-                        {
+                    {/* {
 
                             theme === Theme.LIGHT ? (<BackgroundLightBoard className={styles.bigBoardIcon} />) : (<BackgroundDarkBoard className={styles.bigBoardIcon} />)
-                        }
+                        } */}
 
-                        <Button type="button" theme={ThemeButton.DEFAULT} className={styles.orderBtn}>Заказать</Button>
-                    </VStack>
+                    <Frame className={styles.frame} />
+                    <Man className={styles.man} />
+                    <Roof className={styles.roof} />
 
-                </HStack>
+                    <Button type="button" theme={ThemeButton.DEFAULT} className={styles.orderBtn}>Заказать</Button>
+                </VStack>
 
             </HStack>
-
+            <Footer />
         </Page>
     );
 };
