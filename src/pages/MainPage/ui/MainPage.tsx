@@ -14,18 +14,11 @@ import Calculator from 'shared/assets/images/calc.svg';
 import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
-import { useSelector } from 'react-redux';
-import { getWidth } from 'features/SizeSave';
 import { Footer } from 'widgets/Footer';
 import styles from './MainPage.module.scss';
 
 const MainPage = () => {
     const { t } = useTranslation('main');
-
-    const { theme } = useTheme();
-
-    const width = useSelector(getWidth);
 
     return (
         <Page>
@@ -93,11 +86,6 @@ const MainPage = () => {
                         size={TextSize.XL}
                         bold={TextBold.BOLD}
                     />
-
-                    {/* {
-
-                            theme === Theme.LIGHT ? (<BackgroundLightBoard className={styles.bigBoardIcon} />) : (<BackgroundDarkBoard className={styles.bigBoardIcon} />)
-                        } */}
 
                     <Frame className={styles.frame} />
                     <Man className={styles.man} />

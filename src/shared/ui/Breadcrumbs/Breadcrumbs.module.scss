@@ -1,0 +1,38 @@
+.Breadcrumbs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.link {
+    margin-right: 10px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.icon {
+    margin-right: 10px;
+    color: var(--text-secondary);
+    width: 20px;
+    height: 20px;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+
+    &:last-child {
+        .icon {
+            display: none;
+        }
+
+        .link {
+            color: var(--text-secondary);
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+}

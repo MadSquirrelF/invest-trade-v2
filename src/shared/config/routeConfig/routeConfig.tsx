@@ -3,6 +3,7 @@ import { CartPage } from 'pages/CartPage';
 import { FavoritePage } from 'pages/FavoritePage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import { RegistrationPage } from 'pages/RegistrationPage';
 import { ProfilePage } from 'pages/ProfilePage';
 
 import { RouteProps } from 'react-router-dom';
@@ -18,6 +19,7 @@ export enum AppRoutes {
   CART = 'cart',
   PROFILE = 'profile',
   FAVORITE = 'favorite',
+  REGISTRATION = 'registration',
   // last
   NOT_FOUND = 'not_found',
 }
@@ -27,6 +29,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.CART]: '/cart',
     [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.FAVORITE]: '/favorite',
+    [AppRoutes.REGISTRATION]: '/registration',
     // last
     [AppRoutes.NOT_FOUND]: '*',
 };
@@ -47,6 +50,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.FAVORITE]: {
         path: RoutePath.favorite,
         element: <FavoritePage />,
+    },
+    [AppRoutes.REGISTRATION]: {
+        path: RoutePath.registration,
+        element: <RegistrationPage />,
     },
     [AppRoutes.PROFILE]: {
         path: `${RoutePath.profile}:id`,

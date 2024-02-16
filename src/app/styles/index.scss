@@ -52,3 +52,13 @@ body {
         border-bottom: 1px solid var(--active-color-default);
     }
 }
+
+.block {
+    position: relative;
+    padding: 50px;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-default);
+}
