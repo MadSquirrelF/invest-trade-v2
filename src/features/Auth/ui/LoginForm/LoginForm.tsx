@@ -60,7 +60,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <div className={classNames(styles.LoginForm, {}, [className])}>
+            <form className={classNames(styles.LoginForm, {}, [className])}>
                 <Text
                     title={t('Вход на сайт')}
                     bold={TextBold.BOLD}
@@ -121,7 +121,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     </AppLink>
                 </span>
 
-            </div>
+            </form>
         </DynamicModuleLoader>
     );
 });

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
-import { memo } from 'react';
+import { ReactNode, memo } from 'react';
 import styles from './Text.module.scss';
 import { VStack } from '../Stack';
 import { FlexGap } from '../Stack/Flex/Flex';
@@ -39,6 +39,7 @@ interface TextProps {
   align?: TextAlign;
   size?: TextSize;
   gap: FlexGap;
+  children?: ReactNode;
 }
 
 type HeaderTagType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -60,6 +61,7 @@ export const Text = memo((props: TextProps) => {
         align = TextAlign.LEFT,
         title,
         text,
+        children,
         gap = '16',
         theme = TextTheme.PRIMARY,
         size = TextSize.M,
@@ -75,7 +77,13 @@ export const Text = memo((props: TextProps) => {
     };
     return (
         <VStack gap={gap} align="start" className={classNames(styles.TextWrapper, mods, [className])}>
-            { title && (<HeaderTag className={styles.title}>{title}</HeaderTag>)}
+            { title && (
+                <HeaderTag className={styles.title}>
+                    {children}
+
+                    {title}
+                </HeaderTag>
+            )}
             { text && (<p className={styles.text}>{text}</p>)}
         </VStack>
     );

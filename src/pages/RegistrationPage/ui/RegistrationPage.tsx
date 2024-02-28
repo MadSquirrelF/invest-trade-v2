@@ -1,20 +1,21 @@
 import { useTranslation } from 'react-i18next';
 
 import { Page } from 'widgets/Page/Page';
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
 import { Breadcrumbs } from 'shared/ui/Breadcrumbs/Breadcrumbs';
+
+import { HStack, VStack } from 'shared/ui/Stack';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { RegistrationForm } from 'features/Auth/ui/RegistrationForm/RegistrationForm';
 
 const RegistrationPage = () => {
     const { t } = useTranslation('registration');
+
     return (
         <Page>
-            <Text
-                gap="16"
-                title={t('Регистрация')}
-                size={TextSize.L}
-                bold={TextBold.MEDIUM}
-            />
             <Breadcrumbs />
+            <div className={classNames('block', {}, [])}>
+                <RegistrationForm />
+            </div>
         </Page>
     );
 };

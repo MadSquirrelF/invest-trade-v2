@@ -26,14 +26,36 @@ body {
 
 .title {
     font-size: 45px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1;
+    color: var(--text-black-inverted-theme);
+
+    @media screen and (max-width: 800px) {
+        font-size: 28px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 24px;
+    }
+}
+
+.count {
+    color: var(--active-color-default);
+    margin-right: 5px;
 }
 
 .titleBlue {
     color: var(--active-color-default);
     font-size: 45px;
     font-weight: 900;
+
+    @media screen and (max-width: 800px) {
+        font-size: 28px;
+    }
+
+    @media screen and (max-width: 400px) {
+        font-size: 24px;
+    }
 }
 
 .subtitle {
@@ -61,4 +83,76 @@ body {
     background-color: var(--bg-primary);
     border-radius: 20px;
     box-shadow: var(--box-shadow-default);
+
+    @media screen and (max-width: 800px) {
+        padding: 20px;
+    }
+}
+
+.swiper {
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 50px !important;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    height: 200px !important;
+
+    /* Center slide text vertically */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    svg {
+        width: 50%;
+        height: auto;
+        filter: grayscale(1);
+    }
+
+    &:hover {
+        svg {
+            transition: transform 0.3s ease-in-out;
+            filter: none;
+            transform: scale(1.02);
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 100% !important;
+
+        svg {
+            width: 90%;
+        }
+    }
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-animation-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.slide-animation-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.slide-animation-exit {
+    opacity: 1;
+}
+
+.slide-animation-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
 }

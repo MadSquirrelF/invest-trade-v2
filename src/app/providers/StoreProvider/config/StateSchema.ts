@@ -4,6 +4,7 @@ import {
 import { AxiosInstance } from 'axios';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/Auth/model/types/loginSchema';
+import { RegistrationSchema } from 'features/Auth/model/types/registrationSchema';
 
 import { ScrollSaveSchema } from 'features/ScrollSave';
 import { SizeSaveSchema } from 'features/SizeSave';
@@ -18,6 +19,7 @@ export interface StateSchema {
 
   // Async reducers
   loginForm?: LoginSchema;
+  registrationForm?: RegistrationSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

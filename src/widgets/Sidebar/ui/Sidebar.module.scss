@@ -6,12 +6,18 @@
     background-color: var(--bg-primary);
     z-index: var(--sidebar-z-index);
     padding: 30px 5px;
+
+    @media screen and (max-width: 500px) {
+        position: absolute;
+        box-shadow: 6px 24px 13px rgb(0 0 0 / 24%);
+    }
 }
 
 .collapsed {
     position: absolute;
     left: var(--sidebar-width-collapsed-mobile);
     transition: left 0.3s ease-in-out;
+    box-shadow: none;
 }
 
 .utils {
