@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Page } from 'widgets/Page/Page';
 import { Breadcrumbs } from 'shared/ui/Breadcrumbs/Breadcrumbs';
 
-import { HStack, VStack } from 'shared/ui/Stack';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { RegistrationForm } from 'features/Auth/ui/RegistrationForm/RegistrationForm';
 

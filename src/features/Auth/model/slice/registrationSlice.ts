@@ -10,6 +10,9 @@ const initialState: RegistrationSchema = {
     phone_number: '',
     firstname: '',
     lastname: '',
+    isEmailValid: true,
+    isPasswordValid: false,
+    isPersonalInfoValid: false,
 };
 
 export const registrationSlice = createSlice({
@@ -34,6 +37,16 @@ export const registrationSlice = createSlice({
         setPhoneNumber: (state, action: PayloadAction<string>) => {
             state.phone_number = action.payload;
         },
+        setIsPasswordValid: (state, action: PayloadAction<boolean>) => {
+            state.isPasswordValid = action.payload;
+        },
+        setIsEmailValid: (state, action: PayloadAction<boolean>) => {
+            state.isEmailValid = action.payload;
+        },
+        setIsPersonalInfo: (state, action: PayloadAction<boolean>) => {
+            state.isPersonalInfoValid = action.payload;
+        },
+
     },
     extraReducers: (builder) => {
         builder

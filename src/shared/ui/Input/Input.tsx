@@ -17,6 +17,7 @@ interface InputProps extends HTMLInputProps {
   placeholder: string;
   label: string;
   isPassword?: boolean;
+  isForgetPassword?: boolean;
   onChange?: (value: string) => void;
   autofocus?: boolean;
   readonly?: boolean;
@@ -24,7 +25,17 @@ interface InputProps extends HTMLInputProps {
 
 export const Input = memo((props: InputProps) => {
     const {
-        className, value, onChange, autofocus, readonly, placeholder, isPassword, label, type = 'text', ...otherProps
+        className,
+        value,
+        onChange,
+        isForgetPassword,
+        autofocus,
+        readonly,
+        placeholder,
+        isPassword,
+        label,
+        type = 'text',
+        ...otherProps
     } = props;
 
     const { t } = useTranslation();
@@ -55,7 +66,7 @@ export const Input = memo((props: InputProps) => {
             <label htmlFor={label} className={styles.label}>
                 {label}
                 {
-                    isPassword && (
+                    isPassword && isForgetPassword && (
                         <AppLink
                             to="/"
                             theme={AppLinkTheme.DEFAULT}

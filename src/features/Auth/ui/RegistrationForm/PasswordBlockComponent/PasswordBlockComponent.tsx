@@ -11,8 +11,9 @@ import Done from 'shared/assets/icons/done.svg';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import { Error } from 'shared/ui/Error/Error';
 import { registrationActions } from '../../../model/slice/registrationSlice';
-import { getRegistrationPassword } from '../../../model/selectors/getRegistration/getRegistration';
+import { getRegistrationIsPasswordValid, getRegistrationPassword } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PasswordBlockComponent.module.scss';
 
 interface PasswordBlockComponentProps {
@@ -34,7 +35,8 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
     const atLeastOneLowercase = /[a-z]/g; // small letters from a to z
     const atLeastOneNumeric = /[0-9]/g; // numbers from 0 to 9
     const atLeastOneSpecialChar = /[#?!@$%^&*-]/g; // any of the special characters within the square brackets
-    const TenCharsOrMore = /.{10,}/g; // six characters or more
+    const TenCharsOrMore = /.{10,}/g; // ten characters or more
+    const atLeastSixChar = /.{6,}/g; // six characters or more
 
     const passwordTracker = {
         uppercase: password.match(atLeastOneUppercase),
@@ -42,6 +44,7 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
         number: password.match(atLeastOneNumeric),
         specialChar: password.match(atLeastOneSpecialChar),
         TenCharsOrGreater: password.match(TenCharsOrMore),
+        SixChar: password.match(atLeastSixChar),
     };
 
     const passwordStrength = Object.values(passwordTracker).filter(
@@ -54,14 +57,16 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
             case 0:
                 return PasswordStrenthArray[0];
             case 1:
-                return PasswordStrenthArray[1];
+                return PasswordStrenthArray[0];
             case 2:
-                return PasswordStrenthArray[2];
+                return PasswordStrenthArray[1];
             case 3:
-                return PasswordStrenthArray[3];
+                return PasswordStrenthArray[2];
             case 4:
-                return PasswordStrenthArray[4];
+                return PasswordStrenthArray[3];
             case 5:
+                return PasswordStrenthArray[4];
+            case 6:
                 return PasswordStrenthArray[4];
             default:
                 return PasswordStrenthArray[0];
@@ -70,7 +75,7 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
         [],
     );
 
-    const isPasswordInvalid = !password || !password.length;
+    const isPasswordInvalid = passwordTracker.SixChar;
 
     const onChangePassword = useCallback((value: string) => {
         dispatch(registrationActions.setPassword((value.trim())));
@@ -106,10 +111,10 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
                             size={TextSize.S}
                         />
                         <div className={styles.steps}>
-                            <span className={classNames(styles.step, { [styles.active]: passwordStrength >= 1 }, [])} />
                             <span className={classNames(styles.step, { [styles.active]: passwordStrength >= 2 }, [])} />
                             <span className={classNames(styles.step, { [styles.active]: passwordStrength >= 3 }, [])} />
                             <span className={classNames(styles.step, { [styles.active]: passwordStrength >= 4 }, [])} />
+                            <span className={classNames(styles.step, { [styles.active]: passwordStrength >= 5 }, [])} />
                         </div>
 
                         <Text
@@ -151,7 +156,7 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
 
             <Input
                 label={t('Повторите пароль')}
-                placeholder={t('Введите пароль')}
+                placeholder={t('Повторно введите пароль')}
                 isPassword
                 type="password"
                 required

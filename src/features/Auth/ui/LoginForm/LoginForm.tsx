@@ -69,7 +69,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     className={styles.title}
                     text={t('Для того, чтобы перейти к личным данным нужно войти')}
                 />
-                <Button theme={ThemeButton.OUTLINE} className={styles.google}>
+                <Button theme={ThemeButton.GOOGLE} className={styles.google}>
                     <Google />
                     <span>Sign in with Google</span>
                 </Button>
@@ -93,6 +93,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     label={t('Пароль')}
                     placeholder={t('Введите пароль')}
                     isPassword
+                    isForgetPassword
                     type="password"
                     className={styles.password}
                     onChange={onChangePassword}

@@ -17,7 +17,7 @@ export const LoginBlockComponent = memo(({ className }: LoginBlockComponentProps
             <Input
                 autofocus
                 label={t('Логин')}
-                placeholder={t('Придумайте ваш логин')}
+                placeholder={t('Введите логин')}
                 type="text"
                 required
             />

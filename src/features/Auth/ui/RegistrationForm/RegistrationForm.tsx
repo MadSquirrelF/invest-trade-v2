@@ -10,11 +10,17 @@ import PasswordBg from 'shared/assets/images/password-bg.svg';
 import PersonalInfoBg from 'shared/assets/images/personalInfoBg.svg';
 import LoginMailBg from 'shared/assets/images/LoginMainBg.svg';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useSelector } from 'react-redux';
 import { registrationReducer } from '../../model/slice/registrationSlice';
 import styles from './RegistrationForm.module.scss';
 import { LoginBlockComponent } from './LoginBlockComponent/LoginBlockComponent';
 import { PasswordBlockComponent } from './PasswordBlockComponent/PasswordBlockComponent';
 import { PersonalInfoBlockComponent } from './PersonalInfoBlockComponent/PersonalInfoBlockComponent';
+import {
+    getRegistrationIsEmailValid,
+    getRegistrationIsPasswordValid,
+    getRegistrationIsPersonalInfoValid,
+} from '../../model/selectors/getRegistration/getRegistration';
 
 interface RegistrationFormProps {
   className?: string;
@@ -31,6 +37,10 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
 
     const [slideIn, setSlideIn] = useState(true);
 
+    const IsPasswordValid = useSelector(getRegistrationIsPasswordValid);
+    const IsEmailValid = useSelector(getRegistrationIsEmailValid);
+    const IsPersonalInfoValid = useSelector(getRegistrationIsPersonalInfoValid);
+
     const handleArrowClick = (direction: 'next' | 'prev') => {
         const newIndex = direction === 'next' ? activeStep + 1 : activeStep - 1;
 
@@ -41,6 +51,32 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
             setSlideIn(true);
         }, 300);
     };
+
+    const disabledNextButton = useCallback(
+        (activeStep: number) => {
+            switch (activeStep) {
+            case 0:
+                if (IsEmailValid) {
+                    return false;
+                }
+                return true;
+            case 1:
+                if (IsPasswordValid) {
+                    return false;
+                }
+                return true;
+            case 2:
+                if (IsPersonalInfoValid) {
+                    return false;
+                }
+                return true;
+
+            default:
+                return true;
+            }
+        },
+        [IsEmailValid, IsPasswordValid, IsPersonalInfoValid],
+    );
 
     const renderBlock = useCallback(
         (activeStep: number) => {
@@ -98,21 +134,39 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                         {renderBlock(activeStep)}
                     </CSSTransition>
 
-                    <HStack max justify="between">
-                        <Button
-                            disabled={activeStep === 0}
-                            theme={ThemeButton.DEFAULT}
-                            onClick={() => handleArrowClick('prev')}
-                        >
-                            {t('Назад')}
-                        </Button>
-                        <Button
-                            disabled={activeStep === 2}
-                            theme={ThemeButton.DEFAULT}
-                            onClick={() => handleArrowClick('next')}
-                        >
-                            {t('Далее')}
-                        </Button>
+                    <HStack max justify={activeStep === 0 ? 'end' : 'between'}>
+                        {
+                            activeStep !== 0 && (
+                                <Button
+                                    disabled={activeStep === 0}
+                                    theme={ThemeButton.OUTLINE}
+                                    onClick={() => handleArrowClick('prev')}
+                                >
+                                    {t('Назад')}
+                                </Button>
+                            )
+                        }
+
+                        {
+                            activeStep !== 2 && (
+                                <Button
+                                    disabled={false}
+                                    theme={ThemeButton.DEFAULT}
+                                    onClick={() => handleArrowClick('next')}
+                                >
+                                    {t('Далее')}
+                                </Button>
+                            )
+                        }
+
+                        {
+                            activeStep === 2 && (
+                                <Button theme={ThemeButton.DEFAULT}>
+                                    {t('Зарегестрироваться')}
+                                </Button>
+                            )
+                        }
+
                     </HStack>
                 </VStack>
 
