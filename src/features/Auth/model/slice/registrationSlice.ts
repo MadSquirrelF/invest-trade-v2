@@ -1,18 +1,17 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RegistrationSchema } from '../types/registrationSchema';
+import { RegistrationSchema, ValidateRegistrationPasswordError } from '../types/registrationSchema';
 import { registrationByEmail } from '../services/registrationByEmail';
 
 const initialState: RegistrationSchema = {
     isLoading: false,
     email: '',
     password: '',
+    repeatPassword: '',
     username: '',
     phone_number: '',
     firstname: '',
     lastname: '',
-    isEmailValid: true,
-    isPasswordValid: false,
-    isPersonalInfoValid: false,
+    validatePasswordErrors: [],
 };
 
 export const registrationSlice = createSlice({
@@ -24,6 +23,9 @@ export const registrationSlice = createSlice({
         },
         setPassword: (state, action: PayloadAction<string>) => {
             state.password = action.payload;
+        },
+        setRepeatPassword: (state, action: PayloadAction<string>) => {
+            state.repeatPassword = action.payload;
         },
         setUsername: (state, action: PayloadAction<string>) => {
             state.username = action.payload;
@@ -37,14 +39,8 @@ export const registrationSlice = createSlice({
         setPhoneNumber: (state, action: PayloadAction<string>) => {
             state.phone_number = action.payload;
         },
-        setIsPasswordValid: (state, action: PayloadAction<boolean>) => {
-            state.isPasswordValid = action.payload;
-        },
-        setIsEmailValid: (state, action: PayloadAction<boolean>) => {
-            state.isEmailValid = action.payload;
-        },
-        setIsPersonalInfo: (state, action: PayloadAction<boolean>) => {
-            state.isPersonalInfoValid = action.payload;
+        setPasswordValidErrors: (state, action: PayloadAction<ValidateRegistrationPasswordError[]>) => {
+            state.validatePasswordErrors = action.payload;
         },
 
     },

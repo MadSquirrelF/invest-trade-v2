@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -11,15 +12,17 @@ import PersonalInfoBg from 'shared/assets/images/personalInfoBg.svg';
 import LoginMailBg from 'shared/assets/images/LoginMainBg.svg';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import { registrationReducer } from '../../model/slice/registrationSlice';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { validatePassword } from '../../model/services/validatePassword/validatePassword';
+import { registrationActions, registrationReducer } from '../../model/slice/registrationSlice';
 import styles from './RegistrationForm.module.scss';
 import { LoginBlockComponent } from './LoginBlockComponent/LoginBlockComponent';
 import { PasswordBlockComponent } from './PasswordBlockComponent/PasswordBlockComponent';
 import { PersonalInfoBlockComponent } from './PersonalInfoBlockComponent/PersonalInfoBlockComponent';
 import {
-    getRegistrationIsEmailValid,
-    getRegistrationIsPasswordValid,
-    getRegistrationIsPersonalInfoValid,
+    getRegistrationPassword,
+    getRegistrationPasswordValidateErrors,
+    getRegistrationRepeatPassword,
 } from '../../model/selectors/getRegistration/getRegistration';
 
 interface RegistrationFormProps {
@@ -31,52 +34,49 @@ const initialReducers: ReducerList = {
 };
 
 export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('registration');
 
-    const [activeStep, setActiveStep] = useState(0);
+    const [activeStep, setActiveStep] = useState(1);
 
     const [slideIn, setSlideIn] = useState(true);
 
-    const IsPasswordValid = useSelector(getRegistrationIsPasswordValid);
-    const IsEmailValid = useSelector(getRegistrationIsEmailValid);
-    const IsPersonalInfoValid = useSelector(getRegistrationIsPersonalInfoValid);
+    const dispatch = useAppDispatch();
 
-    const handleArrowClick = (direction: 'next' | 'prev') => {
-        const newIndex = direction === 'next' ? activeStep + 1 : activeStep - 1;
+    const password = useSelector(getRegistrationPassword);
+    const repeatPassword = useSelector(getRegistrationRepeatPassword);
+    const validatePasswordErrors = useSelector(getRegistrationPasswordValidateErrors);
 
+    const handleArrowClickBack = () => {
         setSlideIn(false);
 
         setTimeout(() => {
-            setActiveStep(newIndex);
+            setActiveStep(activeStep - 1);
             setSlideIn(true);
         }, 300);
     };
 
-    const disabledNextButton = useCallback(
-        (activeStep: number) => {
-            switch (activeStep) {
-            case 0:
-                if (IsEmailValid) {
-                    return false;
-                }
-                return true;
-            case 1:
-                if (IsPasswordValid) {
-                    return false;
-                }
-                return true;
-            case 2:
-                if (IsPersonalInfoValid) {
-                    return false;
-                }
-                return true;
+    const handleArrowClickPassword = () => {
+        const errors = validatePassword(password, repeatPassword);
 
-            default:
-                return true;
-            }
-        },
-        [IsEmailValid, IsPasswordValid, IsPersonalInfoValid],
-    );
+        if (errors.length === 0) {
+            setSlideIn(false);
+
+            setTimeout(() => {
+                setActiveStep(activeStep + 1);
+                setSlideIn(true);
+            }, 300);
+        }
+
+        return dispatch(registrationActions.setPasswordValidErrors(errors));
+    };
+
+    const onChangePassword = useCallback((value: string) => {
+        dispatch(registrationActions.setPassword((value.trim())));
+    }, [dispatch]);
+
+    const onChangeRepeatPassword = useCallback((value: string) => {
+        dispatch(registrationActions.setRepeatPassword((value.trim())));
+    }, [dispatch]);
 
     const renderBlock = useCallback(
         (activeStep: number) => {
@@ -84,14 +84,20 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
             case 0:
                 return <LoginBlockComponent />;
             case 1:
-                return <PasswordBlockComponent />;
+                return (
+                    <PasswordBlockComponent
+                        onChangePassword={onChangePassword}
+                        onChangeRepeatPassword={onChangeRepeatPassword}
+                        passwordErrors={validatePasswordErrors}
+                    />
+                );
             case 2:
                 return <PersonalInfoBlockComponent />;
             default:
                 return null;
             }
         },
-        [],
+        [onChangePassword, onChangeRepeatPassword, validatePasswordErrors],
     );
 
     const renderImage = useCallback(
@@ -140,7 +146,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                                 <Button
                                     disabled={activeStep === 0}
                                     theme={ThemeButton.OUTLINE}
-                                    onClick={() => handleArrowClick('prev')}
+                                    onClick={() => handleArrowClickBack()}
                                 >
                                     {t('Назад')}
                                 </Button>
@@ -152,7 +158,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                                 <Button
                                     disabled={false}
                                     theme={ThemeButton.DEFAULT}
-                                    onClick={() => handleArrowClick('next')}
+                                    onClick={() => handleArrowClickPassword()}
                                 >
                                     {t('Далее')}
                                 </Button>

@@ -12,22 +12,33 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { Error } from 'shared/ui/Error/Error';
-import { registrationActions } from '../../../model/slice/registrationSlice';
-import { getRegistrationIsPasswordValid, getRegistrationPassword } from '../../../model/selectors/getRegistration/getRegistration';
+import { ValidateRegistrationPasswordError } from '../../../model/types/registrationSchema';
+import { getRegistrationPassword, getRegistrationRepeatPassword } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PasswordBlockComponent.module.scss';
 
 interface PasswordBlockComponentProps {
   className?: string;
+  onChangePassword?: (value: string) => void;
+  onChangeRepeatPassword?: (value: string) => void;
+  passwordErrors?: ValidateRegistrationPasswordError[];
 }
 
 const PasswordStrenthArray = ['Минимум 6 символов', 'Слабый пароль', 'Средний пароль', 'Хороший пароль', 'Надежный пароль'];
 
-export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponentProps) => {
+export const PasswordBlockComponent = memo((props: PasswordBlockComponentProps) => {
     const { t } = useTranslation();
+
+    const {
+        className,
+        onChangePassword,
+        onChangeRepeatPassword,
+        passwordErrors,
+    } = props;
 
     const dispatch = useAppDispatch();
 
     const password = useSelector(getRegistrationPassword);
+    const repeatPassword = useSelector(getRegistrationRepeatPassword);
 
     const [meter, setMeter] = useState(false);
 
@@ -77,13 +88,18 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
 
     const isPasswordInvalid = passwordTracker.SixChar;
 
-    const onChangePassword = useCallback((value: string) => {
-        dispatch(registrationActions.setPassword((value.trim())));
-    }, [dispatch]);
+    const validatePasswordErrorsTranslations = {
+        [ValidateRegistrationPasswordError.EMPTY_PASSWORD]: t(
+            'Пароль пуст',
+        ),
+        [ValidateRegistrationPasswordError.NO_MATCH_PASSWORDS]: t('Пароли не совпадают'),
+        [ValidateRegistrationPasswordError.TOO_SHORT_PASSWORD]: t('Пароль слишком короткий'),
+    };
 
     return (
 
         <VStack max className={classNames(styles.PasswordBlockComponent, {}, [className])}>
+
             <HStack max className={styles.passwordWrapper}>
                 <Input
                     autofocus
@@ -158,9 +174,20 @@ export const PasswordBlockComponent = memo(({ className }: PasswordBlockComponen
                 label={t('Повторите пароль')}
                 placeholder={t('Повторно введите пароль')}
                 isPassword
+                value={repeatPassword}
+                onChange={onChangeRepeatPassword}
                 type="password"
                 required
             />
+
+            {
+                passwordErrors?.length ? passwordErrors.map((err) => (
+                    <Error
+                        key={err}
+                        error={validatePasswordErrorsTranslations[err]}
+                    />
+                )) : null
+            }
         </VStack>
     );
 });

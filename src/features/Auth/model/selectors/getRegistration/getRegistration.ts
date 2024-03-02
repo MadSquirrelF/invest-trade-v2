@@ -9,6 +9,5 @@ export const getRegistrationFirstname = (state: StateSchema) => state.registrati
 export const getRegistrationLastname = (state: StateSchema) => state.registrationForm?.lastname || '';
 export const getRegistrationPhoneNumber = (state: StateSchema) => state.registrationForm?.phone_number || '';
 export const getRegistrationUsername = (state: StateSchema) => state.registrationForm?.username || '';
-export const getRegistrationIsPasswordValid = (state: StateSchema) => state.registrationForm?.isPasswordValid || false;
-export const getRegistrationIsEmailValid = (state: StateSchema) => state.registrationForm?.isEmailValid || false;
-export const getRegistrationIsPersonalInfoValid = (state: StateSchema) => state.registrationForm?.isPersonalInfoValid || false;
+export const getRegistrationPasswordValidateErrors = (state: StateSchema) => state.registrationForm?.validatePasswordErrors;
+export const getRegistrationRepeatPassword = (state: StateSchema) => state.registrationForm?.repeatPassword || '';
