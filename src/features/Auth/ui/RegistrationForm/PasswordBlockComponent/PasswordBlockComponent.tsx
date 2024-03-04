@@ -35,7 +35,13 @@ export const PasswordBlockComponent = memo((props: PasswordBlockComponentProps) 
         passwordErrors,
     } = props;
 
-    const dispatch = useAppDispatch();
+    const validatePasswordErrorsTranslations = {
+        [ValidateRegistrationPasswordError.EMPTY_PASSWORD]: t(
+            'Пароль пуст',
+        ),
+        [ValidateRegistrationPasswordError.NO_MATCH_PASSWORDS]: t('Пароли не совпадают'),
+        [ValidateRegistrationPasswordError.TOO_SHORT_PASSWORD]: t('Пароль слишком короткий'),
+    };
 
     const password = useSelector(getRegistrationPassword);
     const repeatPassword = useSelector(getRegistrationRepeatPassword);
@@ -47,7 +53,7 @@ export const PasswordBlockComponent = memo((props: PasswordBlockComponentProps) 
     const atLeastOneNumeric = /[0-9]/g; // numbers from 0 to 9
     const atLeastOneSpecialChar = /[#?!@$%^&*-]/g; // any of the special characters within the square brackets
     const TenCharsOrMore = /.{10,}/g; // ten characters or more
-    const atLeastSixChar = /.{6,}/g; // six characters or more
+    const SixCharsOrMore = /.{10,}/g; // six characters or more
 
     const passwordTracker = {
         uppercase: password.match(atLeastOneUppercase),
@@ -55,7 +61,7 @@ export const PasswordBlockComponent = memo((props: PasswordBlockComponentProps) 
         number: password.match(atLeastOneNumeric),
         specialChar: password.match(atLeastOneSpecialChar),
         TenCharsOrGreater: password.match(TenCharsOrMore),
-        SixChar: password.match(atLeastSixChar),
+        SixCharsOrMore: password.match(SixCharsOrMore),
     };
 
     const passwordStrength = Object.values(passwordTracker).filter(
@@ -85,16 +91,6 @@ export const PasswordBlockComponent = memo((props: PasswordBlockComponentProps) 
         },
         [],
     );
-
-    const isPasswordInvalid = passwordTracker.SixChar;
-
-    const validatePasswordErrorsTranslations = {
-        [ValidateRegistrationPasswordError.EMPTY_PASSWORD]: t(
-            'Пароль пуст',
-        ),
-        [ValidateRegistrationPasswordError.NO_MATCH_PASSWORDS]: t('Пароли не совпадают'),
-        [ValidateRegistrationPasswordError.TOO_SHORT_PASSWORD]: t('Пароль слишком короткий'),
-    };
 
     return (
 

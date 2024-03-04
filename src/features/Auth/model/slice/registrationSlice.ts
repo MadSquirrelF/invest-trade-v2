@@ -1,5 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { RegistrationSchema, ValidateRegistrationPasswordError } from '../types/registrationSchema';
+import {
+    RegistrationSchema,
+    ValidateRegistrationEmailError,
+    ValidateRegistrationPasswordError,
+    ValidateRegistrationPersonalDataError,
+} from '../types/registrationSchema';
 import { registrationByEmail } from '../services/registrationByEmail';
 
 const initialState: RegistrationSchema = {
@@ -12,6 +17,8 @@ const initialState: RegistrationSchema = {
     firstname: '',
     lastname: '',
     validatePasswordErrors: [],
+    validateEmailsErrors: [],
+    validatePersonalDataErrors: [],
 };
 
 export const registrationSlice = createSlice({
@@ -41,6 +48,12 @@ export const registrationSlice = createSlice({
         },
         setPasswordValidErrors: (state, action: PayloadAction<ValidateRegistrationPasswordError[]>) => {
             state.validatePasswordErrors = action.payload;
+        },
+        setEmailValidErrors: (state, action: PayloadAction<ValidateRegistrationEmailError[]>) => {
+            state.validateEmailsErrors = action.payload;
+        },
+        setPersonalDataValidErrors: (state, action: PayloadAction<ValidateRegistrationPersonalDataError[]>) => {
+            state.validatePersonalDataErrors = action.payload;
         },
 
     },
