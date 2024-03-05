@@ -1,5 +1,5 @@
 /* eslint-disable i18next/no-literal-string */
-import { memo } from 'react';
+import { memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { VStack } from 'shared/ui/Stack';
@@ -22,6 +22,7 @@ interface LoginBlockComponentProps {
 
 export const LoginBlockComponent = memo((props: LoginBlockComponentProps) => {
     const { t } = useTranslation();
+    const phoneNumberRef = useRef<HTMLInputElement>(null);
 
     const email = useSelector(getRegistrationEmail);
     const login = useSelector(getRegistrationUsername);
@@ -31,7 +32,7 @@ export const LoginBlockComponent = memo((props: LoginBlockComponentProps) => {
             'Логин и почта - обязательные поля',
         ),
         [ValidateRegistrationEmailError.NOT_VALID_EMAIL]: t('Такой почты не существует'),
-        [ValidateRegistrationEmailError.TOO_SHORT_LOGIN]: t('Логин должен иметь мин. 3 символа'),
+        [ValidateRegistrationEmailError.TOO_SHORT_LOGIN]: t('Поле логин* должен иметь мин. 3 символа'),
     };
 
     const {

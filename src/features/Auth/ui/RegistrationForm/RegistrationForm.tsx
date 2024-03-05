@@ -1,3 +1,6 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-plusplus */
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
 import {
@@ -15,6 +18,10 @@ import LoginMailBg from 'shared/assets/images/LoginMainBg.svg';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Error } from 'shared/ui/Error/Error';
+import { Loader, ThemeLoader } from 'shared/ui/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
+import { registrationByEmail } from '../../model/services/registrationByEmail';
 import { validateEmails } from '../../model/services/validateEmail/validateEmail';
 import { validatePassword } from '../../model/services/validatePassword/validatePassword';
 import { registrationActions, registrationReducer } from '../../model/slice/registrationSlice';
@@ -25,12 +32,18 @@ import { PersonalInfoBlockComponent } from './PersonalInfoBlockComponent/Persona
 import {
     getRegistrationEmail,
     getRegistrationEmailValidateErrors,
+    getRegistrationError,
+    getRegistrationFirstname,
+    getRegistrationIsLoading,
+    getRegistrationLastname,
     getRegistrationPassword,
     getRegistrationPasswordValidateErrors,
     getRegistrationPersonalDataValidateErrors,
+    getRegistrationPhoneNumber,
     getRegistrationRepeatPassword,
     getRegistrationUsername,
 } from '../../model/selectors/getRegistration/getRegistration';
+import { validatePersonalData } from '../../model/services/validatePersonalData/validatePersonalData';
 
 interface RegistrationFormProps {
   className?: string;
@@ -42,16 +55,23 @@ const initialReducers: ReducerList = {
 
 export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const { t } = useTranslation('registration');
+    const navigate = useNavigate();
 
     const [activeStep, setActiveStep] = useState(2);
 
     const [slideIn, setSlideIn] = useState(true);
+    const [phone_number, setPhone] = useState('');
 
     const dispatch = useAppDispatch();
 
     const email = useSelector(getRegistrationEmail);
-    const login = useSelector(getRegistrationUsername);
+    const username = useSelector(getRegistrationUsername);
     const password = useSelector(getRegistrationPassword);
+    const error = useSelector(getRegistrationError);
+    const isLoading = useSelector(getRegistrationIsLoading);
+
+    const firstname = useSelector(getRegistrationFirstname);
+    const lastname = useSelector(getRegistrationLastname);
 
     const repeatPassword = useSelector(getRegistrationRepeatPassword);
     const validatePasswordErrors = useSelector(getRegistrationPasswordValidateErrors);
@@ -83,7 +103,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     };
 
     const handleArrowClickEmail = () => {
-        const errors = validateEmails(login, email);
+        const errors = validateEmails(username, email);
 
         if (errors.length === 0) {
             setSlideIn(false);
@@ -97,16 +117,20 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
         return dispatch(registrationActions.setEmailValidErrors(errors));
     };
 
-    const formatPhoneNumber = (value: string) => {
-        if (!value) return value;
-        const phoneNumber = value.replace(/[^\d]/g, '');
-        const phoneNumberLength = phoneNumber.length;
-        if (phoneNumberLength < 4) return phoneNumber;
-        if (phoneNumberLength < 7) {
-            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    const onRegistrationClick = useCallback(async () => {
+        const errors = validatePersonalData(firstname, lastname, phone_number);
+
+        if (errors.length === 0) {
+            const result = await dispatch(registrationByEmail({
+                email, password, username, firstname, lastname, phone_number,
+            }));
+            if (result.meta.requestStatus === 'fulfilled') {
+                navigate(-1);
+            }
         }
-        return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
-    };
+
+        return dispatch(registrationActions.setPersonalDataValidErrors(errors));
+    }, [firstname, lastname, phone_number, dispatch, email, password, username, navigate]);
 
     const onChangePassword = useCallback((value: string) => {
         dispatch(registrationActions.setPassword((value.trim())));
@@ -132,9 +156,9 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
         dispatch(registrationActions.setLastname((value.trim())));
     }, [dispatch]);
 
-    const onChangePhoneNumber = useCallback((value: string) => {
-        dispatch(registrationActions.setPhoneNumber(value));
-    }, [dispatch]);
+    const onChangePhone = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        setPhone(event.target.value);
+    }, []);
 
     const renderBlock = useCallback(
         (activeStep: number) => {
@@ -160,6 +184,8 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                     <PersonalInfoBlockComponent
                         onChangeFirstname={onChangeFirstname}
                         onChangeLastname={onChangeLastname}
+                        phone={phone_number}
+                        onChangePhone={onChangePhone}
                         personalInfoErrors={validatePersonalDataErrors}
                     />
                 );
@@ -167,7 +193,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                 return null;
             }
         },
-        [onChangeEmail, onChangeFirstname, onChangeLastname, onChangeLogin, onChangePassword, onChangeRepeatPassword, validateEmailErrors, validatePasswordErrors, validatePersonalDataErrors],
+        [onChangeEmail, onChangeFirstname, onChangeLastname, onChangeLogin, onChangePassword, onChangePhone, onChangeRepeatPassword, phone_number, validateEmailErrors, validatePasswordErrors, validatePersonalDataErrors],
     );
 
     const renderImage = useCallback(
@@ -198,6 +224,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                 >
                     {renderImage(activeStep)}
                 </CSSTransition>
+
                 <VStack justify="between" gap="32" className={styles.RegistrationForm}>
                     <Stepper currentStep={activeStep} />
 
@@ -210,7 +237,33 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                         {renderBlock(activeStep)}
                     </CSSTransition>
 
-                    <HStack max justify={activeStep === 0 ? 'end' : 'between'}>
+                    {
+                        error && (
+                            <Error error={error} />
+                        )
+                    }
+
+                    {
+                        activeStep === 2 && (
+                            <Button
+                                disabled={isLoading}
+                                className={styles.regBtn}
+                                onClick={onRegistrationClick}
+                                theme={ThemeButton.DEFAULT}
+                            >
+                                {
+                                    isLoading ? <Loader theme={ThemeLoader.BTN_LOADER} /> : (
+                                        <span>
+                                            {t('Зарегестрироваться')}
+                                        </span>
+                                    )
+                                }
+
+                            </Button>
+                        )
+                    }
+
+                    <HStack gap="32" max justify={activeStep === 0 ? 'end' : 'between'}>
                         {
                             activeStep !== 0 && (
                                 <Button
@@ -234,15 +287,8 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                             )
                         }
 
-                        {
-                            activeStep === 2 && (
-                                <Button theme={ThemeButton.DEFAULT}>
-                                    {t('Зарегестрироваться')}
-                                </Button>
-                            )
-                        }
-
                     </HStack>
+
                 </VStack>
 
             </HStack>

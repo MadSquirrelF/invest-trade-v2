@@ -1,3 +1,56 @@
 .PersonalInfoBlockComponent {
     position: relative;
 }
+
+.hint {
+    margin-bottom: 32px;
+}
+
+.FieldBox {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+    text-align: left;
+}
+
+.InputWrapper {
+    position: relative;
+    box-shadow: none;
+    outline: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--text-primary);
+
+    &:focus-within {
+        transition: outline 0.1s ease-in-out;
+        outline: 2px solid var(--active-color-default);
+    }
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.input {
+    width: 100%;
+    font-weight: 600;
+    color: var(--text-primary);
+
+    &::placeholder {
+        color: var(--text-secondary);
+    }
+
+    &[type="password"] {
+        &::placeholder {
+            color: var(--text-secondary);
+        }
+    }
+}

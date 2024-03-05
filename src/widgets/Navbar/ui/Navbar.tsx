@@ -23,6 +23,7 @@ import HistoryOrder from 'shared/assets/icons/order-history.svg';
 import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { getWidth } from 'features/SizeSave';
+import DefaultAvatar from 'shared/assets/icons/default-avatar.svg';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -136,12 +137,18 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                             <Avatar
                                 size={width < 500 ? 35 : 41}
                                 className={styles.avatarBtn}
-                                src={authData.avatar}
-                            />
+                            >
+                                <DefaultAvatar />
+                            </Avatar>
                         )}
                     >
                         <HStack max justify="start" gap="16" className={styles.header}>
-                            <Avatar size={35} className={styles.avatar} src={authData.avatar} />
+                            <Avatar
+                                size={35}
+                                className={styles.avatar}
+                            >
+                                <DefaultAvatar />
+                            </Avatar>
                             <Text
                                 bold={TextBold.BOLD}
                                 size={TextSize.S}
