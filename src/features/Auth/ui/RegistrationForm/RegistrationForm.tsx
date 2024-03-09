@@ -3,9 +3,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
-import {
-    ChangeEventHandler, memo, useCallback, useState,
-} from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import Stepper from 'shared/ui/Stepper/Stepper';
@@ -39,7 +37,6 @@ import {
     getRegistrationPassword,
     getRegistrationPasswordValidateErrors,
     getRegistrationPersonalDataValidateErrors,
-    getRegistrationPhoneNumber,
     getRegistrationRepeatPassword,
     getRegistrationUsername,
 } from '../../model/selectors/getRegistration/getRegistration';

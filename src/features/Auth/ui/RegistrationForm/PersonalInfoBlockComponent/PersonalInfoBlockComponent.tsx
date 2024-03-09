@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
-import { ChangeEventHandler, memo, useState } from 'react';
+import {
+    ChangeEventHandler, memo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/Input';
@@ -9,7 +12,8 @@ import { HStack, VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
 import { Error } from 'shared/ui/Error/Error';
-import InputMask from 'react-input-mask';
+
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ValidateRegistrationPersonalDataError } from '../../../model/types/registrationSchema';
 import { getRegistrationFirstname, getRegistrationLastname } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PersonalInfoBlockComponent.module.scss';
@@ -24,10 +28,13 @@ interface PersonalInfoBlockComponentProps {
 }
 
 export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponentProps) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+
     const {
         onChangeFirstname, onChangePhone, phone, onChangeLastname, className, personalInfoErrors,
     } = props;
+
+    const dispatch = useAppDispatch();
 
     const firstname = useSelector(getRegistrationFirstname);
 
@@ -67,26 +74,15 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                 />
             </HStack>
 
-            <div className={styles.FieldBox}>
-                <label
-                    htmlFor={t('Номер телефона')}
-                    className={styles.label}
-                >
-                    Номер телефона
-                </label>
-                <div className={styles.InputWrapper}>
-                    <InputMask
-                        mask="+7 (999) 999-99-99"
-                        placeholder="+7 (___) ___-__-__"
-                        value={phone}
-                        id={t('Номер телефона')}
-                        name={t('Номер телефона')}
-                        onChange={onChangePhone}
-                        className={styles.input}
-                    />
-                </div>
-
-            </div>
+            <Input
+                mask="+7 (999) 999-99-99"
+                placeholder="+7 (___) ___-__-__"
+                label={t('Номер телефона')}
+                value={phone}
+                id={t('Номер телефона')}
+                name={t('Номер телефона')}
+                onChangeMasked={onChangePhone}
+            />
 
             <Text
                 text={t('* Номер телефона указывать при регистрации не обязательно. Вы можете указать его после регистрации в своем личном кабинете, для того чтобы нам было удобнее связаться с вами для уточнения деталей заказа.')}

@@ -1,10 +1,12 @@
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import React, {
+    ChangeEventHandler,
     InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
 import EyeClosed from 'shared/assets/icons/icon-closed-eye.svg';
 import EyeOpened from 'shared/assets/icons/icon-opened-eye.svg';
 import { useTranslation } from 'react-i18next';
+import InputMask from 'react-input-mask';
 import styles from './Input.module.scss';
 import { Button, ThemeButton } from '../Button/Button';
 import { AppLink, AppLinkTheme } from '../AppLink/AppLink';
@@ -16,8 +18,10 @@ interface InputProps extends HTMLInputProps {
   value?: string | number;
   placeholder: string;
   label: string;
+  mask?: string;
   isPassword?: boolean;
   isForgetPassword?: boolean;
+  onChangeMasked?: ChangeEventHandler<HTMLInputElement>;
   onChange?: (value: string) => void;
   autofocus?: boolean;
   readonly?: boolean;
@@ -27,6 +31,7 @@ export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
+        mask,
         onChange,
         isForgetPassword,
         autofocus,
@@ -34,6 +39,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         isPassword,
         label,
+        onChangeMasked,
         type = 'text',
         ...otherProps
     } = props;
@@ -60,6 +66,29 @@ export const Input = memo((props: InputProps) => {
             ref.current?.focus();
         }
     }, [autofocus]);
+
+    if (mask) {
+        return (
+            <div className={classNames(styles.FieldBox, {}, [className])}>
+                <label htmlFor={label} className={styles.label}>
+                    {label}
+                </label>
+                <div className={classNames(styles.InputWrapper, mods, [])}>
+                    <InputMask
+                        mask={mask}
+                        id={label}
+                        placeholder={placeholder}
+                        name={label}
+                        value={value}
+                        onChange={onChangeMasked}
+                        className={styles.input}
+                        {...otherProps}
+                    />
+                </div>
+
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(styles.FieldBox, {}, [className])}>
