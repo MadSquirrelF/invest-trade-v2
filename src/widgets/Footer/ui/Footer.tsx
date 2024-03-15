@@ -2,20 +2,20 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Input } from 'shared/ui/Input/Input';
-import Logo from 'shared/assets/icons/logo.svg';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
-import MessageSend from 'shared/assets/images/message-send.svg';
-import Vk from 'shared/assets/icons/vk.svg';
-import Telegram from 'shared/assets/icons/telegram.svg';
-import Instagram from 'shared/assets/icons/inst.svg';
-import MessageSendDark from 'shared/assets/images/message-send-dark.svg';
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { Checkbox } from 'shared/ui/Checkbox/Checkbox';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Input } from '@/shared/ui/Input/Input';
+import Logo from '@/shared/assets/icons/logo.svg';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
+import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
+import MessageSend from '@/shared/assets/images/message-send.svg';
+import Vk from '@/shared/assets/icons/vk.svg';
+import Telegram from '@/shared/assets/icons/telegram.svg';
+import Instagram from '@/shared/assets/icons/inst.svg';
+import MessageSendDark from '@/shared/assets/images/message-send-dark.svg';
+import { Theme, useTheme } from '@/app/providers/ThemeProvider';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 import styles from './Footer.module.scss';
 
 interface FooterProps {

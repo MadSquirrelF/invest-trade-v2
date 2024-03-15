@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import Mail from 'shared/assets/icons/mail.svg';
-import Password from 'shared/assets/icons/password.svg';
-import PersonalInfo from 'shared/assets/icons/personal-info.svg';
-import { classNames } from 'shared/lib/classNames/classNames';
+import Mail from '@/shared/assets/icons/mail.svg';
+import Password from '@/shared/assets/icons/password.svg';
+import PersonalInfo from '@/shared/assets/icons/personal-info.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Stepper.module.scss';
 import { Text, TextAlign, TextBold } from '../Text/Text';
 import { HStack, VStack } from '../Stack';

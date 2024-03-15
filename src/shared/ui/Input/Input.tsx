@@ -1,10 +1,10 @@
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import React, {
     ChangeEventHandler,
     InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
-import EyeClosed from 'shared/assets/icons/icon-closed-eye.svg';
-import EyeOpened from 'shared/assets/icons/icon-opened-eye.svg';
+import EyeClosed from '@/shared/assets/icons/icon-closed-eye.svg';
+import EyeOpened from '@/shared/assets/icons/icon-opened-eye.svg';
 import { useTranslation } from 'react-i18next';
 import InputMask from 'react-input-mask';
 import styles from './Input.module.scss';

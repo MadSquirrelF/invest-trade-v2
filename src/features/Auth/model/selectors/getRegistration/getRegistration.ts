@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
 export const getRegistrationEmail = (state: StateSchema) => state.registrationForm?.email || '';
 export const getRegistrationIsLoading = (state: StateSchema) => state.registrationForm?.isLoading || false;

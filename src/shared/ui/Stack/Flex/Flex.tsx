@@ -1,6 +1,6 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import styles from './Flex.module.scss';
 

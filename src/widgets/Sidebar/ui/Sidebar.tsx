@@ -1,15 +1,15 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { VStack } from 'shared/ui/Stack';
+import { VStack } from '@/shared/ui/Stack';
 import { useLocation } from 'react-router-dom';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
-import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
+import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
+import { LangSwitcher } from '@/shared/ui/LangSwitcher/LangSwitcher';
 import styles from './Sidebar.module.scss';
-import { getSidebarItems } from '../model/selectors/getSidebarItems';
 import { SidebarItem } from './SidebarItem/SidebarItem';
+import { useSidebarItems } from '../model/selectors/getSidebarItems';
 
 interface SidebarProps {
   className?: string;
@@ -19,7 +19,7 @@ interface SidebarProps {
 export const Sidebar = memo(({ className, collapsed }: SidebarProps) => {
     const { t } = useTranslation();
 
-    const sidebarItemsList = useSelector(getSidebarItems);
+    const sidebarItemsList = useSidebarItems();
 
     const { pathname } = useLocation();
 

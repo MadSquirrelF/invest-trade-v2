@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import AvatarSvg from 'shared/assets/icons/defaut-avatar.svg';
+import AvatarSvg from '@/shared/assets/icons/defaut-avatar.svg';
 import { Avatar } from './Avatar';
 
 export default {
-    title: 'shared/Avatar',
+    title: '@/shared/Avatar',
     component: Avatar,
 
     argTypes: {

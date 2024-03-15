@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Breadcrumbs } from './Breadcrumbs';
 
 export default {
-    title: 'shared/Breadcrumbs',
+    title: '@/shared/Breadcrumbs',
     component: Breadcrumbs,
 
     argTypes: {

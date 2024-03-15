@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider';
 import FavoritePage from './FavoritePage';
 
 export default {
-    title: 'pages/FavoritePage',
+    title: '@/pages/FavoritePage',
     component: FavoritePage,
     argTypes: {
         backgroundColor: { control: 'color' },

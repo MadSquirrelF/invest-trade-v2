@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CurrencySelect } from './CurrencySelect';
 
 export default {
-    title: 'entities/CurrencySelect',
+    title: '@/entities/CurrencySelect',
     component: CurrencySelect,
 
     argTypes: {

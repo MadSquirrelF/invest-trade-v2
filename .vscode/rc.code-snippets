@@ -11,7 +11,7 @@
 			"/* eslint-disable i18next/no-literal-string */"
 			"import { memo } from 'react';",
 			"import { useTranslation } from 'react-i18next';",
-      "import { classNames } from 'shared/lib/classNames/classNames';",
+      "import { classNames } from '@/shared/lib/classNames/classNames';",
       "import styles from './${1:$TM_FILENAME_BASE}.module.scss';",
 			" ",
 			"interface ${1:$TM_FILENAME_BASE}Props {",

@@ -2,14 +2,14 @@ import {
     AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { UserSchema } from 'entities/User';
-import { LoginSchema } from 'features/Auth/model/types/loginSchema';
-import { RegistrationSchema } from 'features/Auth/model/types/registrationSchema';
+import { UserSchema } from '@/entities/User';
+import { LoginSchema } from '@/features/Auth/model/types/loginSchema';
+import { RegistrationSchema } from '@/features/Auth/model/types/registrationSchema';
 
-import { ScrollSaveSchema } from 'features/ScrollSave';
-import { SizeSaveSchema } from 'features/SizeSave';
+import { ScrollSaveSchema } from '@/features/ScrollSave';
+import { SizeSaveSchema } from '@/features/SizeSave';
 
-import { rtkApi } from 'shared/api/rtkApi';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 export interface StateSchema {
   user: UserSchema;

@@ -1,9 +1,9 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useLocation } from 'react-router-dom';
-import ArrowRight from 'shared/assets/icons/arrow-right.svg';
+import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
 import styles from './Breadcrumbs.module.scss';
 import { AppLink, AppLinkTheme } from '../AppLink/AppLink';
 

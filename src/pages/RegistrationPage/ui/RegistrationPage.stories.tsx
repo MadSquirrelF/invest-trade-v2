@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider';
 import RegistrationPage from './RegistrationPage';
 
 export default {
-    title: 'pages/RegistrationPage',
+    title: '@/pages/RegistrationPage',
     component: RegistrationPage,
     argTypes: {
         backgroundColor: { control: 'color' },

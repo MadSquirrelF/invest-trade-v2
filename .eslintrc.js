@@ -13,12 +13,15 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react',
+    plugins: [
+        'react',
         '@typescript-eslint',
         'i18next',
         'react-hooks',
-        'ulbi-tv-plugin'],
+        'ulbi-tv-plugin',
+        'unused-imports'],
     rules: {
+        'unused-imports/no-unused-imports': 'error',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
         indent: [2, 4],
@@ -58,7 +61,30 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
-        'ulbi-tv-plugin/path-checker': 'error',
+        'ulbi-tv-plugin/path-checker': [
+            'error',
+            {
+                alias: '@',
+            },
+        ],
+        'ulbi-tv-plugin/layer-imports': [
+            'warn',
+            {
+                alias: '@',
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
+            },
+        ],
+        'ulbi-tv-plugin/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.story.*',
+                    '**/StoreDecorator.tsx',
+                ],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,

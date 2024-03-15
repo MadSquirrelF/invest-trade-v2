@@ -2,36 +2,36 @@
 /* eslint-disable max-len */
 import { useTranslation } from 'react-i18next';
 
-import { Page } from 'widgets/Page/Page';
+import { Page } from '@/widgets/Page/ui/Page/Page';
 import {
     Text, TextAlign, TextBold, TextSize,
-} from 'shared/ui/Text/Text';
-import { Breadcrumbs } from 'shared/ui/Breadcrumbs/Breadcrumbs';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import bannerLight from 'shared/assets/images/aboutPage-banner.png';
-import bannerDark from 'shared/assets/images/aboutPage-banner-dark.png';
-import Line from 'shared/assets/images/about-line.svg';
-import LineVertical from 'shared/assets/images/about-line-vertical.svg';
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
+} from '@/shared/ui/Text/Text';
+import { Breadcrumbs } from '@/shared/ui/Breadcrumbs/Breadcrumbs';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import bannerLight from '@/shared/assets/images/aboutPage-banner.png';
+import bannerDark from '@/shared/assets/images/aboutPage-banner-dark.png';
+import Line from '@/shared/assets/images/about-line.svg';
+import LineVertical from '@/shared/assets/images/about-line-vertical.svg';
+import { Theme, useTheme } from '@/app/providers/ThemeProvider';
 
-import Delivery from 'shared/assets/icons/delivery.svg';
-import Window from 'shared/assets/icons/window.svg';
-import Box from 'shared/assets/icons/box.svg';
-import Planet from 'shared/assets/icons/planet.svg';
-import SetUp from 'shared/assets/images/set up.png';
-import Warehouse from 'shared/assets/images/warehouse.png';
-import DeliveryImage from 'shared/assets/images/delivery.png';
-import Russia from 'shared/assets/images/RussiaMap.png';
-import { Footer } from 'widgets/Footer';
+import Delivery from '@/shared/assets/icons/delivery.svg';
+import Window from '@/shared/assets/icons/window.svg';
+import Box from '@/shared/assets/icons/box.svg';
+import Planet from '@/shared/assets/icons/planet.svg';
+import SetUp from '@/shared/assets/images/set up.png';
+import Warehouse from '@/shared/assets/images/warehouse.png';
+import DeliveryImage from '@/shared/assets/images/delivery.png';
+import Russia from '@/shared/assets/images/RussiaMap.png';
+import { Footer } from '@/widgets/Footer';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
-import MACO from 'shared/assets/images/MACO.svg';
-import SCHTERN from 'shared/assets/images/Schtern.svg';
-import RINGER from 'shared/assets/images/RINGER.svg';
+import MACO from '@/shared/assets/images/MACO.svg';
+import SCHTERN from '@/shared/assets/images/Schtern.svg';
+import RINGER from '@/shared/assets/images/RINGER.svg';
 import { useSelector } from 'react-redux';
-import { getWidth } from 'features/SizeSave';
+import { getWidth } from '@/features/SizeSave';
 import CountUp from 'react-countup';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.scss';

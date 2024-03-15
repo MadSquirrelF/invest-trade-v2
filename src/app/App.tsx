@@ -1,20 +1,23 @@
 import './styles/index.scss';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Navbar } from 'widgets/Navbar';
-import { Suspense, useEffect, useState } from 'react';
-import { Sidebar } from 'widgets/Sidebar';
+import {
+    Suspense, memo, useEffect, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInited, userActions } from 'entities/User';
-import { SizeSaveActions } from 'features/SizeSave';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Navbar } from '@/widgets/Navbar';
+import { Sidebar } from '@/widgets/Sidebar';
+import { getUserInited, userActions } from '@/entities/User';
+import { SizeSaveActions } from '@/features/SizeSave';
 import { AppRouter } from './providers/router';
+import { withTheme } from './providers/ThemeProvider/ui/withTheme';
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
+import { useTheme } from './providers/ThemeProvider';
+import { MainLayout } from '@/shared/layouts/MainLayout';
 
-function getWindowSize() {
-    const { innerWidth, innerHeight } = window;
-    return { innerWidth, innerHeight };
-}
-
-function App() {
+const App = memo(() => {
     const [collapsed, setCollapsed] = useState(false);
+
+    const { theme } = useTheme();
 
     const dispatch = useDispatch();
 
@@ -41,17 +44,25 @@ function App() {
         };
     }, [dispatch]);
 
+    if (!inited) {
+        return (
+            <div className={classNames('app', {}, [])}>
+                <AppLoaderLayout />
+            </div>
+        );
+    }
+
     return (
         <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
-                <Navbar onToggle={onToggle} />
-                <div className="content-page">
-                    <Sidebar collapsed={collapsed} />
-                    {inited && <AppRouter />}
-                </div>
+                <MainLayout
+                    header={<Navbar onToggle={onToggle} />}
+                    content={<AppRouter />}
+                    sidebar={<Sidebar collapsed={collapsed} />}
+                />
             </Suspense>
         </div>
     );
-}
+});
 
-export default App;
+export default withTheme(App);

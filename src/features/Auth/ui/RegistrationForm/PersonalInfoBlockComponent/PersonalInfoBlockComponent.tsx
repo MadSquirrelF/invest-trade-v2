@@ -6,14 +6,14 @@ import {
     ChangeEventHandler, memo,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Input } from 'shared/ui/Input/Input';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Text } from 'shared/ui/Text/Text';
 import { useSelector } from 'react-redux';
-import { Error } from 'shared/ui/Error/Error';
-
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { SmartCaptcha } from '@yandex/smart-captcha';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Input } from '@/shared/ui/Input/Input';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Text } from '@/shared/ui/Text/Text';
+import { Error } from '@/shared/ui/Error/Error';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { ValidateRegistrationPersonalDataError } from '../../../model/types/registrationSchema';
 import { getRegistrationFirstname, getRegistrationLastname } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PersonalInfoBlockComponent.module.scss';
@@ -22,6 +22,7 @@ interface PersonalInfoBlockComponentProps {
   className?: string;
   onChangeFirstname: (value: string) => void;
   onChangeLastname: (value: string) => void;
+  handleToken: (token: string) => void;
   phone: string;
   onChangePhone: ChangeEventHandler<HTMLInputElement>;
   personalInfoErrors?: ValidateRegistrationPersonalDataError[];
@@ -31,7 +32,13 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
     const { t, i18n } = useTranslation();
 
     const {
-        onChangeFirstname, onChangePhone, phone, onChangeLastname, className, personalInfoErrors,
+        onChangeFirstname,
+        handleToken,
+        onChangePhone,
+        phone,
+        onChangeLastname,
+        className,
+        personalInfoErrors,
     } = props;
 
     const dispatch = useAppDispatch();
@@ -89,6 +96,13 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                 gap="0"
                 className={styles.hint}
             />
+            <HStack max align="start">
+                <SmartCaptcha
+                    onSuccess={handleToken}
+                    language={i18n.language === 'ru' ? 'ru' : 'en'}
+                    sitekey=""
+                />
+            </HStack>
 
             {
                 personalInfoErrors?.length ? personalInfoErrors.map((err) => (

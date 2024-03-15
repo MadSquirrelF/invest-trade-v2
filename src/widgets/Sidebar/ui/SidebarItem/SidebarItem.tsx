@@ -1,9 +1,9 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack } from 'shared/ui/Stack';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { HStack } from '@/shared/ui/Stack';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { SidebarItemType } from '../../model/types/sidebar';
 import styles from './SidebarItem.module.scss';
 

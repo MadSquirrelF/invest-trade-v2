@@ -66,9 +66,9 @@ body {
 
 .link {
     color: var(--active-color-default);
-    margin-left: 3px;
     font-weight: 500;
     transition: all 0.3s ease-in-out;
+    margin-top: 1px;
 
     &:hover {
         border-bottom: 1px solid var(--active-color-default);

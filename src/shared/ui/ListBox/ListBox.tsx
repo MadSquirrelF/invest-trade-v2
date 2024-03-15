@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
-import UpDownIcon from 'shared/assets/icons/up-down-icon.svg';
-import { classNames } from 'shared/lib/classNames/classNames';
-import SelectedIcon from 'shared/assets/icons/selected-icon.svg';
-import { DropdownDirection } from 'shared/types/ui';
+import UpDownIcon from '@/shared/assets/icons/up-down-icon.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import SelectedIcon from '@/shared/assets/icons/selected-icon.svg';
+import { DropdownDirection } from '@/shared/types/ui';
 import styles from './ListBox.module.scss';
 
 export interface ListBoxItem {

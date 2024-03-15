@@ -30,5 +30,4 @@ export interface RegistrationSchema {
   validatePasswordErrors: ValidateRegistrationPasswordError[];
   validateEmailsErrors: ValidateRegistrationEmailError[];
   validatePersonalDataErrors: ValidateRegistrationPersonalDataError[];
-
 }

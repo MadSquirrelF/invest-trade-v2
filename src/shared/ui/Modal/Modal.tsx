@@ -1,7 +1,7 @@
 import {
     ReactNode, MouseEvent, useState, useRef, useEffect, useCallback,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 

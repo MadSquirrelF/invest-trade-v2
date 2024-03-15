@@ -1,5 +1,7 @@
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
+import { Country } from '@/entities/Country';
+import { Currency } from '@/entities/Currency';
+import { JsonSettings } from './jsonSettings';
+import { FeatureFlags } from '@/shared/types/featureFlags';
 
 export enum UserRole {
   ADMIN = 'ADMIN',
@@ -22,6 +24,8 @@ export interface User {
   address?: string;
   avatar?: string;
   roles?: UserRole[];
+  features?: FeatureFlags;
+  jsonSettings?: JsonSettings;
 }
 
 export interface UserSchema {

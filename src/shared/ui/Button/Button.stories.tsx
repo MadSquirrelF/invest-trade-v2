@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button, ThemeButton } from './Button';
 
 export default {
-    title: 'shared/Button',
+    title: '@/shared/Button',
     component: Button,
 
     argTypes: {

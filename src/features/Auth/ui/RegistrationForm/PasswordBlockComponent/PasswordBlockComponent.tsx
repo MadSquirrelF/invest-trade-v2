@@ -2,16 +2,16 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Input } from 'shared/ui/Input/Input';
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
-import Dot from 'shared/assets/icons/dot.svg';
-import Done from 'shared/assets/icons/done.svg';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Input } from '@/shared/ui/Input/Input';
+import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
+import Dot from '@/shared/assets/icons/dot.svg';
+import Done from '@/shared/assets/icons/done.svg';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
-import { Error } from 'shared/ui/Error/Error';
+import { Error } from '@/shared/ui/Error/Error';
 import { ValidateRegistrationPasswordError } from '../../../model/types/registrationSchema';
 import { getRegistrationPassword, getRegistrationRepeatPassword } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PasswordBlockComponent.module.scss';

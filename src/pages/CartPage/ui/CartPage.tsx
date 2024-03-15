@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
+import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
 
-import { Page } from 'widgets/Page/Page';
+import { Page } from '@/widgets/Page/ui/Page/Page';
 
 const CartPage = () => {
     const { t } = useTranslation('сart');

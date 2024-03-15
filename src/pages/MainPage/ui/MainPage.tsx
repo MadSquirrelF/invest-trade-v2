@@ -1,21 +1,20 @@
 /* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
-import { Page } from 'widgets/Page/Page';
-import { HStack, VStack } from 'shared/ui/Stack';
-import Window from 'shared/assets/images/window-main.svg';
-import ArrowRight from 'shared/assets/icons/arrow-right.svg';
-import Newspaper from 'shared/assets/images/newspaper.svg';
-import Man from 'shared/assets/images/man.svg';
-import Roof from 'shared/assets/images/roof.svg';
-import Frame from 'shared/assets/images/frame.svg';
-import Calculator from 'shared/assets/images/calc.svg';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { Footer } from 'widgets/Footer';
+import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import Window from '@/shared/assets/images/window-main.svg';
+import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
+import Newspaper from '@/shared/assets/images/newspaper.svg';
+import Man from '@/shared/assets/images/man.svg';
+import Roof from '@/shared/assets/images/roof.svg';
+import Frame from '@/shared/assets/images/frame.svg';
+import Calculator from '@/shared/assets/images/calc.svg';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import styles from './MainPage.module.scss';
+import { Page } from '@/widgets/Page';
 
 const MainPage = () => {
     const { t } = useTranslation('main');
@@ -95,7 +94,6 @@ const MainPage = () => {
                 </VStack>
 
             </HStack>
-            <Footer />
         </Page>
     );
 };

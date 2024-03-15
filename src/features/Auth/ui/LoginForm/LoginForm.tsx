@@ -1,18 +1,18 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { Input } from 'shared/ui/Input/Input';
 import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
-import { Error } from 'shared/ui/Error/Error';
-import { Loader, ThemeLoader } from 'shared/ui/Loader/Loader';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import { Text, TextBold, TextSize } from 'shared/ui/Text/Text';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import Google from 'shared/assets/icons/google.svg';
+import { useNavigate } from 'react-router-dom';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Input } from '@/shared/ui/Input/Input';
+import { Error } from '@/shared/ui/Error/Error';
+import { Loader, ThemeLoader } from '@/shared/ui/Loader/Loader';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
+import Google from '@/shared/assets/icons/google.svg';
+import { HStack } from '@/shared/ui/Stack';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
@@ -20,6 +20,8 @@ import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail
 import { loginByEmail } from '../../model/services/loginByEmail';
 import styles from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { getRouteRegistration } from '@/shared/const/router';
 
 export interface LoginFormProps {
  className?: string;
@@ -33,6 +35,8 @@ const initialReducers: ReducerList = {
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
 
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch();
 
     const email = useSelector(getLoginEmail);
@@ -40,8 +44,20 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const error = useSelector(getLoginError);
     const isLoading = useSelector(getLoginIsLoading);
 
+    const forceUpdate = useForceUpdate();
+
     const isEmailInvalid = !email || !email.length;
+
     const isPasswordInvalid = !password || !password.length;
+
+    const navigateToRegistration = useCallback(
+        () => {
+            onSuccess();
+
+            navigate(getRouteRegistration());
+        },
+        [navigate, onSuccess],
+    );
 
     const onChangeEmail = useCallback((value: string) => {
         dispatch(loginActions.setEmail(value.trim()));
@@ -55,8 +71,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         const result = await dispatch(loginByEmail({ email, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
+            forceUpdate();
         }
-    }, [onSuccess, dispatch, password, email]);
+    }, [dispatch, email, password, onSuccess, forceUpdate]);
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
@@ -111,16 +128,17 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                         isLoading ? <Loader theme={ThemeLoader.BTN_LOADER} /> : <span>{t('Войти')}</span>
                     }
                 </Button>
-                <span className={styles.account}>
-                    {t('Еще не аккаунта?')}
-                    <AppLink
-                        theme={AppLinkTheme.DEFAULT}
-                        className="link"
-                        to="/"
+                <HStack max justify="center" align="center" gap="4">
+                    <Text title={t('Еще не аккаунта?')} bold={TextBold.MEDIUM} size={TextSize.XS} gap="0" />
+
+                    <Button
+                        theme={ThemeButton.CLEAR}
+                        className={styles.registration}
+                        onClick={navigateToRegistration}
                     >
                         {t('Зарегестрироваться')}
-                    </AppLink>
-                </span>
+                    </Button>
+                </HStack>
 
             </form>
         </DynamicModuleLoader>

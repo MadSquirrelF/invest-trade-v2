@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Page } from 'widgets/Page/Page';
+import { Page } from '@/widgets/Page/ui/Page/Page';
 
 const CartPage = () => {
     const { t } = useTranslation('profile');

@@ -1,17 +1,21 @@
-import { classNames } from 'shared/lib/classNames/classNames';
+/* eslint-disable i18next/no-literal-string */
 import {
-    memo, MutableRefObject, ReactNode, UIEvent, useRef,
+    memo, MutableRefObject, ReactNode, UIEvent, useRef, useState,
 } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-
 import { useLocation } from 'react-router-dom';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useSelector } from 'react-redux';
-import { StateSchema } from 'app/providers/StoreProvider';
-import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
-import { getScrollSaveByPath, ScrollSaveActions } from 'features/ScrollSave';
-import { useInfinityScroll } from 'shared/lib/hooks/useInfinityScroll/useInfinityScroll';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
+import { getScrollSaveByPath, ScrollSaveActions } from '@/features/ScrollSave';
+import { useInfinityScroll } from '@/shared/lib/hooks/useInfinityScroll/useInfinityScroll';
 import styles from './Page.module.scss';
+import { Footer } from '../../../Footer';
+import ArrowUp from '@/shared/assets/icons/arrow-up.svg';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 
 interface PageProps {
     className?: string;
@@ -25,9 +29,19 @@ export const Page = memo((props: PageProps) => {
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
+
+    const [disabled, setDisabled] = useState(false);
+
     const scrollPosition = useSelector(
         (state: StateSchema) => getScrollSaveByPath(state, pathname),
     );
+
+    const onClick = () => {
+        wrapperRef.current.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
 
     useInfinityScroll({
         triggerRef,
@@ -57,6 +71,17 @@ export const Page = memo((props: PageProps) => {
             {
                 onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null
             }
+
+            <Button
+                onClick={onClick}
+                disabled={disabled}
+                theme={ThemeButton.SVG_CIRCLE}
+                className={classNames(styles.ScrollToTopButton, {}, [className])}
+            >
+                <ArrowUp />
+            </Button>
+
+            <Footer />
         </main>
     );
 });

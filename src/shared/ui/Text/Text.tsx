@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { ReactNode, memo } from 'react';
 import styles from './Text.module.scss';
 import { VStack } from '../Stack';

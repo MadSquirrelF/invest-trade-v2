@@ -5,20 +5,20 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import Stepper from 'shared/ui/Stepper/Stepper';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
 import { CSSTransition } from 'react-transition-group';
-import PasswordBg from 'shared/assets/images/password-bg.svg';
-import PersonalInfoBg from 'shared/assets/images/personalInfoBg.svg';
-import LoginMailBg from 'shared/assets/images/LoginMainBg.svg';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Error } from 'shared/ui/Error/Error';
-import { Loader, ThemeLoader } from 'shared/ui/Loader/Loader';
 import { useNavigate } from 'react-router-dom';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import Stepper from '@/shared/ui/Stepper/Stepper';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import PasswordBg from '@/shared/assets/images/password-bg.svg';
+import PersonalInfoBg from '@/shared/assets/images/personalInfoBg.svg';
+import LoginMailBg from '@/shared/assets/images/LoginMainBg.svg';
+import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Error } from '@/shared/ui/Error/Error';
+import { Loader, ThemeLoader } from '@/shared/ui/Loader/Loader';
 import { registrationByEmail } from '../../model/services/registrationByEmail';
 import { validateEmails } from '../../model/services/validateEmail/validateEmail';
 import { validatePassword } from '../../model/services/validatePassword/validatePassword';
@@ -41,6 +41,7 @@ import {
     getRegistrationUsername,
 } from '../../model/selectors/getRegistration/getRegistration';
 import { validatePersonalData } from '../../model/services/validatePersonalData/validatePersonalData';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
 interface RegistrationFormProps {
   className?: string;
@@ -52,14 +53,18 @@ const initialReducers: ReducerList = {
 
 export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const { t } = useTranslation('registration');
+
     const navigate = useNavigate();
 
-    const [activeStep, setActiveStep] = useState(2);
+    const [activeStep, setActiveStep] = useState(0);
+    const [token, setToken] = useState<string | null>('');
+    const [submitEnabled, setSubmitEnabled] = useState(false);
 
     const [slideIn, setSlideIn] = useState(true);
     const [phone_number, setPhone] = useState('');
 
     const dispatch = useAppDispatch();
+    const forceUpdate = useForceUpdate();
 
     const email = useSelector(getRegistrationEmail);
     const username = useSelector(getRegistrationUsername);
@@ -74,6 +79,14 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const validatePasswordErrors = useSelector(getRegistrationPasswordValidateErrors);
     const validateEmailErrors = useSelector(getRegistrationEmailValidateErrors);
     const validatePersonalDataErrors = useSelector(getRegistrationPersonalDataValidateErrors);
+
+    const handleToken = (token: string | null) => {
+        setToken(token);
+
+        if (token && token.length > 0) {
+            setSubmitEnabled(true);
+        }
+    };
 
     const handleArrowClickBack = () => {
         setSlideIn(false);
@@ -117,17 +130,18 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const onRegistrationClick = useCallback(async () => {
         const errors = validatePersonalData(firstname, lastname, phone_number);
 
-        if (errors.length === 0) {
+        if (errors.length === 0 && token) {
             const result = await dispatch(registrationByEmail({
-                email, password, username, firstname, lastname, phone_number,
+                email, password, username, firstname, lastname, phone_number, token,
             }));
             if (result.meta.requestStatus === 'fulfilled') {
                 navigate(-1);
+                return forceUpdate();
             }
         }
 
         return dispatch(registrationActions.setPersonalDataValidErrors(errors));
-    }, [firstname, lastname, phone_number, dispatch, email, password, username, navigate]);
+    }, [firstname, lastname, phone_number, token, dispatch, email, password, username, navigate, forceUpdate]);
 
     const onChangePassword = useCallback((value: string) => {
         dispatch(registrationActions.setPassword((value.trim())));
@@ -182,6 +196,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                         onChangeFirstname={onChangeFirstname}
                         onChangeLastname={onChangeLastname}
                         phone={phone_number}
+                        handleToken={handleToken}
                         onChangePhone={onChangePhone}
                         personalInfoErrors={validatePersonalDataErrors}
                     />
@@ -243,7 +258,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                     {
                         activeStep === 2 && (
                             <Button
-                                disabled={isLoading}
+                                disabled={isLoading || !submitEnabled}
                                 className={styles.regBtn}
                                 onClick={onRegistrationClick}
                                 theme={ThemeButton.DEFAULT}

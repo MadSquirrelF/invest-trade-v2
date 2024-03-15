@@ -1,10 +1,10 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { VStack } from 'shared/ui/Stack';
-import { Input } from 'shared/ui/Input/Input';
-import { Error } from 'shared/ui/Error/Error';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { VStack } from '@/shared/ui/Stack';
+import { Input } from '@/shared/ui/Input/Input';
+import { Error } from '@/shared/ui/Error/Error';
 import { useSelector } from 'react-redux';
 import { ValidateRegistrationEmailError } from '../../../model/types/registrationSchema';
 import styles from './LoginBlockComponent.module.scss';

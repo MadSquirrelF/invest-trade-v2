@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider';
 import CartPage from './CartPage';
 
 export default {
-    title: 'pages/CartPage',
+    title: '@/pages/CartPage',
     component: CartPage,
     argTypes: {
         backgroundColor: { control: 'color' },

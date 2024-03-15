@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from 'app/providers/StoreProvider';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 
-import { userActions } from 'entities/User';
+import { userActions } from '@/entities/User';
 import { saveToStorage } from './authHelper';
 import { IAuthResponse } from '../types/loginSchema';
 

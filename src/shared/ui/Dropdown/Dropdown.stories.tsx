@@ -1,12 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from '@/app/providers/ThemeProvider';
 import { action } from '@storybook/addon-actions';
 import { Dropdown } from './Dropdown';
 import { Button, ThemeButton } from '../Button/Button';
 
 export default {
-    title: 'shared/Dropdown',
+    title: '@/shared/Dropdown',
     component: Dropdown,
 
     argTypes: {
