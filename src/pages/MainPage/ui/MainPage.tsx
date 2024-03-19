@@ -80,7 +80,7 @@ const MainPage = () => {
                     <Text
                         // eslint-disable-next-line max-len
                         gap="16"
-                        title={t(' Всё для оконного бизнеса теперь в сети!')}
+                        title={t('Всё для оконного бизнеса теперь в сети!')}
                         text={t('Оформляйте заказ с вашего компьютера, планшета или телефона, наши менеджеры свяжутся с вами для уточнения деталей')}
                         size={TextSize.XL}
                         bold={TextBold.BOLD}
@@ -90,7 +90,7 @@ const MainPage = () => {
                     <Man className={styles.man} />
                     <Roof className={styles.roof} />
 
-                    <Button type="button" theme={ThemeButton.DEFAULT} className={styles.orderBtn}>Заказать</Button>
+                    <Button type="button" theme={ThemeButton.DEFAULT} className={styles.orderBtn}>{t('Заказать')}</Button>
                 </VStack>
 
             </HStack>

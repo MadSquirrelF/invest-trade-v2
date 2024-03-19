@@ -48,7 +48,7 @@ export const Footer = memo(({ className }: FooterProps) => {
                     <HStack max gap="32" className={classNames(styles.box, {}, [styles.logoWrapper])} justify="between">
                         <Logo className={styles.logo} />
                         <Text
-                            text="“Обеспечить оконных производителей надежными и долговечными комплектующими, способствуя созданию комфортных и безопасных условий для жизни людей.”"
+                            text={`“${t('Обеспечить оконных производителей надежными и долговечными комплектующими, способствуя созданию комфортных и безопасных условий для жизни людей.')}”`}
                             gap="0"
                             size={TextSize.M}
                             className={styles.missionText}
@@ -65,10 +65,10 @@ export const Footer = memo(({ className }: FooterProps) => {
                             />
 
                             <AppLink to="/">
-                                Почему инвест-трейд?
+                                {t('Почему инвест-трейд?')}
                             </AppLink>
                             <AppLink to="/">
-                                Блог
+                                {t('Блог')}
                             </AppLink>
 
                         </VStack>
@@ -80,22 +80,22 @@ export const Footer = memo(({ className }: FooterProps) => {
                                 gap="16"
                             />
                             <AppLink to="/">
-                                О компании
+                                {t('О компании')}
                             </AppLink>
                             <AppLink to="/">
-                                Магазин
+                                {t('Магазин')}
                             </AppLink>
                             <AppLink to="/">
-                                FAQ
+                                {t('FAQ')}
                             </AppLink>
                             <AppLink to="/">
-                                Котакты
+                                {t('Контакты')}
                             </AppLink>
                             <AppLink to="/">
-                                Новости
+                                {t('Новости')}
                             </AppLink>
                             <AppLink to="/">
-                                Отзывы
+                                {t('Отзывы')}
                             </AppLink>
                         </VStack>
                         <VStack max gap="16" align="start">
@@ -124,11 +124,11 @@ export const Footer = memo(({ className }: FooterProps) => {
                 <VStack max className={styles.contact} gap="32">
                     <Text className={styles.add} gap="0" />
                     <Text
-                        title="Есть вопросы? Не стесняйтесь написать нам!"
+                        title={t('Есть вопросы? Не стесняйтесь написать нам!')}
                         gap="16"
                         size={TextSize.XL}
                         bold={TextBold.BOLD}
-                        text="Мы рады, что вы решили связаться с нами. Наша команда всегда на связи для ответа. Мы свяжемся с вами как можно скорее после получения вашей почты."
+                        text={t('Мы рады, что вы решили связаться с нами. Наша команда всегда на связи для ответа. Мы свяжемся с вами как можно скорее после получения вашей почты.')}
                     />
                     <form
                         className={styles.form}
@@ -136,13 +136,13 @@ export const Footer = memo(({ className }: FooterProps) => {
                             e.preventDefault();
                         }}
                     >
-                        <Input required value={email} onChange={onChangeEmail} placeholder="Введите вашу почту" label="Email" />
+                        <Input required value={email} onChange={onChangeEmail} placeholder={t('Введите вашу почту')} label={t('Почта')} />
                         <Checkbox
-                            label="Продолжая, вы соглашаетесьсо сбором и обработкой персональных данных и пользовательским соглашением"
+                            label={t('Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением')}
                             checked={checked}
                             onToggle={handleChange}
                         />
-                        <Button disabled={isEmailInvalid || !checked} type="submit" theme={ThemeButton.DEFAULT}>Отправить</Button>
+                        <Button disabled={isEmailInvalid || !checked} type="submit" theme={ThemeButton.DEFAULT}>{t('Отправить')}</Button>
                     </form>
 
                 </VStack>
@@ -154,18 +154,18 @@ export const Footer = memo(({ className }: FooterProps) => {
                         : <MessageSendDark className={styles.sendMessage} />
                 }
 
-                <p className={styles.link}>© 2024. Все права защищены</p>
+                <p className={styles.link}>{t('© 2024. Все права защищены')}</p>
                 <AppLink to="/" className={styles.link}>
-                    Политика конфиденциальности
+                    {t('Политика конфиденциальности')}
                 </AppLink>
                 <AppLink to="/" className={styles.link}>
-                    Условия использования
+                    {t('Условия использования')}
                 </AppLink>
                 <AppLink to="/" className={styles.link}>
-                    Политика Cookie
+                    {t('Политика Cookie')}
                 </AppLink>
                 <AppLink to="/" className={styles.link}>
-                    Поддержка
+                    {t('Поддержка')}
                 </AppLink>
 
             </HStack>

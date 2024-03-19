@@ -11,7 +11,7 @@ import { Loader, ThemeLoader } from '@/shared/ui/Loader/Loader';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
-import Google from '@/shared/assets/icons/google.svg';
+import Vk from '@/shared/assets/icons/vk.svg';
 import { HStack } from '@/shared/ui/Stack';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
@@ -33,7 +33,7 @@ const initialReducers: ReducerList = {
 };
 
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -86,11 +86,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     className={styles.title}
                     text={t('Для того, чтобы перейти к личным данным нужно войти')}
                 />
-                <Button theme={ThemeButton.GOOGLE} className={styles.google}>
-                    <Google />
-                    <span>Sign in with Google</span>
+                <Button theme={ThemeButton.VK} className={styles.vk}>
+                    <Vk />
+                    <span>{t('VK авторизация')}</span>
                 </Button>
-                <hr className={styles.orSignIn} />
+                <hr className={classNames(styles.orSignIn, { [styles.orSignInRus]: i18n.language === 'ru' }, [])} />
 
                 {
                     error && (
@@ -100,7 +100,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 <Input
                     autofocus
                     label={t('Почта')}
-                    placeholder={t('Введите почту')}
+                    placeholder={t('Введите вашу почту')}
                     type="text"
                     required
                     onChange={onChangeEmail}
@@ -108,7 +108,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                 />
                 <Input
                     label={t('Пароль')}
-                    placeholder={t('Введите пароль')}
+                    placeholder={t('Введите ваш пароль')}
                     isPassword
                     isForgetPassword
                     type="password"
@@ -129,7 +129,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     }
                 </Button>
                 <HStack max justify="center" align="center" gap="4">
-                    <Text title={t('Еще не аккаунта?')} bold={TextBold.MEDIUM} size={TextSize.XS} gap="0" />
+                    <Text title={t('Еще нет аккаунта?')} bold={TextBold.MEDIUM} size={TextSize.XS} gap="0" />
 
                     <Button
                         theme={ThemeButton.CLEAR}

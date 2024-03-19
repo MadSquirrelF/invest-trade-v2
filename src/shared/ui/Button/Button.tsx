@@ -8,7 +8,7 @@ import styles from './Button.module.scss';
 export enum ThemeButton {
   CLEAR = 'clear',
   DEFAULT = 'default',
-  GOOGLE = 'google',
+  VK = 'vk',
   OUTLINE = 'outline',
   CART = 'cart',
   SVG_BG = 'svg_bg',

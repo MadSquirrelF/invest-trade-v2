@@ -33,7 +33,7 @@
     margin-top: 10px;
 }
 
-.google {
+.vk {
     width: 100%;
     background-color: var(--text-white);
     margin-bottom: 35px;
@@ -50,11 +50,17 @@
     color: var(--text-secondary);
 
     &::after {
-        content: "или войти через почту";
+        content: "or log in with email";
         display: inline-block;
         position: relative;
         top: -10px;
         padding: 0 35px;
         background: var(--bg-primary);
+    }
+}
+
+.orSignInRus {
+    &::after {
+        content: "или войти c почтой";
     }
 }
