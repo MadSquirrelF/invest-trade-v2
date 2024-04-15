@@ -17,6 +17,8 @@ export default (env: BuildEnv) => {
     const PORT = env.port || 3000;
     const apiUrl = env.apiUrl || 'http://localhost:1418/api';
 
+    const apiImageUrl = env.apiImageUrl || 'http://localhost:1418';
+
     const isDev = mode === 'development';
 
     const config: webpack.Configuration = buildWebpackConfig({
@@ -25,6 +27,7 @@ export default (env: BuildEnv) => {
         isDev,
         port: PORT,
         apiUrl,
+        apiImageUrl,
         project: 'frontend',
     });
 

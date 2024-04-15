@@ -8,6 +8,7 @@ import { IAuthResponse } from '../types/loginSchema';
 interface LoginByEmailProps {
   email: string;
   password: string;
+  token: string;
 }
 
 export const loginByEmail = createAsyncThunk<IAuthResponse, LoginByEmailProps, ThunkConfig<string>>(

@@ -13,8 +13,11 @@ import Stepper from '@/shared/ui/Stepper/Stepper';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import PasswordBg from '@/shared/assets/images/password-bg.svg';
+import PasswordBgDark from '@/shared/assets/images/password-bg-dark.svg';
 import PersonalInfoBg from '@/shared/assets/images/personalInfoBg.svg';
+import PersonalInfoBgDark from '@/shared/assets/images/personalInfoBgDark.svg';
 import LoginMailBg from '@/shared/assets/images/LoginMainBg.svg';
+import LoginMailBgDark from '@/shared/assets/images/LoginMainBgDark.svg';
 import { DynamicModuleLoader, ReducerList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Error } from '@/shared/ui/Error/Error';
@@ -42,6 +45,8 @@ import {
 } from '../../model/selectors/getRegistration/getRegistration';
 import { validatePersonalData } from '../../model/services/validatePersonalData/validatePersonalData';
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
+import { Theme, useTheme } from '@/app/providers/ThemeProvider';
+import { NotificationsActions } from '@/features/Notifications';
 
 interface RegistrationFormProps {
   className?: string;
@@ -54,11 +59,15 @@ const initialReducers: ReducerList = {
 export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const { t } = useTranslation('registration');
 
+    const { theme } = useTheme();
+
     const navigate = useNavigate();
 
     const [activeStep, setActiveStep] = useState(0);
-    const [token, setToken] = useState<string | null>('');
+    const [token, setToken] = useState<string>('');
     const [submitEnabled, setSubmitEnabled] = useState(false);
+
+    const [checked, setChecked] = useState(false);
 
     const [slideIn, setSlideIn] = useState(true);
     const [phone_number, setPhone] = useState('');
@@ -80,7 +89,11 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const validateEmailErrors = useSelector(getRegistrationEmailValidateErrors);
     const validatePersonalDataErrors = useSelector(getRegistrationPersonalDataValidateErrors);
 
-    const handleToken = (token: string | null) => {
+    const handleChangeCheckBox = useCallback(() => {
+        setChecked(!checked);
+    }, [checked]);
+
+    const handleToken = (token: string) => {
         setToken(token);
 
         if (token && token.length > 0) {
@@ -88,14 +101,14 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
         }
     };
 
-    const handleArrowClickBack = () => {
+    const handleArrowClickBack = useCallback(() => {
         setSlideIn(false);
 
         setTimeout(() => {
             setActiveStep(activeStep - 1);
             setSlideIn(true);
         }, 300);
-    };
+    }, [activeStep]);
 
     const handleArrowClickPassword = () => {
         const errors = validatePassword(password, repeatPassword);
@@ -136,7 +149,12 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
             }));
             if (result.meta.requestStatus === 'fulfilled') {
                 navigate(-1);
-                return forceUpdate();
+                forceUpdate();
+                dispatch(NotificationsActions.addNotification({
+                    type: 'success',
+                    label: 'Регистрация',
+                    text: 'Вы успешно создали аккаунт!',
+                }));
             }
         }
 
@@ -199,29 +217,53 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                         handleToken={handleToken}
                         onChangePhone={onChangePhone}
                         personalInfoErrors={validatePersonalDataErrors}
+                        handleChangeCheckBox={handleChangeCheckBox}
+                        checkedCheckBox={checked}
                     />
                 );
             default:
                 return null;
             }
         },
-        [onChangeEmail, onChangeFirstname, onChangeLastname, onChangeLogin, onChangePassword, onChangePhone, onChangeRepeatPassword, phone_number, validateEmailErrors, validatePasswordErrors, validatePersonalDataErrors],
+        [checked, handleChangeCheckBox, onChangeEmail, onChangeFirstname, onChangeLastname, onChangeLogin, onChangePassword, onChangePhone, onChangeRepeatPassword, phone_number, validateEmailErrors, validatePasswordErrors, validatePersonalDataErrors],
     );
 
     const renderImage = useCallback(
         (activeStep: number) => {
             switch (activeStep) {
             case 0:
-                return <LoginMailBg className={styles.bgImage} />;
+                switch (theme) {
+                case Theme.LIGHT:
+                    return <LoginMailBg className={styles.bgImage} />;
+                case Theme.DARK:
+                    return <LoginMailBgDark className={styles.bgImage} />;
+                default:
+                    return <LoginMailBgDark className={styles.bgImage} />;
+                }
+
             case 1:
-                return <PasswordBg className={styles.bgImage} />;
+                switch (theme) {
+                case Theme.LIGHT:
+                    return <PasswordBg className={styles.bgImage} />;
+                case Theme.DARK:
+                    return <PasswordBgDark className={styles.bgImage} />;
+                default:
+                    return <PasswordBg className={styles.bgImage} />;
+                }
             case 2:
-                return <PersonalInfoBg className={styles.bgImage} />;
+                switch (theme) {
+                case Theme.LIGHT:
+                    return <PersonalInfoBg className={styles.bgImage} />;
+                case Theme.DARK:
+                    return <PersonalInfoBgDark className={styles.bgImage} />;
+                default:
+                    return <PersonalInfoBg className={styles.bgImage} />;
+                }
             default:
                 return null;
             }
         },
-        [],
+        [theme],
     );
 
     return (

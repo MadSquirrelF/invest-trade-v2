@@ -1,7 +1,10 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
+import {
+    Text, TextAlign, TextBold, TextSize,
+} from '@/shared/ui/Text/Text';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import Window from '@/shared/assets/images/window-main.svg';
 import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
@@ -15,9 +18,16 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import styles from './MainPage.module.scss';
 import { Page } from '@/widgets/Page';
+import { useNewlastsList } from '@/features/NewLastList';
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { Error } from '@/shared/ui/Error/Error';
+import { convertDate } from '@/shared/lib/convertDate/convertDate';
+import { getRouteNews } from '@/shared/const/router';
 
 const MainPage = () => {
     const { t } = useTranslation('main');
+
+    const { isLoading, data: news, error } = useNewlastsList(1);
 
     return (
         <Page>
@@ -56,14 +66,49 @@ const MainPage = () => {
                             <Calculator className={styles.iconAbsolute} />
                         </AppLink>
 
-                        <AppLink to="/" className={classNames(styles.block, {}, [styles.small])}>
-                            <Text
-                                gap="16"
-                                title={t('Последние новости')}
-                                text={t('1 февраля 2024')}
-                                size={TextSize.L}
-                                bold={TextBold.BOLD}
-                            />
+                        <AppLink to={getRouteNews()} className={classNames(styles.block, {}, [styles.small])}>
+
+                            <VStack align="start" justify="start" max gap="16">
+                                <Text
+                                    gap="16"
+                                    title={t('Последние новости')}
+                                    size={TextSize.L}
+                                    align={TextAlign.LEFT}
+                                    bold={TextBold.BOLD}
+                                />
+                                {
+                                    isLoading ? (
+                                        <Skeleton width="100%" height={20} border="20px" />
+                                    ) : error ? (
+                                        <Error error={t('Не удалось получить новости')} />
+
+                                    ) : !news ? (
+                                        <Error error={t('Не удалось получить новости')} />
+                                    ) : (
+
+                                        <VStack align="start" max gap="32">
+                                            <Text
+                                                gap="0"
+                                                text={news[0].title}
+                                                size={TextSize.L}
+                                                align={TextAlign.LEFT}
+                                                bold={TextBold.BOLD}
+                                            />
+
+                                            <Text
+                                                gap="0"
+                                                text={convertDate(news[0].createdAt)}
+                                                size={TextSize.M}
+                                                align={TextAlign.LEFT}
+                                                bold={TextBold.BOLD}
+                                                className="date"
+                                            />
+
+                                        </VStack>
+
+                                    )
+                                }
+                            </VStack>
 
                             <Button type="button" theme={ThemeButton.SVG_CIRCLE}>
                                 <ArrowRight />

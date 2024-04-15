@@ -37,5 +37,8 @@
   "Или войти через почту" : "Or log in with email",
   "Забыли пароль?" : "Forgot your password?",
   "Еще нет аккаунта?" : "Do not have an account yet?",
-  "Зарегестрироваться" : "Sign up"
+  "Зарегестрироваться" : "Sign up",
+  "createdAt": "Дата создания",
+  "title": "Название",
+  "views": "Просмотры"
 }

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
-import { ListBox } from '@/shared/ui/ListBox/ListBox';
+import { ListBox, ThemeListBox } from '@/shared/ui/ListBox/ListBox';
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
@@ -29,10 +29,10 @@ export const CountrySelect = memo(({
             value={value}
             className={className}
             readonly={readonly}
-            label={t('Старана')}
             items={countryOptions}
+            theme={ThemeListBox.CLEAR}
             onChange={onChangeHandler}
-            direction="top right"
+            direction="bottom right"
         />
     );
 });

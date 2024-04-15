@@ -1,7 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
-import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
@@ -10,7 +10,7 @@ export type FlexAlign = 'start' | 'center' | 'end';
 
 export type FlexDirection = 'row' | 'column';
 
-export type FlexGap = '0' | '4' | '8' | '10' | '16' | '32'
+export type FlexGap = '0' | '4' | '8' | '10' | '16' | '32' | '50'
 
 const justifyClasses: Record<FlexJustify, string> = {
     start: styles.justifyStart,
@@ -37,6 +37,7 @@ const gapClasses: Record<FlexGap, string> = {
     10: styles.gap10,
     16: styles.gap16,
     32: styles.gap32,
+    50: styles.gap50,
 };
 
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;

@@ -2,7 +2,12 @@
 /* eslint-disable max-len */
 import { useTranslation } from 'react-i18next';
 
-import { Page } from '@/widgets/Page/ui/Page/Page';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { useSelector } from 'react-redux';
+import CountUp from 'react-countup';
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
+import { Page } from '@/widgets/Page';
 import {
     Text, TextAlign, TextBold, TextSize,
 } from '@/shared/ui/Text/Text';
@@ -24,16 +29,10 @@ import SetUp from '@/shared/assets/images/set up.png';
 import Warehouse from '@/shared/assets/images/warehouse.png';
 import DeliveryImage from '@/shared/assets/images/delivery.png';
 import Russia from '@/shared/assets/images/RussiaMap.png';
-import { Footer } from '@/widgets/Footer';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
 import MACO from '@/shared/assets/images/MACO.svg';
 import SCHTERN from '@/shared/assets/images/Schtern.svg';
 import RINGER from '@/shared/assets/images/RINGER.svg';
-import { useSelector } from 'react-redux';
 import { getWidth } from '@/features/SizeSave';
-import CountUp from 'react-countup';
-import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.scss';
 import styles from './AboutPage.module.scss';
 
@@ -342,7 +341,6 @@ const AboutPage = () => {
                 </VStack>
 
             </VStack>
-            <Footer />
 
         </Page>
     );

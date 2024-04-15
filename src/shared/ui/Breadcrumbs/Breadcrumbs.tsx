@@ -1,8 +1,8 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useLocation } from 'react-router-dom';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import ArrowRight from '@/shared/assets/icons/arrow-right.svg';
 import styles from './Breadcrumbs.module.scss';
 import { AppLink, AppLinkTheme } from '../AppLink/AppLink';
@@ -21,15 +21,19 @@ export const Breadcrumbs = memo(({ className }: BreadcrumbsProps) => {
 
     return (
         <ul className={classNames(styles.Breadcrumbs, {}, [className])}>
-            <AppLink
-                className={styles.link}
-                to="/"
-                theme={AppLinkTheme.PRIMARY}
+            <li
+                className={styles.item}
             >
-                {t('Главная')}
-            </AppLink>
+                <AppLink
+                    className={styles.link}
+                    to="/"
+                    theme={AppLinkTheme.PRIMARY}
+                >
+                    {t('Главная')}
+                </AppLink>
 
-            <ArrowRight className={styles.icon} />
+                <ArrowRight className={styles.icon} />
+            </li>
 
             {crumbs.map((crumb) => (
                 <li

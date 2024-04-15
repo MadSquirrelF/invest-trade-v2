@@ -1,7 +1,5 @@
-import { Country } from '@/entities/Country';
-import { Currency } from '@/entities/Currency';
-import { JsonSettings } from './jsonSettings';
 import { FeatureFlags } from '@/shared/types/featureFlags';
+import { JsonSettings } from './jsonSettings';
 
 export enum UserRole {
   ADMIN = 'ADMIN',
@@ -9,21 +7,12 @@ export enum UserRole {
 }
 
 export interface User {
-  id: string;
+  _id: string;
   email: string;
   username: string;
-  firstname?:string;
-  lastname?:string;
-  country?: Country;
-  age?: number;
-  currency?: Currency;
-  sex?: string;
-  phone_number?: string;
-  createdAt: string;
-  city?: string;
-  address?: string;
-  avatar?: string;
-  roles?: UserRole[];
+  discription: string;
+  avatar: string;
+  roles: UserRole[];
   features?: FeatureFlags;
   jsonSettings?: JsonSettings;
 }

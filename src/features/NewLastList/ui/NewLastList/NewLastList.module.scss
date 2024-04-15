@@ -1,0 +1,21 @@
+.NewLastList {
+    width: 40%;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.item {
+    border-bottom: 1px solid var(--border-primary);
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.image {
+    height: 100px;
+    width: 100px;
+    flex: none;
+    border-radius: 20px;
+    aspect-ratio: 1;
+}

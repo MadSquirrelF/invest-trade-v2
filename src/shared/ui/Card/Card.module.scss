@@ -1,0 +1,14 @@
+.Card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-default);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+}

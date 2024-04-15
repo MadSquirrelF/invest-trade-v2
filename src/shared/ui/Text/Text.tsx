@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { ReactNode, memo } from 'react';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Text.module.scss';
 import { VStack } from '../Stack';
 import { FlexGap } from '../Stack/Flex/Flex';

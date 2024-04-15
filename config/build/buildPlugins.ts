@@ -8,7 +8,7 @@ import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
-    paths, isDev, apiUrl, project,
+    paths, isDev, apiUrl, project, apiImageUrl,
 }: BuildOptions):
  webpack.WebpackPluginInstance[] {
     const plugins = [
@@ -23,6 +23,7 @@ export function buildPlugins({
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
+            __API_IMAGE__: JSON.stringify(apiImageUrl),
             __PROJECT__: JSON.stringify(project),
         }),
 

@@ -7,6 +7,8 @@ import {
     getRouteFavorite,
     getRouteForbidden,
     getRouteMain,
+    getRouteNewDetails,
+    getRouteNews,
     getRouteProfile,
     getRouteRegistration,
 } from '@/shared/const/router';
@@ -19,6 +21,8 @@ import { RegistrationPage } from '@/pages/RegistrationPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
+import { NewsPage } from '@/pages/NewsPage';
+import { NewDetailsPage } from '@/pages/NewDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -34,6 +38,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ABOUT]: {
         path: getRouteAbout(),
         element: <AboutPage />,
+    },
+    [AppRoutes.NEWS]: {
+        path: getRouteNews(),
+        element: <NewsPage />,
     },
     [AppRoutes.CART]: {
         path: getRouteCart(),
@@ -52,6 +60,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteProfile(':id'),
         element: <ProfilePage />,
         authOnly: true,
+    },
+    [AppRoutes.NEW_DETAILS]: {
+        path: getRouteNewDetails(':slug'),
+        element: <NewDetailsPage />,
     },
     [AppRoutes.FORBIDDEN]: {
         path: getRouteForbidden(),

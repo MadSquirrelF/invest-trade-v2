@@ -1,6 +1,6 @@
 export const USER_LOCALSTORAGE_KEY = 'user';
 
-export const ARTICLES_VIEW_LOCALSTORAGE_KEY = 'articles_view';
+export const NEWS_VIEW_LOCALSTORAGE_KEY = 'news_view';
 
 export const getStoreLocal = (name: string) => {
     if (typeof localStorage !== 'undefined') {

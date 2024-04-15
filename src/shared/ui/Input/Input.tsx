@@ -1,12 +1,12 @@
-import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import React, {
     ChangeEventHandler,
     InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
-import EyeClosed from '@/shared/assets/icons/icon-closed-eye.svg';
-import EyeOpened from '@/shared/assets/icons/icon-opened-eye.svg';
 import { useTranslation } from 'react-i18next';
 import InputMask from 'react-input-mask';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+import EyeClosed from '@/shared/assets/icons/icon-closed-eye.svg';
+import EyeOpened from '@/shared/assets/icons/icon-opened-eye.svg';
 import styles from './Input.module.scss';
 import { Button, ThemeButton } from '../Button/Button';
 import { AppLink, AppLinkTheme } from '../AppLink/AppLink';
@@ -17,7 +17,7 @@ interface InputProps extends HTMLInputProps {
   className?: string;
   value?: string | number;
   placeholder: string;
-  label: string;
+  label?: string;
   mask?: string;
   isPassword?: boolean;
   isForgetPassword?: boolean;
@@ -70,18 +70,34 @@ export const Input = memo((props: InputProps) => {
     if (mask) {
         return (
             <div className={classNames(styles.FieldBox, {}, [className])}>
-                <label htmlFor={label} className={styles.label}>
-                    {label}
-                </label>
+                {
+                    label && (
+                        <label htmlFor={placeholder} className={styles.label}>
+                            {label}
+                            {
+                                isPassword && isForgetPassword && (
+                                    <AppLink
+                                        to="/"
+                                        theme={AppLinkTheme.DEFAULT}
+                                        className="link"
+                                    >
+                                        {t('Забыли пароль?')}
+                                    </AppLink>
+                                )
+                            }
+                        </label>
+                    )
+                }
                 <div className={classNames(styles.InputWrapper, mods, [])}>
                     <InputMask
                         mask={mask}
-                        id={label}
+                        id={placeholder}
                         placeholder={placeholder}
                         name={label}
                         value={value}
                         onChange={onChangeMasked}
                         className={styles.input}
+                        readOnly={readonly}
                         {...otherProps}
                     />
                 </div>
@@ -92,26 +108,30 @@ export const Input = memo((props: InputProps) => {
 
     return (
         <div className={classNames(styles.FieldBox, {}, [className])}>
-            <label htmlFor={label} className={styles.label}>
-                {label}
-                {
-                    isPassword && isForgetPassword && (
-                        <AppLink
-                            to="/"
-                            theme={AppLinkTheme.DEFAULT}
-                            className="link"
-                        >
-                            {t('Забыли пароль?')}
-                        </AppLink>
-                    )
-                }
-            </label>
+            {
+                label && (
+                    <label htmlFor={placeholder} className={styles.label}>
+                        {label}
+                        {
+                            isPassword && isForgetPassword && (
+                                <AppLink
+                                    to="/"
+                                    theme={AppLinkTheme.DEFAULT}
+                                    className="link"
+                                >
+                                    {t('Забыли пароль?')}
+                                </AppLink>
+                            )
+                        }
+                    </label>
+                )
+            }
             <div className={classNames(styles.InputWrapper, mods, [])}>
                 <input
                     ref={ref}
                     type={isPassword ? ChangeInputType : type}
                     className={styles.input}
-                    id={label}
+                    id={placeholder}
                     placeholder={placeholder}
                     name={label}
                     value={value}

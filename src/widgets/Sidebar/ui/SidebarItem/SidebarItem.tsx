@@ -20,7 +20,10 @@ export const SidebarItem = memo(({ item, collapsed, pathname }: SidebarItemProps
         <HStack max gap="10" className={classNames(styles.item, { [styles.collapsed]: collapsed })}>
             <AppLink
                 to={item.path}
-                className={classNames(styles.link, { [styles.active]: pathname === item.path })}
+                className={classNames(
+                    styles.link,
+                    { [styles.active]: pathname.split('/')[1] === item.path.split('/')[1] },
+                )}
             >
                 <item.Icon className={styles.icon} />
                 <p className={styles.text}>

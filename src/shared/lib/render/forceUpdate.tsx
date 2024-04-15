@@ -1,4 +1,6 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import {
+    createContext, ReactNode, useContext, useMemo, useState,
+} from 'react';
 
 const ForceUpdateContext = createContext({
     value: true,
@@ -21,9 +23,7 @@ export function ForceUpdateProvider({ children }: { children: ReactNode }) {
         }, 120);
     };
 
-    const valueContext = useMemo(() => {
-        return { value, forceUpdate };
-    }, [value]);
+    const valueContext = useMemo(() => ({ value, forceUpdate }), [value]);
 
     if (!value) {
         return null;

@@ -9,6 +9,7 @@ import { userReducer } from '@/entities/User';
 import { SizeSaveReducer } from '@/features/SizeSave';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
+import { NotificationsReducer } from '@/features/Notifications';
 
 export function createReduxStore(
     initialState?: StateSchema,
@@ -19,6 +20,7 @@ export function createReduxStore(
         user: userReducer,
         scrollSave: ScrollSaveReducer,
         sizeSave: SizeSaveReducer,
+        notifications: NotificationsReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };
 

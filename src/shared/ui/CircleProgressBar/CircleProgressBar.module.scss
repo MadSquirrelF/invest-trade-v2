@@ -1,0 +1,21 @@
+.CircleProgressBar {
+    position: relative;
+    flex: none;
+}
+
+.background {
+    fill: none;
+    stroke: var(--border-primary);
+}
+
+.progress {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.percentage {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.4;
+}

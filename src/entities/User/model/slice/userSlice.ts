@@ -5,6 +5,7 @@ import { setFeatureFlags } from '@/shared/lib/features';
 import { JsonSettings } from '../types/jsonSettings';
 import { saveJsonSettings } from '../services/saveJsonSettings';
 import { initAuthData } from '../services/initAuthData';
+import { removeTokensStorage } from '@/features/Auth';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -17,17 +18,11 @@ export const userSlice = createSlice({
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
             setFeatureFlags(action.payload.features);
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
-        },
-        initAuthData: (state) => {
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
-            if (user) {
-                state.authData = JSON.parse(user);
-            }
-            state._inited = true;
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload._id);
         },
         logout: (state) => {
             state.authData = undefined;
+            removeTokensStorage();
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
     },

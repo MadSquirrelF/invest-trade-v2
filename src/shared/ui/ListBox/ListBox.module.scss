@@ -1,7 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 .ListBox {
     position: relative;
-    margin-bottom: 24px;
 }
 
 .label {
@@ -38,8 +37,12 @@
 }
 
 .disabled {
-    opacity: 0.6;
     cursor: not-allowed;
+}
+
+.readonly {
+    transition: all 0.5s ease-in-out;
+    background-color: transparent !important;
 }
 
 .selected {
@@ -48,16 +51,19 @@
     }
 }
 
+.title {
+    font-weight: 600;
+}
+
 .trigger {
     width: 100%;
-    border-radius: 10px;
+    flex: none;
+    min-width: 220px;
     display: flex;
-    color: var(--text-primary);
     align-items: center;
+    gap: 32px;
     justify-content: space-between;
     padding: 20px;
-    box-shadow: var(--box-shadow-default);
-    background-color: var(--bg-primary);
 
     svg {
         width: 20px;
@@ -73,6 +79,9 @@
     }
 
     &:disabled {
+        padding: 0;
+        cursor: text;
+
         svg {
             display: none;
         }
@@ -83,6 +92,20 @@
             }
         }
     }
+}
+
+.clear {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+.default {
+    color: var(--text-primary);
+    box-shadow: var(--box-shadow-default);
+    background-color: var(--bg-primary);
+    border-radius: 10px;
 }
 
 .options {

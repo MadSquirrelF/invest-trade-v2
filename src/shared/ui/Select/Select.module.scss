@@ -1,0 +1,36 @@
+.Wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-dark-grey);
+}
+
+.select {
+    width: 100%;
+    background-color: var(--bg-secondary);
+    padding: 16px;
+    box-sizing: border-box;
+    color: var(--text-primary);
+    outline: 1px solid var(--color-medium-grey);
+    border-radius: 6px;
+    position: relative;
+    border: none;
+
+    &:focus-within {
+        transition: outline 0.1s ease-in-out;
+        outline: 2px solid var(--active-color-default);
+    }
+
+    option {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        outline: 1px solid var(--color-medium-grey);
+    }
+}

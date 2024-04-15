@@ -1,0 +1,9 @@
+.NotificationList {
+    position: fixed;
+    z-index: var(--modal-z-index);
+    top: 10%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

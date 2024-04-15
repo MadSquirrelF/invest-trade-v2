@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import { Page } from '@/widgets/Page/ui/Page/Page';
+import { Page } from '@/widgets/Page';
 import { Breadcrumbs } from '@/shared/ui/Breadcrumbs/Breadcrumbs';
 
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { RegistrationForm } from '@/features/Auth/ui/RegistrationForm/RegistrationForm';
+import { RegistrationForm } from '@/features/Auth';
 
 const RegistrationPage = () => {
     const { t } = useTranslation('registration');

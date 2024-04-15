@@ -47,7 +47,6 @@ const Stepper: FC<{ currentStep: number }> = ({ currentStep }) => (
                     }, [])}
                 >
                     <HStack
-                        max
                         justify="center"
                         align="center"
                         className={styles.iconContainer}

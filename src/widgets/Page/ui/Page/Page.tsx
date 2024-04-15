@@ -1,6 +1,6 @@
 /* eslint-disable i18next/no-literal-string */
 import {
-    memo, MutableRefObject, ReactNode, UIEvent, useRef, useState,
+    memo, MutableRefObject, ReactNode, UIEvent, useRef,
 } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import styles from './Page.module.scss';
 import { Footer } from '../../../Footer';
 import ArrowUp from '@/shared/assets/icons/arrow-up.svg';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { Notifications } from '@/features/Notifications';
 
 interface PageProps {
     className?: string;
@@ -29,8 +30,6 @@ export const Page = memo((props: PageProps) => {
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
-
-    const [disabled, setDisabled] = useState(false);
 
     const scrollPosition = useSelector(
         (state: StateSchema) => getScrollSaveByPath(state, pathname),
@@ -72,11 +71,11 @@ export const Page = memo((props: PageProps) => {
                 onScrollEnd ? <div className={styles.trigger} ref={triggerRef} /> : null
             }
 
+            <Notifications />
+
             <Button
                 onClick={onClick}
-                disabled={disabled}
-                theme={ThemeButton.SVG_CIRCLE}
-                className={classNames(styles.ScrollToTopButton, {}, [className])}
+                theme={ThemeButton.UP}
             >
                 <ArrowUp />
             </Button>

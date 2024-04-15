@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from './Checkbox.module.scss';
 
@@ -7,10 +7,11 @@ interface CheckboxProps {
   label?: string;
   checked?: boolean;
   onToggle: () => void;
+  id: string;
 }
 
 export const Checkbox = memo(({
-    className, label, checked, onToggle, ...props
+    className, label, checked, id, onToggle, ...props
 }: CheckboxProps) => {
     const { t } = useTranslation();
 
@@ -19,12 +20,12 @@ export const Checkbox = memo(({
             <input
                 type="checkbox"
                 checked={checked}
-                id="check"
+                id={id}
                 onChange={onToggle}
-                {...props}
                 className={styles.checkbox}
+                {...props}
             />
-            <label htmlFor="check" className={styles.label}>{label}</label>
+            <label htmlFor={id} className={styles.label}>{label}</label>
         </div>
     );
 });

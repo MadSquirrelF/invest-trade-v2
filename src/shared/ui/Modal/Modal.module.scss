@@ -25,9 +25,13 @@
     background: var(--bg-primary);
     transition: 0.3s transform;
     transform: scale(0.5);
-    max-width: 60%;
+    max-width: 40%;
     border: 1px solid var(--border-primary);
     box-shadow: var(--box-shadow-default);
+
+    @media screen and (max-width: 1200px) {
+        max-width: 60%;
+    }
 }
 
 .opened {

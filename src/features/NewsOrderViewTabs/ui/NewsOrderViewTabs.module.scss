@@ -1,0 +1,17 @@
+.NewsOrderViewTabs {
+    position: relative;
+}
+
+.selected {
+    transition: background-color 0.1s ease-in-out;
+    outline: 2px solid var(--active-color-default);
+    background-color: var(--active-color-disabled);
+
+    svg {
+        color: white;
+    }
+
+    span {
+        color: white;
+    }
+}

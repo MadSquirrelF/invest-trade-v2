@@ -17,6 +17,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { ValidateRegistrationPersonalDataError } from '../../../model/types/registrationSchema';
 import { getRegistrationFirstname, getRegistrationLastname } from '../../../model/selectors/getRegistration/getRegistration';
 import styles from './PersonalInfoBlockComponent.module.scss';
+import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 
 interface PersonalInfoBlockComponentProps {
   className?: string;
@@ -25,6 +26,8 @@ interface PersonalInfoBlockComponentProps {
   handleToken: (token: string) => void;
   phone: string;
   onChangePhone: ChangeEventHandler<HTMLInputElement>;
+  handleChangeCheckBox: () => void;
+  checkedCheckBox: boolean;
   personalInfoErrors?: ValidateRegistrationPersonalDataError[];
 }
 
@@ -38,7 +41,9 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
         phone,
         onChangeLastname,
         className,
+        handleChangeCheckBox,
         personalInfoErrors,
+        checkedCheckBox,
     } = props;
 
     const dispatch = useAppDispatch();
@@ -96,11 +101,19 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                 gap="0"
                 className={styles.hint}
             />
+
+            <Checkbox
+                label={t('Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением')}
+                checked={checkedCheckBox}
+                id="registrationCheck"
+                onToggle={handleChangeCheckBox}
+            />
+
             <HStack max align="start">
                 <SmartCaptcha
                     onSuccess={handleToken}
                     language={i18n.language === 'ru' ? 'ru' : 'en'}
-                    sitekey=""
+                    sitekey="ysc1_EHY5MdaMoXTQyt6JAz7eIKKffgSVknjsNxbZQ5TY71ef0a6d"
                 />
             </HStack>
 

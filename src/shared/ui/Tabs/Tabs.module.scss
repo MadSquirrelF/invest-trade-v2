@@ -1,0 +1,22 @@
+.Tabs {
+    position: relative;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tab {
+    padding: 10px;
+}
+
+.selected {
+    transition: background-color 0.1s ease-in-out;
+    outline: 2px solid var(--active-color-default);
+    background-color: var(--active-color-disabled);
+    color: white;
+
+    svg {
+        fill: white;
+    }
+}

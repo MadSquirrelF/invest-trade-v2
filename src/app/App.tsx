@@ -2,33 +2,34 @@ import './styles/index.scss';
 import {
     Suspense, memo, useEffect, useState,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { getUserInited, userActions } from '@/entities/User';
+import { getUserInited, initAuthData } from '@/entities/User';
 import { SizeSaveActions } from '@/features/SizeSave';
 import { AppRouter } from './providers/router';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
-import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 import { useTheme } from './providers/ThemeProvider';
 import { MainLayout } from '@/shared/layouts/MainLayout';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
 
 const App = memo(() => {
     const [collapsed, setCollapsed] = useState(false);
 
     const { theme } = useTheme();
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+
+    const inited = useSelector(getUserInited);
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);
     };
 
-    const inited = useSelector(getUserInited);
-
     useEffect(() => {
-        dispatch(userActions.initAuthData());
+        dispatch(initAuthData());
     }, [dispatch]);
 
     useEffect(() => {
@@ -46,14 +47,14 @@ const App = memo(() => {
 
     if (!inited) {
         return (
-            <div className={classNames('app', {}, [])}>
+            <div className={classNames('app', {}, [theme])}>
                 <AppLoaderLayout />
             </div>
         );
     }
 
     return (
-        <div className={classNames('app', {}, [])}>
+        <div className={classNames('app', {}, [theme])}>
             <Suspense fallback="">
                 <MainLayout
                     header={<Navbar onToggle={onToggle} />}

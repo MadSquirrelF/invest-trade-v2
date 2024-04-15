@@ -9,12 +9,16 @@ export enum ThemeButton {
   CLEAR = 'clear',
   DEFAULT = 'default',
   VK = 'vk',
+  YANDEX = 'Yandex',
+  UP = 'up',
   OUTLINE = 'outline',
+  OUTLINE_ACTIVE = 'outline_active',
   CART = 'cart',
   SVG_BG = 'svg_bg',
   SVG_CIRCLE = 'svg_circle',
   SVG_BTN = 'svg_btn',
-  SVG_CLEAN = 'svg_clean'
+  SVG_CLEAN = 'svg_clean',
+  SELECTOR = 'selector',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

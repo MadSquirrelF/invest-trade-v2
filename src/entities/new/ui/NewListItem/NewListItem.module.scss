@@ -1,0 +1,41 @@
+.NewListItem {
+    min-height: 400px;
+    position: relative;
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.FULL {
+    width: 100%;
+}
+
+.SHORT {
+    width: 45%;
+}
+
+.date {
+    text-transform: capitalize;
+}
+
+.text {
+    height: 100%;
+}
+
+.btnIcon {
+    color: var(--active-color-default);
+}
+
+.image {
+    border-radius: 15px;
+    height: 100%;
+    flex: none;
+    width: 450px;
+    aspect-ratio: attr(width) / attr(height);
+}
+
+.btn {
+    height: 45px;
+    width: 45px;
+}

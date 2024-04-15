@@ -1,6 +1,5 @@
 .FieldBox {
     position: relative;
-    margin-bottom: 24px;
     width: 100%;
     text-align: left;
 }
@@ -13,8 +12,10 @@
     border-radius: 6px;
     padding: 16px;
     width: 100%;
+    min-width: 250px;
     box-sizing: border-box;
     color: var(--text-primary);
+    transition: all 0.5s ease-in-out;
 
     &:focus-within {
         transition: outline 0.1s ease-in-out;
@@ -23,7 +24,11 @@
 }
 
 .readonly {
+    transition: all 0.5s ease-in-out;
     outline: none;
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
 
     &:focus-within {
         outline: none;

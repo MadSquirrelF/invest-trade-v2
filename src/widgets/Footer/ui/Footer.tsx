@@ -136,10 +136,11 @@ export const Footer = memo(({ className }: FooterProps) => {
                             e.preventDefault();
                         }}
                     >
-                        <Input required value={email} onChange={onChangeEmail} placeholder={t('Введите вашу почту')} label={t('Почта')} />
+                        <Input required value={email} onChange={onChangeEmail} placeholder={t('Введите вашу почту')} label={t('Почта')} className={styles.input} />
                         <Checkbox
                             label={t('Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением')}
                             checked={checked}
+                            id="footerCheck"
                             onToggle={handleChange}
                         />
                         <Button disabled={isEmailInvalid || !checked} type="submit" theme={ThemeButton.DEFAULT}>{t('Отправить')}</Button>
