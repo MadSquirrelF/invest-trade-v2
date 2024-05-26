@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProfileSchema } from '../types/editableProfileCardSchema';
+import { ProfileSchema, ReadOnlyInfo } from '../types/editableProfileCardSchema';
 import { Profile } from '@/entities/Profile';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
 import { updateProfileData } from '../services/updateProfileData/updateProfileData';
+import { updatePasswordData } from '../services/updatePasswordData/updatePasswordData';
 
 const initialState: ProfileSchema = {
-    readonlyContactInfo: true,
-    readonlyPersonalInfo: true,
-    readonlyPasswordInfo: true,
-    readonlyLocationInfo: true,
+    readonlyInfo: ReadOnlyInfo.NULL,
+    oldPassword: '',
+    newPassword: '',
+    repeatNewPassword: '',
+    validatePasswordErrors: [],
     isLoading: false,
     error: undefined,
     data: undefined,
@@ -18,25 +20,29 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        setReadonlyContactInfo: (state, action: PayloadAction<boolean>) => {
-            state.readonlyContactInfo = action.payload;
-        },
-        setReadonlyPasswordInfo: (state, action: PayloadAction<boolean>) => {
-            state.readonlyPasswordInfo = action.payload;
-        },
-        setReadonlyPersonalInfo: (state, action: PayloadAction<boolean>) => {
-            state.readonlyPersonalInfo = action.payload;
-        },
-        setReadonlyLocationInfo: (state, action: PayloadAction<boolean>) => {
-            state.readonlyLocationInfo = action.payload;
+        setReadonlyInfo: (state, action: PayloadAction<ReadOnlyInfo>) => {
+            state.readonlyInfo = action.payload;
         },
         cancelEdit: (state) => {
-            state.readonlyContactInfo = true;
-            state.readonlyPasswordInfo = true;
-            state.readonlyLocationInfo = true;
-            state.readonlyPersonalInfo = true;
+            state.readonlyInfo = ReadOnlyInfo.NULL;
             state.validateErrors = undefined;
             state.form = state.data;
+        },
+        cancelEditPassword: (state) => {
+            state.readonlyInfo = ReadOnlyInfo.NULL;
+            state.validatePasswordErrors = undefined;
+            state.oldPassword = '';
+            state.newPassword = '';
+            state.repeatNewPassword = '';
+        },
+        updateNewPassword: (state, action: PayloadAction<string>) => {
+            state.newPassword = action.payload;
+        },
+        updateOldPassword: (state, action: PayloadAction<string>) => {
+            state.oldPassword = action.payload;
+        },
+        updateRepeatNewPassword: (state, action: PayloadAction<string>) => {
+            state.repeatNewPassword = action.payload;
         },
         updateProfile: (state, action: PayloadAction<Profile>) => {
             state.form = {
@@ -67,19 +73,32 @@ export const profileSlice = createSlice({
                 state.validateErrors = undefined;
                 state.isLoading = true;
             })
-            .addCase(updateProfileData.fulfilled, (
-                state,
-            ) => {
+            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
                 state.isLoading = false;
-                state.readonlyContactInfo = true;
-                state.readonlyPasswordInfo = true;
-                state.readonlyLocationInfo = true;
-                state.readonlyPersonalInfo = true;
+                state.data = action.payload;
+                state.form = action.payload;
+                state.readonlyInfo = ReadOnlyInfo.NULL;
                 state.validateErrors = undefined;
             })
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateErrors = action.payload;
+            })
+            .addCase(updatePasswordData.pending, (state) => {
+                state.validatePasswordErrors = undefined;
+                state.isLoading = true;
+            })
+            .addCase(updatePasswordData.fulfilled, (state) => {
+                state.isLoading = false;
+                state.readonlyInfo = ReadOnlyInfo.NULL;
+                state.validatePasswordErrors = undefined;
+                state.oldPassword = '';
+                state.newPassword = '';
+                state.repeatNewPassword = '';
+            })
+            .addCase(updatePasswordData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.validatePasswordErrors = action.payload;
             });
     },
 });

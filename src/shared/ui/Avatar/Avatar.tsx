@@ -4,13 +4,15 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Avatar.module.scss';
 
 interface AvatarProps {
-  className?: string;
-  children: ReactNode;
-  size?: number;
-}
+    className?: string;
+    size?: number;
+    src?: string
+    alt?: string;
+    children?: ReactNode;
+  }
 
 export const Avatar = ({
-    className, size, children,
+    className, src, size, alt, children,
 }: AvatarProps) => {
     const { t } = useTranslation();
 
@@ -19,9 +21,15 @@ export const Avatar = ({
         height: size || 100,
     }), [size]);
 
+    if (children) {
+        return (
+            <div style={cls} className={classNames(styles.Avatar, {}, [className])}>
+                {children}
+            </div>
+        );
+    }
+
     return (
-        <div style={cls} className={classNames(styles.Avatar, {}, [className])}>
-            {children}
-        </div>
+        <img draggable={false} src={src} alt={alt} style={cls} className={classNames(styles.Avatar, {}, [className])} />
     );
 };

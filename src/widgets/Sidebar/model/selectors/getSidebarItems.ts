@@ -6,10 +6,11 @@ import NewsIcon from '@/shared/assets/icons/news-icon.svg';
 import CartIcon from '@/shared/assets/icons/cart-icon.svg';
 import ProfileIcon from '@/shared/assets/icons/profile.svg';
 import FavoriteIcon from '@/shared/assets/icons/like-save-icon.svg';
-import { SidebarItemType } from '../types/sidebar';
+import CalculatorIcon from '@/shared/assets/icons/calculator-icon.svg';
 import {
-    getRouteAbout, getRouteCart, getRouteFavorite, getRouteMain, getRouteNews, getRouteProfile,
+    getRouteAbout, getRouteCalculator, getRouteCart, getRouteFavorite, getRouteMain, getRouteNews, getRouteProfile,
 } from '@/shared/const/router';
+import { SidebarItemType } from '../types/sidebar';
 
 export const useSidebarItems = () => {
     const userData = useSelector(getUserAuthData);
@@ -29,6 +30,11 @@ export const useSidebarItems = () => {
             path: getRouteNews(),
             Icon: NewsIcon,
             text: 'Новости',
+        },
+        {
+            path: getRouteCalculator(),
+            Icon: CalculatorIcon,
+            text: 'Калькулятор',
         },
         {
             path: getRouteCart(),

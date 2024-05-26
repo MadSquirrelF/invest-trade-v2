@@ -23,6 +23,36 @@ import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { Error } from '@/shared/ui/Error/Error';
 import { convertDate } from '@/shared/lib/convertDate/convertDate';
 import { getRouteNews } from '@/shared/const/router';
+import { Slider } from '@/features/Slider';
+import { SlideSchema } from '@/entities/Slide';
+
+import ManhattanBg from '@/shared/assets/images/bg-hm.jpg';
+import AcademBg from '@/shared/assets/images/plan1.webp';
+import PremiumBg from '@/shared/assets/images/XXL.webp';
+
+const testSlide: SlideSchema[] = [
+    {
+        _id: '1',
+        title: 'ЖК МАНХЕТТЕН',
+        description: 'В ЦЕЛОМ ЖК «МАНХЭТТЕН» ПРЕДПОЛАГАЕТ 15 ЖИЛЫХ ДОМОВ. МЫ ПОМОГАЕМ ЖИЛЬЦАМ И ЗАСТРОЙЩИКАМ С УСТАНОВКОЙ ОКОН.',
+        poster: ManhattanBg,
+        link: 'gfdgsdfg',
+    },
+    {
+        _id: '2',
+        title: 'ПАРКОВЫЙ ПРЕМИУМ',
+        description: 'ПЛАНИРУЕТСЯ К ПОСТРОЙКЕ БОЛЬШАЯ ДЕТСКАЯ ПЛОЩАДКА С ИГРОВЫМИ ФОРМАМИ. ЧЕРЕЗ НАШИ ОКНА РОДИТЕЛИ СМОГУТ ОТЧЕТЛИВО НАБЛЮДАТЬ ЗА ИГРОЙ СВОИХ ДЕТЕЙ.',
+        poster: PremiumBg,
+        link: 'gfdgsdfg',
+    },
+    {
+        _id: '3',
+        title: 'АКАДЕМ-РИВЕРСАЙД',
+        description: 'НОВЫЙ МИКРОРАЙОН УДАЧНО РАСПОЛОЖЕН ВДОЛЬ УНИВЕРСИТЕТСКОЙ НАБЕРЕЖНОЙ ВБЛИЗИ СОСНОВОГО БОРА. НАШИ НОВЫЕ И НАДЕЖНЫЕ ОКНА ОБЕСПЕЧАТ ЖИЛЬЦАМ ПОТРЯСАЮЩИЙ ВИД.',
+        poster: AcademBg,
+        link: 'gfdgsdfg',
+    },
+];
 
 const MainPage = () => {
     const { t } = useTranslation('main');
@@ -32,6 +62,7 @@ const MainPage = () => {
     return (
         <Page>
             <Text gap="16" title={t('Главная страница')} size={TextSize.L} bold={TextBold.MEDIUM} />
+            <Slider slides={testSlide} />
             <HStack gap="32" align="start" max justify="between" className={styles.wrapper}>
                 <HStack gap="32" justify="between" align="start" wrap className={styles.container}>
                     <HStack gap="16" justify="between" align="center" max className={classNames(styles.block, {}, [])}>

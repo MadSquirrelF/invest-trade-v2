@@ -1,11 +1,11 @@
 /* eslint-disable i18next/no-literal-string */
-import { memo, useRef } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { VStack } from '@/shared/ui/Stack';
 import { Input } from '@/shared/ui/Input/Input';
 import { Error } from '@/shared/ui/Error/Error';
-import { useSelector } from 'react-redux';
 import { ValidateRegistrationEmailError } from '../../../model/types/registrationSchema';
 import styles from './LoginBlockComponent.module.scss';
 import {
@@ -22,7 +22,6 @@ interface LoginBlockComponentProps {
 
 export const LoginBlockComponent = memo((props: LoginBlockComponentProps) => {
     const { t } = useTranslation();
-    const phoneNumberRef = useRef<HTMLInputElement>(null);
 
     const email = useSelector(getRegistrationEmail);
     const login = useSelector(getRegistrationUsername);
@@ -52,6 +51,7 @@ export const LoginBlockComponent = memo((props: LoginBlockComponentProps) => {
                 value={login}
                 type="text"
                 required
+                className={styles.input}
             />
 
             <Input
@@ -61,6 +61,7 @@ export const LoginBlockComponent = memo((props: LoginBlockComponentProps) => {
                 value={email}
                 onChange={onChangeEmail}
                 required
+                className={styles.input}
             />
 
             {

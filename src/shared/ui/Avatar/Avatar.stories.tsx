@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import AvatarSvg from '@/shared/assets/icons/defaut-avatar.svg';
 import { Avatar } from './Avatar';
 
 export default {
@@ -21,12 +20,12 @@ export const Primary = Template.bind({});
 
 Primary.args = {
     size: 150,
-    children: <AvatarSvg />,
+
 };
 
 export const Small = Template.bind({});
 
 Small.args = {
     size: 50,
-    children: <AvatarSvg />,
+
 };

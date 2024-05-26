@@ -34,6 +34,8 @@ interface TextProps {
   className?: string;
   title?: string;
   text?: string;
+  textPrimary?: boolean;
+  isActive?: boolean;
   bold?: TextBold;
   theme?: TextTheme;
   align?: TextAlign;
@@ -60,6 +62,8 @@ export const Text = memo((props: TextProps) => {
         bold = TextBold.MEDIUM,
         align = TextAlign.LEFT,
         title,
+        textPrimary,
+        isActive,
         text,
         children,
         gap = '16',
@@ -74,7 +78,10 @@ export const Text = memo((props: TextProps) => {
         [styles[align]]: true,
         [styles[size]]: true,
         [styles[bold]]: true,
+        [styles.primary]: textPrimary,
+        [styles.active]: isActive,
     };
+
     return (
         <VStack gap={gap} align="start" className={classNames(styles.TextWrapper, mods, [className])}>
             { title && (

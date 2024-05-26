@@ -3,6 +3,7 @@ import { RouteProps } from 'react-router-dom';
 import {
     AppRoutes,
     getRouteAbout,
+    getRouteCalculator,
     getRouteCart,
     getRouteFavorite,
     getRouteForbidden,
@@ -23,6 +24,7 @@ import { ForbiddenPage } from '@/pages/ForbiddenPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { NewsPage } from '@/pages/NewsPage';
 import { NewDetailsPage } from '@/pages/NewDetailsPage';
+import { CalculatorPage } from '@/pages/CalculatorPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -42,6 +44,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.NEWS]: {
         path: getRouteNews(),
         element: <NewsPage />,
+    },
+    [AppRoutes.CALCULATOR]: {
+        path: getRouteCalculator(),
+        element: <CalculatorPage />,
     },
     [AppRoutes.CART]: {
         path: getRouteCart(),

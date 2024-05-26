@@ -2,6 +2,7 @@ export enum ValidateRegistrationPasswordError {
   EMPTY_PASSWORD = 'EMPTY_PASSWORD',
   NO_MATCH_PASSWORDS = 'NO_MATCH_PASSWORDS',
   TOO_SHORT_PASSWORD = 'TOO_SHORT_PASSWORD',
+  SERVER_ERROR = 'PASSWORDS_NOT_MATCH'
 }
 
 export enum ValidateRegistrationEmailError {

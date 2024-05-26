@@ -1,0 +1,63 @@
+/* stylelint-disable function-parentheses-space-inside */
+/* stylelint-disable color-function-notation */
+@import "../../../../app/styles/variables/global";
+
+.Slide {
+    position: relative;
+    border-radius: 20px;
+    height: 50vh;
+
+    &::before {
+        content: "";
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background:
+            linear-gradient(
+                90deg,
+                var(--bg-primary) 3.31%,
+                var(--bg-primary-gradient-99) 7.71%,
+                var(--bg-primary-gradient-96) 12.11%,
+                var(--bg-primary-gradient-93) 20.11%,
+                var(--bg-primary-gradient-91) 29.51%,
+                var(--bg-primary-gradient-85) 34.11%,
+                var(--bg-primary-gradient-76) 38.52%,
+                var(--bg-primary-gradient-67) 42.92%,
+                var(--bg-primary-gradient-55) 47.32%,
+                var(--bg-primary-gradient-44) 51.72%,
+                var(--bg-primary-gradient-33) 56.12%,
+                var(--bg-primary-gradient-23) 60.52%,
+                var(--bg-primary-gradient-15) 64.92%,
+                var(--bg-primary-gradient-08) 69.32%,
+                var(--bg-primary-gradient-03) 73.52%,
+                var(--bg-primary-gradient-01) 77.92%,
+                rgba(#000, 0) 81.32%
+            );
+    }
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 2;
+}
+
+.image {
+    border-radius: 23px;
+    object-position: center;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    max-width: 500px;
+}

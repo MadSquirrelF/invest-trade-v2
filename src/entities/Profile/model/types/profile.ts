@@ -8,7 +8,7 @@ export interface Profile {
     email?: string;
     username?: string;
     firstname?:string;
-    discription?: string;
+    description?: string;
     lastname?:string;
     country?: Country;
     age?: number;

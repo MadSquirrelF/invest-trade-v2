@@ -10,7 +10,7 @@ export interface User {
   _id: string;
   email: string;
   username: string;
-  discription: string;
+  description: string;
   avatar: string;
   roles: UserRole[];
   features?: FeatureFlags;

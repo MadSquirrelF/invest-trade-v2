@@ -1,0 +1,15 @@
+.CalculatorPage {
+    position: relative;
+}
+
+.windowIconTest {
+    flex: none;
+    width: 50px;
+    height: 60px;
+}
+
+.icon {
+    svg {
+        color: var(--active-color-default);
+    }
+}

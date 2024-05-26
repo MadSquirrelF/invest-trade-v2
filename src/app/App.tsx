@@ -7,13 +7,14 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { getUserInited, initAuthData } from '@/entities/User';
-import { SizeSaveActions } from '@/features/SizeSave';
 import { AppRouter } from './providers/router';
 import { withTheme } from './providers/ThemeProvider/ui/withTheme';
 import { useTheme } from './providers/ThemeProvider';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout';
+import { getProfileData } from '@/features/editableProfileCard';
+import { SizeSaveActions } from '@/features/SizeSave';
 
 const App = memo(() => {
     const [collapsed, setCollapsed] = useState(false);
@@ -23,6 +24,8 @@ const App = memo(() => {
     const dispatch = useAppDispatch();
 
     const inited = useSelector(getUserInited);
+
+    const profileData = useSelector(getProfileData);
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);

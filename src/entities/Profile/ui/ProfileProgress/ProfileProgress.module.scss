@@ -1,3 +1,25 @@
 .ProfileProgress {
-    position: relative;
+    position: sticky;
+    top: 0;
+    width: 40%;
+    padding: 50px;
+    z-index: 1;
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-default);
+
+    @media screen and (max-width: 800px) {
+        padding: 20px;
+    }
+}
+
+.close,
+.done {
+    width: 25px;
+    height: 25px;
+    flex: none;
+}
+
+.done {
+    color: var(--active-color-default);
 }

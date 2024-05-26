@@ -8,6 +8,15 @@
     color: var(--active-color-default);
 }
 
+.passwordPosition {
+    left: -130%;
+    top: -110%;
+}
+
+.passwordWrapper {
+    position: relative;
+}
+
 .header {
     margin-bottom: 40px;
 }

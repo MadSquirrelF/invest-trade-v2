@@ -23,9 +23,9 @@ import HistoryOrder from '@/shared/assets/icons/order-history.svg';
 import { Text, TextBold, TextSize } from '@/shared/ui/Text/Text';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { getWidth } from '@/features/SizeSave';
-import DefaultAvatar from '@/shared/assets/icons/default-avatar.svg';
 import styles from './Navbar.module.scss';
 import { NotificationsActions } from '@/features/Notifications';
+import { covertImageUrl } from '@/shared/lib/covertImageUrl/covertImageUrl';
 
 interface NavbarProps {
   className?: string;
@@ -140,27 +140,28 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                             },
                         ]}
                         trigger={(
-                            <Avatar
-                                size={width < 500 ? 35 : 41}
-                                className={styles.avatarBtn}
-                            >
-                                <DefaultAvatar />
-                            </Avatar>
+                            <Button theme={ThemeButton.CLEAR} className={styles.avatarBtn}>
+                                <Avatar
+                                    size={width < 500 ? 35 : 41}
+                                    src={covertImageUrl(authData.avatar)}
+                                />
+                            </Button>
+
                         )}
                     >
                         <HStack max justify="start" gap="16" className={styles.header}>
+
                             <Avatar
                                 size={35}
+                                src={covertImageUrl(authData.avatar)}
                                 className={styles.avatar}
-                            >
-                                <DefaultAvatar />
-                            </Avatar>
+                            />
                             <Text
                                 bold={TextBold.BOLD}
                                 size={TextSize.S}
                                 gap="4"
                                 title={`${authData.username}`}
-                                text={`${authData.discription}`}
+                                text={`${authData.description}`}
                             />
                         </HStack>
                     </Dropdown>

@@ -1,3 +1,5 @@
+/* stylelint-disable color-function-notation */
+/* stylelint-disable alpha-value-notation */
 :root {
     // text
     --text-black-inverted-theme: #000;
@@ -17,6 +19,21 @@
 
     // bg
     --bg-primary: #fff;
+    --bg-primary-gradient-99: rgba(255, 255, 255, 0.99);
+    --bg-primary-gradient-96: rgba(255, 255, 255, 0.96);
+    --bg-primary-gradient-93: rgba(255, 255, 255, 0.93);
+    --bg-primary-gradient-91: rgba(255, 255, 255, 0.91);
+    --bg-primary-gradient-85: rgba(255, 255, 255, 0.85);
+    --bg-primary-gradient-76: rgba(255, 255, 255, 0.76);
+    --bg-primary-gradient-67: rgba(255, 255, 255, 0.67);
+    --bg-primary-gradient-55: rgba(255, 255, 255, 0.55);
+    --bg-primary-gradient-44: rgba(255, 255, 255, 0.44);
+    --bg-primary-gradient-33: rgba(255, 255, 255, 0.33);
+    --bg-primary-gradient-23: rgba(255, 255, 255, 0.23);
+    --bg-primary-gradient-15: rgba(255, 255, 255, 0.15);
+    --bg-primary-gradient-08: rgba(255, 255, 255, 0.08);
+    --bg-primary-gradient-03: rgba(255, 255, 255, 0.03);
+    --bg-primary-gradient-01: rgba(255, 255, 255, 0.01);
     --bg-secondary: #ecf0f8;
     --bg-button: #fff;
     --secondary-btn-hover: #dce8ff;

@@ -1,0 +1,61 @@
+.copyBtnWrapper {
+    position: relative;
+}
+
+.popup {
+    position: absolute;
+    color: #fff;
+    z-index: 3;
+    top: 0;
+    left: 30px;
+    background-color: var(--active-color-disabled);
+    border: 1px solid var(--active-color-disabled);
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: -4px;
+        background-color: var(--active-color-disabled);
+        width: 6px;
+        height: 6px;
+        transform: rotate(45deg);
+    }
+}
+
+.copyBtn {
+    transition: all 0.2s ease-in-out;
+
+    .copy {
+        width: 20px;
+        height: 20px;
+        flex: none;
+
+        path {
+            stroke: var(--active-color-default);
+        }
+    }
+
+    &:disabled {
+        pointer-events: none;
+
+        .copy {
+            path {
+                stroke: var(--active-color-disabled);
+            }
+        }
+    }
+
+    &:hover {
+        .copy {
+            transition: 0.1s ease-in-out;
+
+            path {
+                stroke: var(--active-color-hover);
+            }
+        }
+    }
+}

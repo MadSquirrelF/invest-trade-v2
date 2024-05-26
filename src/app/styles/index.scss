@@ -6,6 +6,7 @@
 html,
 body {
     height: 100%;
+    background-color: var(--bg-secondary);
 }
 
 body {
@@ -78,7 +79,6 @@ body {
 .block {
     position: relative;
     padding: 50px;
-    width: 100%;
     z-index: 1;
     background-color: var(--bg-primary);
     border-radius: 20px;

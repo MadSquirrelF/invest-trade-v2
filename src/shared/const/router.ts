@@ -5,6 +5,7 @@ export enum AppRoutes {
     NEW_DETAILS = 'new_details',
     CART = 'cart',
     PROFILE = 'profile',
+    CALCULATOR = 'calculator',
     FAVORITE = 'favorite',
     REGISTRATION = 'registration',
     FORBIDDEN = 'forbidden',
@@ -15,6 +16,7 @@ export enum AppRoutes {
 export const getRouteMain = () => '/';
 export const getRouteAbout = () => '/about';
 export const getRouteNews = () => '/news';
+export const getRouteCalculator = () => '/calculator';
 export const getRouteNewDetails = (slug: string) => `/news/${slug}`;
 export const getRouteCart = () => '/cart';
 export const getRouteFavorite = () => '/favorite';
@@ -26,6 +28,7 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteMain()]: AppRoutes.MAIN,
     [getRouteAbout()]: AppRoutes.ABOUT,
     [getRouteNews()]: AppRoutes.NEWS,
+    [getRouteCalculator()]: AppRoutes.CALCULATOR,
     [getRouteNewDetails(':slug')]: AppRoutes.NEW_DETAILS,
     [getRouteCart()]: AppRoutes.CART,
     [getRouteFavorite()]: AppRoutes.FAVORITE,

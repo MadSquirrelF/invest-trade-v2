@@ -1,16 +1,15 @@
 /* eslint-disable import/no-relative-packages */
+import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import App from './app/App';
 import './shared/config/i18n/i18n';
 import '@/app/styles/index.scss';
 import '../node_modules/swiper/swiper.scss';
 import '../node_modules/swiper/modules/pagination.scss';
-import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from './app/providers/StoreProvider';
 import { ErrorBoundary } from './app/providers/ErrorBoundary';
 import { ForceUpdateProvider } from './shared/lib/render/forceUpdate';
 import { ThemeProvider } from './app/providers/ThemeProvider';
-
 
 const container = document.getElementById('root');
 if (!container) {
@@ -22,11 +21,11 @@ root.render(
     <BrowserRouter>
         <StoreProvider>
             <ErrorBoundary>
-              <ForceUpdateProvider>
+                <ForceUpdateProvider>
                     <ThemeProvider>
-                            <App />
+                        <App />
                     </ThemeProvider>
-               </ForceUpdateProvider>
+                </ForceUpdateProvider>
             </ErrorBoundary>
         </StoreProvider>
     </BrowserRouter>,

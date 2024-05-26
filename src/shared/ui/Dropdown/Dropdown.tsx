@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable i18next/no-literal-string */
 import { Menu } from '@headlessui/react';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { Fragment, ReactNode } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
 import styles from './Dropdown.module.scss';
 import { Button, ThemeButton } from '../Button/Button';

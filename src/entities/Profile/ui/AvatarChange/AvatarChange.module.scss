@@ -1,0 +1,46 @@
+.AvatarChange {
+    position: relative;
+}
+
+.selectLabel {
+    position: relative;
+    cursor: pointer;
+
+    &:disabled {
+        pointer-events: none;
+    }
+}
+
+.selectInput {
+    &:disabled {
+        pointer-events: none;
+    }
+}
+
+.avatar {
+    &:hover {
+        border: 1px solid var(--active-color-default);
+        transition: all 0.3s ease-in-out;
+        transform: scale(1.01);
+    }
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+    flex: none;
+}
+
+.selectIcon {
+    position: absolute;
+    color: var(--active-color-default);
+    top: 10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    flex: none;
+}
+
+.selected {
+    border: 2px solid var(--active-color-disabled);
+}

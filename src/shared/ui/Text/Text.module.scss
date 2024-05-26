@@ -6,6 +6,22 @@
     color: var(--text-secondary);
 }
 
+.primary {
+    .text {
+        color: var(--text-primary);
+    }
+}
+
+.active {
+    .text {
+        color: var(--active-color-default);
+    }
+
+    .title {
+        color: var(--active-color-default);
+    }
+}
+
 .left {
     text-align: left;
 }
@@ -16,6 +32,10 @@
 
 .center {
     text-align: center;
+
+    .text {
+        text-align: center;
+    }
 }
 
 .light {

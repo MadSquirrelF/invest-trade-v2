@@ -75,6 +75,7 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                     onChange={onChangeFirstname}
                     value={firstname}
                     required
+                    className={styles.input}
                 />
                 <Input
                     label={t('Фамилия')}
@@ -83,6 +84,7 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                     onChange={onChangeLastname}
                     type="text"
                     required
+                    className={styles.input}
                 />
             </HStack>
 
@@ -94,6 +96,7 @@ export const PersonalInfoBlockComponent = memo((props: PersonalInfoBlockComponen
                 id={t('Номер телефона')}
                 name={t('Номер телефона')}
                 onChangeMasked={onChangePhone}
+                className={styles.input}
             />
 
             <Text

@@ -12,6 +12,33 @@
     transition: all 0.2s ease-in-out;
 }
 
+.buttonWrapper {
+    position: relative;
+}
+
+.helper {
+    box-shadow: var(--box-shadow-default);
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    padding: 5px 10px;
+    position: absolute;
+    bottom: -140%;
+    right: 0;
+    z-index: 2;
+
+    &::after {
+        position: absolute;
+        top: -15%;
+        content: "";
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+        z-index: -1;
+        transform: rotate(45deg);
+        background-color: var(--bg-primary);
+    }
+}
+
 .selector {
     border-radius: 10px;
     padding: 5px;
@@ -30,6 +57,49 @@
 
         svg {
             fill: white;
+        }
+
+        span {
+            color: white;
+        }
+
+        background-color: var(--active-color-default);
+    }
+
+    &:active {
+        transition: transform 0.1s ease-in-out;
+        transform: translateY(2px);
+    }
+}
+
+.selector_inverted {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    background: transparent;
+
+    svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    &:disabled {
+        p {
+            color: white;
+        }
+
+        background-color: var(--active-color-disabled);
+        color: white;
+    }
+
+    &:hover {
+        transition: all 0.1s ease-in-out;
+        color: white;
+
+        p {
+            color: white;
         }
 
         span {
@@ -348,8 +418,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 37px;
-    height: 37px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     padding: 7px;
     color: var(--text-white);
@@ -365,8 +435,6 @@
     }
 
     &:active {
-        svg {
-            transform: scale(0.97);
-        }
+        transform: scale(0.97);
     }
 }

@@ -10,13 +10,10 @@ import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileF
 import { getProfileError } from '../../model/selectors/getProfileError/getProfileError';
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading';
 import {
-    getProfileReadonlyContactInfo,
-    getProfileReadonlyLocationInfo,
-    getProfileReadonlyPasswordInfo,
-    getProfileReadonlyPersonalInfo,
+    getProfileReadonlyInfo,
 } from '../../model/selectors/getProfileReadonly/getProfileReadonly';
 import { getProfileValidateErrors } from '../../model/selectors/getProfileValidateErrors/getProfileValidateErrors';
-import { ValidateProfileError } from '../../model/types/editableProfileCardSchema';
+import { ReadOnlyInfo, ValidateProfileError } from '../../model/types/editableProfileCardSchema';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
@@ -24,7 +21,17 @@ import { Currency } from '@/entities/Currency';
 import { Country } from '@/entities/Country';
 import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
 import { Error } from '@/shared/ui/Error/Error';
-import { VStack } from '@/shared/ui/Stack';
+import { HStack } from '@/shared/ui/Stack';
+import styles from './EditableProfileCard.module.scss';
+import { NotificationsActions } from '@/features/Notifications';
+import { initAuthData } from '@/entities/User';
+import {
+    getProfileNewPassword,
+    getProfileOldPassword,
+    getProfilePasswordErrors,
+    getProfileRepeatNewPassword,
+} from '../../model/selectors/getProfilePassword/getProfilePassword';
+import { updatePasswordData } from '../../model/services/updatePasswordData/updatePasswordData';
 
 interface EditableProfileCardProps {
     className?: string;
@@ -42,12 +49,14 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
     const dispatch = useAppDispatch();
 
     const formData = useSelector(getProfileForm);
+    const oldPassword = useSelector(getProfileOldPassword);
+    const newPassword = useSelector(getProfileNewPassword);
+    const repeatNewPassword = useSelector(getProfileRepeatNewPassword);
     const error = useSelector(getProfileError);
     const isLoading = useSelector(getProfileIsLoading);
-    const readonlyContactInfo = useSelector(getProfileReadonlyContactInfo);
-    const readonlyLocationInfo = useSelector(getProfileReadonlyLocationInfo);
-    const readonlyPersonalInfo = useSelector(getProfileReadonlyPersonalInfo);
-    const readonlyPasswordInfo = useSelector(getProfileReadonlyPasswordInfo);
+    const readonlyInfo = useSelector(getProfileReadonlyInfo);
+
+    const passwordErrors = useSelector(getProfilePasswordErrors);
     const validateErrors = useSelector(getProfileValidateErrors);
 
     const validateErrorsTranslations = {
@@ -76,6 +85,18 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }));
     }, [dispatch]);
 
+    const onChangeOldPassword = useCallback((value?: string) => {
+        dispatch(profileActions.updateOldPassword(value || ''));
+    }, [dispatch]);
+
+    const onChangeNewPassword = useCallback((value?: string) => {
+        dispatch(profileActions.updateNewPassword(value || ''));
+    }, [dispatch]);
+
+    const onChangeRepeatNewPassword = useCallback((value?: string) => {
+        dispatch(profileActions.updateRepeatNewPassword(value || ''));
+    }, [dispatch]);
+
     const onChangeAge = useCallback((value?: string) => {
         const validateValue = value?.replace(/\D+/gm, '');
         dispatch(profileActions.updateProfile({
@@ -89,9 +110,9 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }));
     }, [dispatch]);
 
-    const onChangeDiscription = useCallback((value?: string) => {
+    const onChangedescription = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({
-            discription: value || '',
+            description: value || '',
         }));
     }, [dispatch]);
 
@@ -113,7 +134,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }));
     }, [dispatch]);
 
-    const onChangeAdress = useCallback((value?: string) => {
+    const onChangeAddress = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({
             address: value || '',
         }));
@@ -125,7 +146,13 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }));
     }, [dispatch]);
 
-    const onChangeAvatar = useCallback((value?: string) => {
+    const onChangeAvatar = useCallback((value: string) => {
+        dispatch(profileActions.updateProfile({
+            avatar: value || '',
+        }));
+    }, [dispatch]);
+
+    const onDeleteAvatar = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({
             avatar: value || '',
         }));
@@ -143,19 +170,19 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         }));
     }, [dispatch]);
 
-    const onEditInfo = useCallback((type: 'contact' | 'personal' | 'password' | 'location') => {
+    const onEditInfo = useCallback((type: ReadOnlyInfo) => {
         switch (type) {
-        case 'contact':
-            dispatch(profileActions.setReadonlyContactInfo(false));
+        case ReadOnlyInfo.CONTACT:
+            dispatch(profileActions.setReadonlyInfo(ReadOnlyInfo.CONTACT));
             break;
-        case 'personal':
-            dispatch(profileActions.setReadonlyPersonalInfo(false));
+        case ReadOnlyInfo.PERSONAL:
+            dispatch(profileActions.setReadonlyInfo(ReadOnlyInfo.PERSONAL));
             break;
-        case 'password':
-            dispatch(profileActions.setReadonlyPasswordInfo(false));
+        case ReadOnlyInfo.PASSWORD:
+            dispatch(profileActions.setReadonlyInfo(ReadOnlyInfo.PASSWORD));
             break;
-        case 'location':
-            dispatch(profileActions.setReadonlyLocationInfo(false));
+        case ReadOnlyInfo.LOCATION:
+            dispatch(profileActions.setReadonlyInfo(ReadOnlyInfo.LOCATION));
             break;
         default:
             break;
@@ -166,9 +193,41 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
         dispatch(profileActions.cancelEdit());
     }, [dispatch]);
 
+    const onCancelPasswordEdit = useCallback(() => {
+        dispatch(profileActions.cancelEditPassword());
+    }, [dispatch]);
+
     const onSaveEdit = useCallback(() => {
         dispatch(updateProfileData());
+        dispatch(initAuthData());
+        dispatch(NotificationsActions.addNotification({
+            type: 'success',
+            label: 'Профиль',
+            text: 'Данные успешно изменены',
+        }));
     }, [dispatch]);
+
+    const onSavePassword = useCallback(
+        async () => {
+            const result = await dispatch(updatePasswordData());
+
+            if (result.meta.requestStatus === 'fulfilled') {
+                dispatch(initAuthData());
+                dispatch(NotificationsActions.addNotification({
+                    type: 'success',
+                    label: 'Пароль',
+                    text: 'Пароль успешно изменен',
+                }));
+            } else {
+                dispatch(NotificationsActions.addNotification({
+                    type: 'error',
+                    label: 'Пароль',
+                    text: 'Неверный пароль',
+                }));
+            }
+        },
+        [dispatch],
+    );
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -183,17 +242,23 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                 ))
             }
 
-            <VStack justify="between" align="start" max gap="50">
+            <HStack justify="start" align="start" max gap="50" className={styles.EditableProfileCard}>
                 <ProfileCard
                     data={formData}
                     error={error}
                     isLoading={isLoading}
-                    readonlyLocationInfo={readonlyLocationInfo}
-                    readonlyContactInfo={readonlyContactInfo}
-                    readonlyPersonalInfo={readonlyPersonalInfo}
-                    readonlyPasswordInfo={readonlyPasswordInfo}
+                    oldPassword={oldPassword}
+                    newPassword={newPassword}
+                    passwordErrors={passwordErrors}
+                    onCancelPasswordEdit={onCancelPasswordEdit}
+                    repeatNewPassword={repeatNewPassword}
+                    onSavePassword={onSavePassword}
+                    onChangeOldPassword={onChangeOldPassword}
+                    onChangeNewPassword={onChangeNewPassword}
+                    onChangeRepeatNewPassword={onChangeRepeatNewPassword}
+                    readonlyInfo={readonlyInfo}
                     onChangeEmail={onChangeEmail}
-                    onChangeDiscription={onChangeDiscription}
+                    onChangedescription={onChangedescription}
                     onChangeSex={onChangeSex}
                     onChangePhoneNumber={onChangePhoneNumber}
                     onChangeAge={onChangeAge}
@@ -207,10 +272,14 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                     onEditInfo={onEditInfo}
                     onCancelEdit={onCancelEdit}
                     onSaveEdit={onSaveEdit}
-                    onChangeAdress={onChangeAdress}
+                    onDeleteAvatar={onDeleteAvatar}
+                    onChangeAddress={onChangeAddress}
                 />
-                <ProfileProgress />
-            </VStack>
+                <ProfileProgress
+                    error={error}
+                    isLoading={isLoading}
+                />
+            </HStack>
 
         </DynamicModuleLoader>
 

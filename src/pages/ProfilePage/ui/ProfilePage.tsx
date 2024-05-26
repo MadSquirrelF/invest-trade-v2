@@ -20,7 +20,6 @@ const CartPage = () => {
             <Breadcrumbs />
 
             <EditableProfileCard id={id} />
-
         </Page>
     );
 };

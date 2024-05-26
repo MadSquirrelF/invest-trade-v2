@@ -1,3 +1,5 @@
+/* stylelint-disable color-function-notation */
+/* stylelint-disable alpha-value-notation */
 .app_dark_theme {
     // text
     --text-black-inverted-theme: #fff;
@@ -17,6 +19,21 @@
 
     // bg
     --bg-primary: #323339;
+    --bg-primary-gradient-99: rgba(50, 51, 57, 0.99);
+    --bg-primary-gradient-96: rgba(50, 51, 57, 0.96);
+    --bg-primary-gradient-93: rgba(50, 51, 57, 0.93);
+    --bg-primary-gradient-91: rgba(50, 51, 57, 0.91);
+    --bg-primary-gradient-85: rgba(50, 51, 57, 0.85);
+    --bg-primary-gradient-76: rgba(50, 51, 57, 0.76);
+    --bg-primary-gradient-67: rgba(50, 51, 57, 0.67);
+    --bg-primary-gradient-55: rgba(50, 51, 57, 0.55);
+    --bg-primary-gradient-44: rgba(50, 51, 57, 0.44);
+    --bg-primary-gradient-33: rgba(50, 51, 57, 0.33);
+    --bg-primary-gradient-23: rgba(50, 51, 57, 0.23);
+    --bg-primary-gradient-15: rgba(50, 51, 57, 0.15);
+    --bg-primary-gradient-08: rgba(50, 51, 57, 0.08);
+    --bg-primary-gradient-03: rgba(50, 51, 57, 0.03);
+    --bg-primary-gradient-01: rgba(50, 51, 57, 0.01);
     --bg-secondary: #222128;
     --bg-button: #494a50;
     --secondary-btn-hover: #1c1c20;
