@@ -2,19 +2,20 @@ import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './NewList.module.scss';
-import { New, NewView } from '../../model/types/newSchema';
+import { New } from '../../model/types/newSchema';
 import { NewListItem } from '../NewListItem/NewListItem';
 import { NewListItemSkeleton } from '../NewListItem/NewListItemSkeleton';
+import { ViewType } from '@/features/FilterContainer';
 
 interface NewProps {
     className?: string;
     news: New[];
     isLoading: boolean;
-    view?: NewView;
+    view?: ViewType;
     target?: HTMLAttributeAnchorTarget;
 }
 
-const getSkeletons = (view: NewView) => new Array(view === NewView.SHORT ? 3 : 1)
+const getSkeletons = (view: ViewType) => new Array(view === ViewType.SHORT ? 3 : 1)
     .fill(0)
     .map((item, index) => (
         // eslint-disable-next-line react/no-array-index-key
@@ -26,7 +27,7 @@ export const NewList = memo((props: NewProps) => {
         className,
         news,
         isLoading,
-        view = NewView.SHORT,
+        view = ViewType.SHORT,
         target,
     } = props;
 

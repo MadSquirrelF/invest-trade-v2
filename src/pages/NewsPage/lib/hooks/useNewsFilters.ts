@@ -6,8 +6,8 @@ import {
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchNewsList } from '../../model/services/fetchNewsList/fetchNewsList';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
-import { NewOrder, NewSortField, NewView } from '@/entities/new';
 import { newsPageActions } from '../../model/slice/newsPageSlice';
+import { OrderType, SortType, ViewType } from '@/features/FilterContainer';
 
 export function useNewsFilters() {
     const view = useSelector(getNewsPageView);
@@ -24,14 +24,14 @@ export function useNewsFilters() {
     const debouncedFetchData = useDebounce(fetchData, 500);
 
     const onChangeView = useCallback(
-        (view: NewView) => {
+        (view: ViewType) => {
             dispatch(newsPageActions.setView(view));
         },
         [dispatch],
     );
 
     const onChangeSort = useCallback(
-        (newSort: NewSortField) => {
+        (newSort: SortType) => {
             dispatch(newsPageActions.setSort(newSort));
             dispatch(newsPageActions.setPage(1));
             fetchData();
@@ -40,7 +40,7 @@ export function useNewsFilters() {
     );
 
     const onChangeOrder = useCallback(
-        (newOrder: NewOrder) => {
+        (newOrder: OrderType) => {
             dispatch(newsPageActions.setOrder(newOrder));
             dispatch(newsPageActions.setPage(1));
             fetchData();

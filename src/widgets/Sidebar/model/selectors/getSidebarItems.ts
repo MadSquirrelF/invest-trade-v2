@@ -7,8 +7,10 @@ import CartIcon from '@/shared/assets/icons/cart-icon.svg';
 import ProfileIcon from '@/shared/assets/icons/profile.svg';
 import FavoriteIcon from '@/shared/assets/icons/like-save-icon.svg';
 import CalculatorIcon from '@/shared/assets/icons/calculator-icon.svg';
+import ShopIcon from '@/shared/assets/icons/shop-icon.svg';
 import {
     getRouteAbout, getRouteCalculator, getRouteCart, getRouteFavorite, getRouteMain, getRouteNews, getRouteProfile,
+    getRouteShop,
 } from '@/shared/const/router';
 import { SidebarItemType } from '../types/sidebar';
 
@@ -35,6 +37,11 @@ export const useSidebarItems = () => {
             path: getRouteCalculator(),
             Icon: CalculatorIcon,
             text: 'Калькулятор',
+        },
+        {
+            path: getRouteShop(),
+            Icon: ShopIcon,
+            text: 'Магазин',
         },
         {
             path: getRouteCart(),

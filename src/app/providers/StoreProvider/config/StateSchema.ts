@@ -15,6 +15,7 @@ import { NewDetailsSchema } from '@/entities/new';
 import { NewDetailsPageSchema } from '@/pages/NewDetailsPage';
 import { NotificationsSchema } from '@/features/Notifications';
 import { ProfileSchema } from '@/features/editableProfileCard';
+import { ShopPageSchema } from '@/pages/ShopPage';
 
 export interface StateSchema {
   user: UserSchema;
@@ -26,6 +27,7 @@ export interface StateSchema {
   // Async reducers
   profile?: ProfileSchema;
   loginForm?: LoginSchema;
+  shopPage?: ShopPageSchema
   newsPage?: NewsPageSchema;
   newDetails?: NewDetailsSchema;
   newDetailsPage?: NewDetailsPageSchema;

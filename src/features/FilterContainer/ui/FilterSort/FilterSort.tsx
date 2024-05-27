@@ -1,63 +1,67 @@
 /* eslint-disable i18next/no-literal-string */
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import ListIcon from '@/shared/assets/icons/list-icon.svg';
-import GridIcon from '@/shared/assets/icons/grid-icon.svg';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import styles from './FilterSort.module.scss';
 import OrderUpIcon from '@/shared/assets/icons/sort-up-icon.svg';
 import OrderDownIcon from '@/shared/assets/icons/sort-down-icon.svg';
-import styles from './NewsOrderViewTabs.module.scss';
-import { NewOrder, NewView } from '@/entities/new';
+import ListIcon from '@/shared/assets/icons/list-icon.svg';
+import GridIcon from '@/shared/assets/icons/grid-icon.svg';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { OrderType, ViewType } from '../../model/types';
 
-interface NewsOrderViewTabsProps {
+interface FilterSortProps {
   className?: string;
-  view: NewView;
-  order: NewOrder;
-  onChangeOrder: (order: NewOrder) => void;
-  onChangeView: (view: NewView) => void;
+  view: ViewType;
+  order: OrderType;
+  onChangeView: (value: ViewType) => void;
+  onChangeOrder: (value: OrderType) => void;
 }
 
 const OrderTypes = [
     {
-        order: NewOrder.ASC,
+        order: OrderType.ASC,
         Icon: OrderUpIcon,
     },
     {
-        order: NewOrder.DESC,
+        order: OrderType.DESC,
         Icon: OrderDownIcon,
     },
 ];
 
 const viewTypes = [
     {
-        view: NewView.FULL,
+        view: ViewType.FULL,
         Icon: ListIcon,
     },
     {
-        view: NewView.SHORT,
+        view: ViewType.SHORT,
         Icon: GridIcon,
     },
 ];
 
-export const NewsOrderViewTabs = memo((props: NewsOrderViewTabsProps) => {
+export const FilterSort = memo((props: FilterSortProps) => {
     const { t } = useTranslation();
 
     const {
-        className, view, onChangeOrder, order, onChangeView,
+        className,
+        onChangeView,
+        onChangeOrder,
+        view,
+        order,
     } = props;
 
-    const onViewClick = (value: NewView) => () => {
+    const onViewClick = (value: ViewType) => () => {
         onChangeView?.(value);
     };
 
-    const onOrderClick = (value: NewOrder) => () => {
+    const onOrderClick = (value: OrderType) => () => {
         onChangeOrder?.(value);
     };
 
     return (
-        <VStack gap="16" className={classNames(styles.NewsOrderViewTabs, {}, [className])}>
+        <VStack gap="16" className={classNames(styles.FilterSort, {}, [className])}>
             <HStack max gap="16">
                 {
                     viewTypes.map((viewTypes) => (
@@ -86,7 +90,6 @@ export const NewsOrderViewTabs = memo((props: NewsOrderViewTabsProps) => {
                     ))
                 }
             </HStack>
-
         </VStack>
     );
 });

@@ -1,22 +1,6 @@
-export enum NewSortField {
-  VIEWS = 'views',
-  TITLE = 'title',
-  CREATED = 'createdAt'
-}
-
-export enum NewOrder {
-  DESC = 'desc',
-  ASC = 'asc'
-}
-
 export enum NewBlockType {
   IMAGE = 'IMAGE',
   TEXT = 'TEXT'
-}
-
-export enum NewView {
-  FULL = 'FULL',
-  SHORT = 'SHORT'
 }
 
 export interface NewBlockBase {

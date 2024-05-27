@@ -1,7 +1,8 @@
 import { EntityState } from '@reduxjs/toolkit';
 import {
-    New, NewOrder, NewSortField, NewView,
+    New,
 } from '@/entities/new';
+import { OrderType, SortType, ViewType } from '@/features/FilterContainer';
 
 export interface NewsPageSchema extends EntityState<New> {
   isLoading?: boolean;
@@ -14,9 +15,9 @@ export interface NewsPageSchema extends EntityState<New> {
   hasMore: boolean;
 
   // filters
-  order: NewOrder;
-  view: NewView;
-  sort: NewSortField;
+  order: OrderType;
+  view: ViewType;
+  sort: SortType;
   search: string;
 
   _inited: boolean;

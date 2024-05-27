@@ -1,11 +1,12 @@
 import { PayloadAction, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import {
-    New, NewOrder, NewSortField, NewView,
+    New,
 } from '@/entities/new';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { NewsPageSchema } from '../types/newsPageSchema';
 import { NEWS_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 import { fetchNewsList } from '../services/fetchNewsList/fetchNewsList';
+import { OrderType, SortType, ViewType } from '@/features/FilterContainer';
 
 const newsAdapter = createEntityAdapter<New>({
     selectId: (newItem) => newItem._id,
@@ -22,36 +23,36 @@ const newsPageSlice = createSlice({
         error: undefined,
         ids: [],
         entities: {},
-        view: NewView.SHORT,
+        view: ViewType.SHORT,
         page: 1,
         limit: 6,
         hasMore: true,
         _inited: false,
-        sort: NewSortField.CREATED,
+        sort: SortType.CREATED,
         search: '',
-        order: NewOrder.ASC,
+        order: OrderType.ASC,
     }),
     reducers: {
-        setView: (state, action: PayloadAction<NewView>) => {
+        setView: (state, action: PayloadAction<ViewType>) => {
             state.view = action.payload;
             localStorage.setItem(NEWS_VIEW_LOCALSTORAGE_KEY, action.payload);
         },
         setPage: (state, action: PayloadAction<number>) => {
             state.page = action.payload;
         },
-        setOrder: (state, action: PayloadAction<NewOrder>) => {
+        setOrder: (state, action: PayloadAction<OrderType>) => {
             state.order = action.payload;
         },
-        setSort: (state, action: PayloadAction<NewSortField>) => {
+        setSort: (state, action: PayloadAction<SortType>) => {
             state.sort = action.payload;
         },
         setSearch: (state, action: PayloadAction<string>) => {
             state.search = action.payload;
         },
         initState: (state) => {
-            const view = localStorage.getItem(NEWS_VIEW_LOCALSTORAGE_KEY) as NewView;
+            const view = localStorage.getItem(NEWS_VIEW_LOCALSTORAGE_KEY) as ViewType;
             state.view = view;
-            state.limit = view === NewView.FULL ? 4 : 6;
+            state.limit = view === ViewType.FULL ? 4 : 6;
             state._inited = true;
         },
     },

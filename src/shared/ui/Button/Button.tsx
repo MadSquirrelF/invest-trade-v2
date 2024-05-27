@@ -6,7 +6,9 @@ import {
 import { CSSTransition } from 'react-transition-group';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
-import { Text, TextAlign } from '../Text/Text';
+import {
+    Text, TextAlign, TextBold, TextSize,
+} from '../Text/Text';
 import { VStack } from '../Stack';
 
 export enum ThemeButton {
@@ -23,6 +25,7 @@ export enum ThemeButton {
   SVG_BTN = 'svg_btn',
   SVG_CLEAN = 'svg_clean',
   SELECTOR = 'selector',
+  TAB = 'tab',
   SELECTOR_INVERTED = 'selector_inverted'
 }
 
@@ -75,7 +78,13 @@ export const Button = memo((props : ButtonProps) => {
                             classNames="slide-animation"
                         >
                             <VStack className={styles.helper}>
-                                <Text text={helperText} align={TextAlign.CENTER} gap="0" />
+                                <Text
+                                    text={helperText}
+                                    size={TextSize.M}
+                                    align={TextAlign.CENTER}
+                                    bold={TextBold.BOLD}
+                                    gap="0"
+                                />
                             </VStack>
                         </CSSTransition>
                     )

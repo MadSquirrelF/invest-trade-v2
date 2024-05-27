@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
-import { New, NewOrder, NewSortField } from '@/entities/new';
+import { New } from '@/entities/new';
+import { OrderType, SortType } from '@/features/FilterContainer';
 
 export const fetchNewLast = createAsyncThunk<
     New[],
@@ -13,8 +14,8 @@ export const fetchNewLast = createAsyncThunk<
         const response = await extra.api.get<New[]>('/news', {
             params: {
                 _limit: limit,
-                _order: NewOrder.DESC,
-                _sort: NewSortField.CREATED,
+                _order: OrderType.DESC,
+                _sort: SortType.CREATED,
             },
         });
 

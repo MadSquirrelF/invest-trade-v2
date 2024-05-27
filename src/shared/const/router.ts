@@ -6,6 +6,7 @@ export enum AppRoutes {
     CART = 'cart',
     PROFILE = 'profile',
     CALCULATOR = 'calculator',
+    SHOP = 'shop',
     FAVORITE = 'favorite',
     REGISTRATION = 'registration',
     FORBIDDEN = 'forbidden',
@@ -21,6 +22,7 @@ export const getRouteNewDetails = (slug: string) => `/news/${slug}`;
 export const getRouteCart = () => '/cart';
 export const getRouteFavorite = () => '/favorite';
 export const getRouteRegistration = () => '/registration';
+export const getRouteShop = () => '/shop';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteForbidden = () => '/forbidden';
 
@@ -33,6 +35,7 @@ export const AppRouteByPathPattern: Record<string, AppRoutes> = {
     [getRouteCart()]: AppRoutes.CART,
     [getRouteFavorite()]: AppRoutes.FAVORITE,
     [getRouteRegistration()]: AppRoutes.REGISTRATION,
+    [getRouteShop()]: AppRoutes.SHOP,
     [getRouteProfile(':id')]: AppRoutes.PROFILE,
     [getRouteForbidden()]: AppRoutes.FORBIDDEN,
 };

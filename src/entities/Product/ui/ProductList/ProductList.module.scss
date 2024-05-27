@@ -1,0 +1,15 @@
+.ProductList {
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.NotFound {
+    flex: none;
+    width: 30%;
+}
+
+.text {
+    max-width: 40%;
+}

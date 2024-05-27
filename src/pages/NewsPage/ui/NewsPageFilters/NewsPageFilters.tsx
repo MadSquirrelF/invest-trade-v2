@@ -1,14 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable i18next/no-literal-string */
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/classNames/classNames';
-import SearchIcon from '@/shared/assets/icons/search-icon.svg';
-import styles from './NewsPageFilters.module.scss';
-import { HStack } from '@/shared/ui/Stack';
 import { useNewsFilters } from '../../lib/hooks/useNewsFilters';
-import { NewsSortSelector } from '@/features/NewsSortSelector';
-import { NewsOrderViewTabs } from '@/features/NewsOrderViewTabs';
+import { FilterContainer, SortType } from '@/features/FilterContainer';
+import { SelectOption } from '@/shared/ui/Select/Select';
 
 interface NewsPageFiltersProps {
   className?: string;
@@ -31,39 +27,37 @@ export const NewsPageFilters = memo(({ className }: NewsPageFiltersProps) => {
         onChangeSearch?.(e.target.value);
     };
 
-    return (
-        <HStack max justify="between" gap="32" className={classNames(styles.NewsPageFilters, {}, [className])}>
-            <HStack max gap="32" align="center" className={styles.searchBox}>
-                <HStack gap="10" align="center" justify="start" className={styles.inputWrapper}>
-                    <label
-                        htmlFor="news-search"
-                        className={styles.iconLabel}
-                    >
-                        <SearchIcon className={styles.icon} />
-                    </label>
-                    <input
-                        type="text"
-                        className={styles.input}
-                        id="news-search"
-                        placeholder="Поиск..."
-                        name="news-search"
-                        value={search}
-                        autoComplete="new-password"
-                        onChange={onChangeSearchHandler}
-                    />
-                </HStack>
-                <NewsSortSelector
-                    sort={sort}
-                    onChangeSort={onChangeSort}
-                />
-            </HStack>
+    const sortFieldOptions = useMemo<SelectOption<SortType>[]>(
+        () => [
+            {
+                value: SortType.CREATED,
+                content: t('Дата создания'),
+            },
+            {
+                value: SortType.TITLE,
+                content: t('Название'),
+            },
+            {
+                value: SortType.VIEWS,
+                content: t('Просмотры'),
+            },
+        ],
+        [t],
+    );
 
-            <NewsOrderViewTabs
-                view={view}
-                order={order}
-                onChangeView={onChangeView}
-                onChangeOrder={onChangeOrder}
-            />
-        </HStack>
+    return (
+        <FilterContainer
+            id="news-search"
+            searchValue={search}
+            onChangeSearchBox={onChangeSearchHandler}
+            sort={sort}
+            onChangeSort={onChangeSort}
+            sortFieldOptions={sortFieldOptions}
+            view={view}
+            order={order}
+            onViewClick={onChangeView}
+            onOrderClick={onChangeOrder}
+            isTabs={false}
+        />
     );
 });

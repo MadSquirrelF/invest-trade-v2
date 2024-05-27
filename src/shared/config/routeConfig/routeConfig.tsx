@@ -12,6 +12,7 @@ import {
     getRouteNews,
     getRouteProfile,
     getRouteRegistration,
+    getRouteShop,
 } from '@/shared/const/router';
 import { UserRole } from '@/entities/User';
 import { MainPage } from '@/pages/MainPage';
@@ -25,6 +26,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { NewsPage } from '@/pages/NewsPage';
 import { NewDetailsPage } from '@/pages/NewDetailsPage';
 import { CalculatorPage } from '@/pages/CalculatorPage';
+import { ShopPage } from '@/pages/ShopPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -52,6 +54,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.CART]: {
         path: getRouteCart(),
         element: <CartPage />,
+    },
+    [AppRoutes.SHOP]: {
+        path: getRouteShop(),
+        element: <ShopPage />,
     },
     [AppRoutes.FAVORITE]: {
         path: getRouteFavorite(),

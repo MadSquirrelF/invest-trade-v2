@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { getNewsPageInited } from '../../selectors/newsPageSelectors';
-import { NewOrder, NewSortField } from '@/entities/new';
 import { newsPageActions } from '../../slice/newsPageSlice';
 import { fetchNewsList } from '../fetchNewsList/fetchNewsList';
+import { OrderType, SortType } from '@/features/FilterContainer';
 
 export const initNewsPage = createAsyncThunk<
     void,
@@ -14,8 +14,8 @@ export const initNewsPage = createAsyncThunk<
     const inited = getNewsPageInited(getState());
 
     if (!inited) {
-        const orderFromUrl = searchParams.get('order') as NewOrder;
-        const sortFromUrl = searchParams.get('sort') as NewSortField;
+        const orderFromUrl = searchParams.get('order') as OrderType;
+        const sortFromUrl = searchParams.get('sort') as SortType;
         const searchFromUrl = searchParams.get('search');
 
         if (orderFromUrl) {

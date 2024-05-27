@@ -3,13 +3,14 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './NewListItem.module.scss';
-import { NewView } from '../../model/types/newSchema';
+
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 import { HStack, VStack } from '@/shared/ui/Stack';
+import { ViewType } from '@/features/FilterContainer';
 
 interface NewListItemSkeletonProps {
   className?: string;
-  view: NewView;
+  view: ViewType;
 }
 
 export const NewListItemSkeleton = memo(({ view, className }: NewListItemSkeletonProps) => {
@@ -30,6 +31,5 @@ export const NewListItemSkeleton = memo(({ view, className }: NewListItemSkeleto
             </HStack>
 
         </HStack>
-
     );
 });

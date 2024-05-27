@@ -3,7 +3,7 @@ import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import styles from './NewListItem.module.scss';
-import { New, NewView } from '../../model/types/newSchema';
+import { New } from '../../model/types/newSchema';
 import {
     Text, TextAlign, TextBold, TextSize,
 } from '@/shared/ui/Text/Text';
@@ -14,11 +14,12 @@ import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { getRouteNewDetails } from '@/shared/const/router';
 import { convertDate } from '@/shared/lib/convertDate/convertDate';
+import { ViewType } from '@/features/FilterContainer';
 
 interface NewListItemProps {
   className?: string;
   newItem: New;
-  view: NewView;
+  view: ViewType;
   target?: HTMLAttributeAnchorTarget;
 }
 
@@ -29,7 +30,7 @@ export const NewListItem = memo((props: NewListItemProps) => {
         className, newItem, view, target,
     } = props;
 
-    if (view === NewView.FULL) {
+    if (view === ViewType.FULL) {
         return (
             <HStack gap="32" align="start" className={classNames(styles.NewListItem, {}, [className, styles[view]])}>
                 <img
