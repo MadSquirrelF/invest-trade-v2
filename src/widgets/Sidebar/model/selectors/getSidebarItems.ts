@@ -8,8 +8,16 @@ import ProfileIcon from '@/shared/assets/icons/profile.svg';
 import FavoriteIcon from '@/shared/assets/icons/like-save-icon.svg';
 import CalculatorIcon from '@/shared/assets/icons/calculator-icon.svg';
 import ShopIcon from '@/shared/assets/icons/shop-icon.svg';
+import HelpIcon from '@/shared/assets/icons/help-icon.svg';
 import {
-    getRouteAbout, getRouteCalculator, getRouteCart, getRouteFavorite, getRouteMain, getRouteNews, getRouteProfile,
+    getRouteAbout,
+    getRouteCalculator,
+    getRouteCart,
+    getRouteFavorite,
+    getRouteHelp,
+    getRouteMain,
+    getRouteNews,
+    getRouteProfile,
     getRouteShop,
 } from '@/shared/const/router';
 import { SidebarItemType } from '../types/sidebar';
@@ -52,6 +60,11 @@ export const useSidebarItems = () => {
             path: getRouteFavorite(),
             Icon: FavoriteIcon,
             text: 'Избранное',
+        },
+        {
+            path: getRouteHelp(),
+            Icon: HelpIcon,
+            text: 'Помощь',
         },
     ];
 

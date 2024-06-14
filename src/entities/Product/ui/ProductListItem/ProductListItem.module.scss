@@ -18,6 +18,7 @@
 
 .SHORT {
     width: 450px;
+    height: 547px;
 }
 
 .date {
@@ -26,6 +27,10 @@
 
 .imageContainer {
     padding: 20px;
+}
+
+.imageContainerMax {
+    width: 80%;
 }
 
 .content {
@@ -54,20 +59,21 @@
     width: 45px;
 }
 
-.favoriteContainer {
+.options {
     position: absolute;
     top: 20px;
-    right: 30px;
+    right: 20px;
 }
 
 .brandContainer {
     background-color: var(--bg-primary);
     border-radius: 20px 0;
-    padding: 10px;
+    padding: 15px;
     box-shadow: var(--box-shadow-down);
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
 }
 
 .brandLogo {

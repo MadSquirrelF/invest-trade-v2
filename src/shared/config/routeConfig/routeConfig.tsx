@@ -7,9 +7,11 @@ import {
     getRouteCart,
     getRouteFavorite,
     getRouteForbidden,
+    getRouteHelp,
     getRouteMain,
     getRouteNewDetails,
     getRouteNews,
+    getRouteProductDetails,
     getRouteProfile,
     getRouteRegistration,
     getRouteShop,
@@ -27,6 +29,8 @@ import { NewsPage } from '@/pages/NewsPage';
 import { NewDetailsPage } from '@/pages/NewDetailsPage';
 import { CalculatorPage } from '@/pages/CalculatorPage';
 import { ShopPage } from '@/pages/ShopPage';
+import { HelpPage } from '@/pages/HelpPage';
+import { ShopDetailsPage } from '@/pages/ShopDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -55,6 +59,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteCart(),
         element: <CartPage />,
     },
+    [AppRoutes.HELP]: {
+        path: getRouteHelp(),
+        element: <HelpPage />,
+    },
     [AppRoutes.SHOP]: {
         path: getRouteShop(),
         element: <ShopPage />,
@@ -76,6 +84,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.NEW_DETAILS]: {
         path: getRouteNewDetails(':slug'),
         element: <NewDetailsPage />,
+    },
+    [AppRoutes.PRODUCT_DETAILS]: {
+        path: getRouteProductDetails(':slug'),
+        element: <ShopDetailsPage />,
     },
     [AppRoutes.FORBIDDEN]: {
         path: getRouteForbidden(),

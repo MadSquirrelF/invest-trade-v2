@@ -13,3 +13,52 @@
         color: var(--active-color-default);
     }
 }
+
+.step {
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: var(--active-color-default);
+}
+
+.schemaContainer {
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
+}
+
+.resultBlock {
+    width: 600px;
+}
+
+.iconPrice {
+    width: 25px;
+    height: 25px;
+    flex: none;
+    color: var(--text-primary);
+}
+
+.resultClearContainer {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.stepCount {
+    color: var(--text-white);
+}
+
+.tab {
+    width: 230px;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid var(--border-primary);
+
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        box-shadow: var(--box-shadow-default);
+        border: 3px solid var(--active-color-default);
+    }
+}

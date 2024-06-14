@@ -1,15 +1,39 @@
 .arrow {
+    z-index: 1;
     position: absolute;
     right: 20px;
     bottom: 20px;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--active-color-default);
+    box-shadow: var(--box-shadow-default);
+
+    &:hover {
+        background-color: var(--active-color-hover);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
 }
 
 .icon {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     flex: none;
 }
 
 .left {
     right: 96px;
+    background-color: var(--bg-secondary);
+    color: var(--active-color-default);
+
+    &:hover {
+        background-color: var(--secondary-btn-hover);
+    }
 }

@@ -14,7 +14,7 @@ interface SlideArrowProps {
 export const SlideArrow = memo(({ variant, clickHandler }: SlideArrowProps) => (
     <Button
         onClick={clickHandler}
-        theme={ThemeButton.UP}
+        theme={ThemeButton.CLEAR}
         className={classNames(styles.arrow, { [styles.left]: variant === 'left' })}
     >
         {

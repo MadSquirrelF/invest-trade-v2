@@ -69,18 +69,18 @@ export function useShopFilters() {
         (brand: BrandType) => {
             dispatch(shopPageActions.setBrand(brand));
             dispatch(shopPageActions.setPage(1));
-            debouncedFetchData();
+            fetchData();
         },
-        [dispatch, debouncedFetchData],
+        [dispatch, fetchData],
     );
 
     const onChangeCategory = useCallback(
         (category: CategoryType) => {
             dispatch(shopPageActions.setCategory(category));
             dispatch(shopPageActions.setPage(1));
-            debouncedFetchData();
+            fetchData();
         },
-        [dispatch, debouncedFetchData],
+        [dispatch, fetchData],
     );
 
     return {

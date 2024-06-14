@@ -13,8 +13,8 @@ export const getShopPageInited = (state: StateSchema) => state.shopPage?._inited
 export const getShopPageOrder = (state: StateSchema) => state.shopPage?.order || OrderType.DESC;
 export const getShopPageSort = (state: StateSchema) => state.shopPage?.sort || SortType.CREATED;
 export const getShopPageSearch = (state: StateSchema) => state.shopPage?.search ?? '';
-export const getShopPageBrand = (state: StateSchema) => state.shopPage?.brand || CategoryType.PROFILEPVC;
-export const getShopPageCategory = (state: StateSchema) => state.shopPage?.category || BrandType.SCHTERN;
+export const getShopPageBrand = (state: StateSchema) => state.shopPage?.brand || BrandType.NULL;
+export const getShopPageCategory = (state: StateSchema) => state.shopPage?.category || CategoryType.NULL;
 
 export const [useProductItemById] = buildSelector(
     (state, id: string) => state.shopPage?.entities[id],

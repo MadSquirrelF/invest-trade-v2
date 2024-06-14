@@ -1,0 +1,14 @@
+.star {
+    flex: none;
+    color: var(--text-secondary);
+    width: 25px;
+    height: 25px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.active {
+    color: var(--text-yellow);
+}

@@ -13,6 +13,7 @@ import { VStack } from '../Stack';
 
 export enum ThemeButton {
   CLEAR = 'clear',
+  CLEAR_COMMENT = 'clear_comment',
   DEFAULT = 'default',
   VK = 'vk',
   YANDEX = 'Yandex',
@@ -26,6 +27,7 @@ export enum ThemeButton {
   SVG_CLEAN = 'svg_clean',
   SELECTOR = 'selector',
   TAB = 'tab',
+  HELP = 'help',
   SELECTOR_INVERTED = 'selector_inverted'
 }
 

@@ -1,0 +1,17 @@
+.Cookie {
+    position: absolute;
+    bottom: 20px;
+    z-index: var(--sidebar-z-index);
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 60%;
+    outline: 1px solid var(--border-primary);
+    box-shadow: var(--box-shadow-active);
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    flex: none;
+}

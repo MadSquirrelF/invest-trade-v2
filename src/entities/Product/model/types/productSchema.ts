@@ -24,12 +24,14 @@ export interface Settings {
 }
 
 export enum BrandType {
+  NULL = '',
   SCHTERN = 'SCHTERN',
   MACO = 'MACO',
   RINGER = 'RINGER'
 }
 
 export enum CategoryType {
+  NULL = '',
   OBORUDOVANIE = 'OBORUDOVANIE',
   KOMPLEKT = 'KOMPLEKT',
   FURNITURA = 'FURNITURA',
@@ -80,7 +82,7 @@ export interface Product {
   adds: IAdds[]
   details: Settings[];
   category: CategoryType;
-  is_avaible: boolean;
+  is_available: boolean;
   view_count: number;
   rating: number;
   poster: string;

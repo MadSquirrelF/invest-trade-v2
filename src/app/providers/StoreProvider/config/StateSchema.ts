@@ -16,6 +16,10 @@ import { NewDetailsPageSchema } from '@/pages/NewDetailsPage';
 import { NotificationsSchema } from '@/features/Notifications';
 import { ProfileSchema } from '@/features/editableProfileCard';
 import { ShopPageSchema } from '@/pages/ShopPage';
+import { HelpPageSchema } from '@/pages/HelpPage';
+import { ShopDetailsPageSchema } from '@/pages/ShopDetailsPage';
+import { ProductDetailsSchema } from '@/entities/Product';
+import { AddCommentFormSchema } from '@/features/addCommentForm';
 
 export interface StateSchema {
   user: UserSchema;
@@ -26,10 +30,14 @@ export interface StateSchema {
 
   // Async reducers
   profile?: ProfileSchema;
+  addCommentForm?: AddCommentFormSchema;
+  helpPage?: HelpPageSchema;
   loginForm?: LoginSchema;
-  shopPage?: ShopPageSchema
+  shopPage?: ShopPageSchema;
+  productDetails?: ProductDetailsSchema;
   newsPage?: NewsPageSchema;
   newDetails?: NewDetailsSchema;
+  shopDetailsPage?: ShopDetailsPageSchema;
   newDetailsPage?: NewDetailsPageSchema;
   registrationForm?: RegistrationSchema;
 }

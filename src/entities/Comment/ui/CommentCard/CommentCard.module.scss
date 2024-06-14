@@ -1,0 +1,33 @@
+.CommentCard {
+    position: relative;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-primary);
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.avatar {
+    flex: none;
+    margin-right: 10px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    &:hover {
+        .avatar {
+            outline: 2px solid var(--active-color-default);
+        }
+    }
+}
+
+.loading {
+    border: none;
+    margin-top: 20px;
+}

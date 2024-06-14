@@ -51,9 +51,11 @@ const shopPageSlice = createSlice({
         },
         setBrand: (state, action: PayloadAction<BrandType>) => {
             state.brand = action.payload;
+            state.category = CategoryType.NULL;
         },
         setCategory: (state, action: PayloadAction<CategoryType>) => {
             state.category = action.payload;
+            state.brand = BrandType.NULL;
         },
         initState: (state) => {
             const view = localStorage.getItem(SHOP_VIEW_LOCALSTORAGE_KEY) as ViewType;

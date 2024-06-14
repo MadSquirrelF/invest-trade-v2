@@ -1,0 +1,116 @@
+.ProductDetails {
+    position: relative;
+}
+
+.availableIcon {
+    color: var(--error-color);
+}
+
+.eyeIcon {
+    color: var(--text-primary);
+}
+
+.iconContainer {
+    z-index: 2;
+    border-radius: 50%;
+    padding: 30px;
+    border: 1px solid var(--text-yellow);
+    background-color: var(--bg-primary);
+    box-shadow: -1px 1px 24px 2px rgb(255 215 106 / 48.6%);
+}
+
+.starIcon {
+    flex: none;
+    width: 100px;
+    height: 100px;
+}
+
+.bgWave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ratingCard {
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.cancelBtn,
+.ratingBtn {
+    width: 100%;
+}
+
+.buyNow {
+    height: 45px;
+}
+
+.border {
+    border-bottom: 1px solid var(--border-primary);
+    padding-bottom: 20px;
+}
+
+.priceIcon {
+    color: var(--active-color-default);
+    height: 25px;
+    width: 25px;
+    flex: none;
+}
+
+.posterContainer {
+    position: relative;
+    outline: 2px solid var(--bg-primary);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.btn {
+    height: 45px;
+    width: 45px;
+}
+
+.details {
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.brandLogo {
+    width: 100px;
+}
+
+.poster {
+    border-radius: 15px;
+    height: 600px;
+    width: 600px;
+    flex: none;
+    aspect-ratio: attr(width) / attr(height);
+}
+
+.brandContainer {
+    background-color: var(--bg-primary);
+    border-radius: 20px 0;
+    padding: 15px;
+    box-shadow: var(--box-shadow-down);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.availableIcon,
+.eyeIcon {
+    height: 25px;
+    width: 25px;
+    flex: none;
+}
+
+.available {
+    color: var(--active-color-default);
+}

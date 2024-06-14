@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable consistent-return */
 /* eslint-disable default-case */
 /* eslint-disable i18next/no-literal-string */
@@ -8,7 +9,7 @@ import styles from './ProductList.module.scss';
 import { ViewType } from '@/features/FilterContainer';
 import { Product } from '../../model/types/productSchema';
 import { ProductListItem } from '../ProductListItem/ProductListItem';
-import { ProductsListItemSkeleton } from './ProductsListItemSkeleton';
+import { ProductsListItemSkeleton } from '../ProductListItem/ProductsListItemSkeleton';
 import { Theme } from '@/shared/const/theme';
 import NotFoundDataImageLight from '@/shared/assets/images/not_found_data_light.svg';
 import NotFoundDataImageDark from '@/shared/assets/images/not_found_data_dark.svg';
@@ -24,7 +25,7 @@ interface ProductListProps {
   target?: HTMLAttributeAnchorTarget;
 }
 
-const getSkeletons = (view: ViewType) => new Array(view === ViewType.SHORT ? 3 : 1)
+const getSkeletons = (view: ViewType) => new Array(view === ViewType.SHORT ? 4 : 2)
     .fill(0)
     .map((item, index) => (
         // eslint-disable-next-line react/no-array-index-key
@@ -68,21 +69,25 @@ export const ProductList = memo((props: ProductListProps) => {
 
     return (
         <div className={classNames(styles.ProductList, {}, [className])}>
-            {products.length > 0 ? products.map(renderProduct) : (
-                <HStack max justify="start" align="center">
-                    {renderImage(theme)}
-                    <Text
-                        gap="16"
-                        bold={TextBold.BOLD}
-                        size={TextSize.XL}
-                        title="Данный товар не найден"
-                        text="Попробуйте выбрать альтернативный
+            {isLoading
+                ? getSkeletons(view)
+                : products.length > 0
+                    ? products.map(renderProduct)
+                    : (
+                        <HStack max justify="start" align="center">
+                            {renderImage(theme)}
+                            <Text
+                                gap="16"
+                                bold={TextBold.BOLD}
+                                size={TextSize.XL}
+                                title="Данный товар не найден"
+                                text="Попробуйте выбрать альтернативный
                      товар в нашем ассортименте или обратитесь к нашему менеджеру"
-                        className={styles.text}
-                    />
-                </HStack>
-            )}
-            {isLoading && getSkeletons(view)}
+                                className={styles.text}
+                            />
+                        </HStack>
+                    )}
+
         </div>
     );
 });

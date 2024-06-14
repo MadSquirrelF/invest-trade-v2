@@ -9,7 +9,6 @@ import MenuIcon from '@/shared/assets/icons/menu-burger-icon.svg';
 import CartIcon from '@/shared/assets/icons/cart-icon.svg';
 import BellIcon from '@/shared/assets/icons/bell-icon.svg';
 import LikeIcon from '@/shared/assets/icons/like-save-icon.svg';
-
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import { LoginModal } from '@/features/Auth';
 import { getUserAuthData, isUserAdmin, userActions } from '@/entities/User';
@@ -74,10 +73,34 @@ export const Navbar = memo(({ className, onToggle }: NavbarProps) => {
                     </AppLink>
 
                 </HStack>
-                <HStack gap="16">
+                <HStack gap="16" align="center">
                     <VStack gap="4" justify="end" align="end" className={styles.contacts}>
-                        <a href="#">+7 (982) 325-63-78</a>
-                        <a href="#">mail@invest-trade.biz</a>
+                        <Text
+                            text={t('+7 (982) 325-63-78')}
+                            gap="0"
+                            bold={TextBold.BOLD}
+                        />
+                        <Text
+                            text={t('mail@invest-trade.biz')}
+                            gap="0"
+                            bold={TextBold.BOLD}
+                        />
+                    </VStack>
+                    <VStack gap="4" justify="end" align="end" className={styles.contacts}>
+                        <Text
+                            text={t('Ежедневно')}
+                            gap="0"
+                            bold={TextBold.BOLD}
+                        />
+                        <HStack max>
+                            <Text
+                                text={t('C 10:00 - 19:00')}
+                                gap="0"
+                                isActive
+                                size={TextSize.S}
+                                bold={TextBold.BOLD}
+                            />
+                        </HStack>
                     </VStack>
                     <HStack gap="16" className={styles.btnWrapper}>
                         <Button type="button" theme={ThemeButton.SVG_BG} className={styles.likeBtn}>

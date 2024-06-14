@@ -42,6 +42,33 @@
     }
 }
 
+.clear_comment {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+    background-color: transparent;
+
+    svg {
+        width: 15px;
+        height: 15px;
+        flex: none;
+        color: var(--text-primary);
+    }
+
+    &:hover {
+        p {
+            transition: all 0.2s ease-in-out;
+            color: var(--text-primary);
+        }
+
+        svg {
+            transition: all 0.2s ease-in-out;
+            color: var(--active-color-default);
+        }
+    }
+}
+
 .tab {
     border-radius: 10px;
     background-color: var(--bg-primary);
@@ -213,7 +240,6 @@
     padding: 10px 25px;
     gap: 7px;
     font-weight: 600;
-    line-height: 1;
 
     svg {
         width: 25px;
@@ -286,6 +312,49 @@
     &[disabled] {
         background-color: var(--active-color-disabled);
         pointer-events: none;
+    }
+}
+
+.help {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    border-radius: 10px;
+    padding: 15px 25px;
+    color: white;
+    background-color: var(--active-color-default);
+    filter: drop-shadow(-1px 1px 4px rgb(0 0 0 / 25%));
+
+    &::after {
+        position: absolute;
+        transform: rotate(25deg) translateY(6px);
+        bottom: 0;
+        right: 10px;
+        content: "";
+        width: 20px;
+        height: 20px;
+        background-color: var(--active-color-default);
+    }
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
+
+    svg {
+        flex: none;
+        color: white;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        animation: scale 1s ease infinite;
     }
 }
 
@@ -436,9 +505,8 @@
 }
 
 .up {
-    z-index: 100;
     position: absolute;
-    bottom: 50px;
+    bottom: 150px;
     right: 50px;
     box-shadow: var(--box-shadow-default);
     display: flex;
@@ -462,5 +530,19 @@
 
     &:active {
         transform: scale(0.97);
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
