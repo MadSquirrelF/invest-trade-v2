@@ -1,0 +1,14 @@
+.CalculationAddsComponent {
+    position: relative;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+    flex: none;
+    color: var(--text-secondary);
+}
+
+.active {
+    color: var(--active-color-default);
+}

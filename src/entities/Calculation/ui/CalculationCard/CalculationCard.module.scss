@@ -1,0 +1,65 @@
+.windowIconTest {
+    flex: none;
+    width: 50px;
+    height: 60px;
+}
+
+.icon {
+    svg {
+        color: var(--active-color-default);
+    }
+}
+
+.schemaContainer {
+    position: relative;
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collapsed {
+    svg {
+        transition: transform 0.3s;
+        transform: rotate(180deg);
+    }
+}
+
+.schema {
+    height: 450px;
+    width: 300px;
+    flex: none;
+}
+
+.width,
+.height {
+    position: absolute;
+    padding: 10px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-default);
+}
+
+.width {
+    bottom: -20px;
+}
+
+.height {
+    right: -50px;
+}
+
+.menuIcon {
+    width: 25px;
+    height: 25px;
+    flex: none;
+    color: var(--active-color-default);
+}
+
+.infoBlock {
+    background-color: var(--bg-secondary);
+    padding: 10px;
+    border-radius: 10px;
+}

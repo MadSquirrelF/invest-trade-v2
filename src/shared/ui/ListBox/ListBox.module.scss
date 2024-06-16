@@ -4,8 +4,11 @@
 }
 
 .label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+    font-weight: 700;
     color: var(--text-primary);
 }
 

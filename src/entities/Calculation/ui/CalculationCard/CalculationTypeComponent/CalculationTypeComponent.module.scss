@@ -1,0 +1,35 @@
+.CalculationTypeComponent {
+    position: relative;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: var(--active-color-default);
+}
+
+.stepCount {
+    color: var(--text-white);
+}
+
+.tab {
+    width: 230px;
+    height: 265px;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid var(--border-primary);
+
+    &:hover {
+        transition: all 0.2s ease-in-out;
+        box-shadow: var(--box-shadow-default);
+        border: 3px solid var(--active-color-default);
+    }
+}
+
+.selected {
+    box-shadow: var(--box-shadow-default);
+    border: 3px solid var(--active-color-default);
+}

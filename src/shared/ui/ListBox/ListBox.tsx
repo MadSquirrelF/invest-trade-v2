@@ -6,6 +6,7 @@ import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import SelectedIcon from '@/shared/assets/icons/selected-icon.svg';
 import { DropdownDirection } from '@/shared/types/ui';
 import styles from './ListBox.module.scss';
+import { VStack } from '../Stack';
 
 export enum ThemeListBox {
     CLEAR = 'clear',
@@ -62,14 +63,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
     };
 
     return (
-        <HListBox
-            disabled={readonly}
-            as="div"
-            className={classNames(styles.ListBox, mods, [className])}
-            value={value}
-            onChange={onChange}
-        >
-
+        <VStack align="start" gap="8">
             {
                 label && (
                     <label htmlFor={value} className={styles.label}>
@@ -78,30 +72,40 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 )
             }
 
-            <HListBox.Button id={value} className={classNames(styles.trigger, mods, [])} aria-disabled={readonly}>
-                <span className={styles.title}>{value ? t(value) : defaultValue}</span>
+            <HListBox
+                disabled={readonly}
+                as="div"
+                className={classNames(styles.ListBox, mods, [className])}
+                value={value}
+                onChange={onChange}
+            >
 
-                <UpDownIcon />
-            </HListBox.Button>
-            <HListBox.Options className={classNames(styles.options, {}, optionsClasses)}>
-                {items.map((item) => (
-                    <HListBox.Option
-                        key={item.value}
-                        value={item.value}
-                        disabled={item.disabled}
-                        className={classNames(
-                            styles.item,
-                            {
-                                [styles.selected]: item.value === value,
-                                [styles.disabled]: item.disabled,
-                            },
-                        )}
-                    >
-                        <SelectedIcon />
-                        {item.content}
-                    </HListBox.Option>
-                ))}
-            </HListBox.Options>
-        </HListBox>
+                <HListBox.Button id={value} className={classNames(styles.trigger, mods, [])} aria-disabled={readonly}>
+                    <span className={styles.title}>{value ? t(value) : defaultValue}</span>
+
+                    <UpDownIcon />
+                </HListBox.Button>
+                <HListBox.Options className={classNames(styles.options, {}, optionsClasses)}>
+                    {items.map((item) => (
+                        <HListBox.Option
+                            key={item.value}
+                            value={item.value}
+                            disabled={item.disabled}
+                            className={classNames(
+                                styles.item,
+                                {
+                                    [styles.selected]: item.value === value,
+                                    [styles.disabled]: item.disabled,
+                                },
+                            )}
+                        >
+                            <SelectedIcon />
+                            {item.content}
+                        </HListBox.Option>
+                    ))}
+                </HListBox.Options>
+            </HListBox>
+        </VStack>
+
     );
 }

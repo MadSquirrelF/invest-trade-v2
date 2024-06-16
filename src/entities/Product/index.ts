@@ -1,5 +1,5 @@
 export type {
-    Product, ITabs,
+    Product, ITabs, IAdds,
 } from './model/types/productSchema';
 
 export type { ProductDetailsSchema } from './model/types/productDetailsSchema';

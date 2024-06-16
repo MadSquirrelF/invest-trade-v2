@@ -20,6 +20,7 @@ import { HelpPageSchema } from '@/pages/HelpPage';
 import { ShopDetailsPageSchema } from '@/pages/ShopDetailsPage';
 import { ProductDetailsSchema } from '@/entities/Product';
 import { AddCommentFormSchema } from '@/features/addCommentForm';
+import { CalculationSchema } from '@/entities/Calculation';
 
 export interface StateSchema {
   user: UserSchema;
@@ -37,6 +38,7 @@ export interface StateSchema {
   productDetails?: ProductDetailsSchema;
   newsPage?: NewsPageSchema;
   newDetails?: NewDetailsSchema;
+  calculation?: CalculationSchema;
   shopDetailsPage?: ShopDetailsPageSchema;
   newDetailsPage?: NewDetailsPageSchema;
   registrationForm?: RegistrationSchema;

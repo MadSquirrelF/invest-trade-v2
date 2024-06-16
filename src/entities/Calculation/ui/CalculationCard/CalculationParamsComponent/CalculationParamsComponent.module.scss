@@ -1,0 +1,13 @@
+.CalculationParamsComponent {
+    position: relative;
+}
+
+.radioBtn {
+    width: 100%;
+}
+
+.active {
+    transition: all 0.2s;
+    background-color: var(--active-color-default) !important;
+    color: var(--text-white);
+}

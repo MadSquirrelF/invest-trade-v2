@@ -15,7 +15,7 @@ export interface IAdds {
   title: string;
   description: string;
   price: number;
-  poster: string;
+  icon: React.VFC<React.SVGProps<SVGAElement>>;
 }
 
 export interface Settings {

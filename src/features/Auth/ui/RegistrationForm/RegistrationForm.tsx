@@ -9,7 +9,6 @@ import { CSSTransition } from 'react-transition-group';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import Stepper from '@/shared/ui/Stepper/Stepper';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 import PasswordBg from '@/shared/assets/images/password-bg.svg';
@@ -47,6 +46,10 @@ import { validatePersonalData } from '../../model/services/validatePersonalData/
 import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 import { Theme, useTheme } from '@/app/providers/ThemeProvider';
 import { NotificationsActions } from '@/features/Notifications';
+import Mail from '@/shared/assets/icons/mail.svg';
+import Password from '@/shared/assets/icons/password.svg';
+import PersonalInfo from '@/shared/assets/icons/personal-info.svg';
+import { IStepper, Stepper } from '@/shared/ui/Stepper/Stepper';
 
 interface RegistrationFormProps {
   className?: string;
@@ -55,6 +58,24 @@ interface RegistrationFormProps {
 const initialReducers: ReducerList = {
     registrationForm: registrationReducer,
 };
+
+const steps: IStepper[] = [
+    {
+        id: 0,
+        title: 'Логин и почта',
+        Icon: Mail,
+    },
+    {
+        id: 1,
+        title: 'Придумайте пароль',
+        Icon: Password,
+    },
+    {
+        id: 2,
+        title: 'Персональные данные',
+        Icon: PersonalInfo,
+    },
+];
 
 export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
     const { t } = useTranslation('registration');
@@ -280,7 +301,7 @@ export const RegistrationForm = memo(({ className }: RegistrationFormProps) => {
                 </CSSTransition>
 
                 <VStack justify="between" gap="32" className={styles.RegistrationForm}>
-                    <Stepper currentStep={activeStep} />
+                    <Stepper currentStep={activeStep} steps={steps} />
 
                     <CSSTransition
                         in={slideIn}
